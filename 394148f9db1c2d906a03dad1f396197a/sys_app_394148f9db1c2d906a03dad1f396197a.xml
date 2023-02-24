@@ -14,13 +14,13 @@
         <license_model>none</license_model>
         <logo/>
         <menu/>
-        <name>Deployer WORK IN PROGRESS</name>
+        <name>Deployer</name>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
         <scope>x_snc_deployer</scope>
         <scoped_administration>false</scoped_administration>
-        <short_description>Provides tools and APIs for a fully automated CICD pipeline. </short_description>
+        <short_description>Provides an API for a fully automated CICD pipeline. </short_description>
         <source>x_snc_deployer</source>
         <store_correlation_id/>
         <store_url/>
@@ -29,9 +29,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-10 08:56:01</sys_created_on>
         <sys_id>394148f9db1c2d906a03dad1f396197a</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-24 12:44:07</sys_updated_on>
+        <sys_updated_on>2023-02-24 17:07:01</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>

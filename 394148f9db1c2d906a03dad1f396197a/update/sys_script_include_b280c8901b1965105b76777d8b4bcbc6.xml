@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.AppGetDependencies</api_name>
+        <caller_access>1</caller_access>
+        <client_callable>false</client_callable>
+        <description>Retrieves information about the app's dependencies to other apps and required versions.</description>
+        <name>AppGetDependencies</name>
+        <script><![CDATA[function AppGetDependencies()
+{
+	return x_snc_devtools.GetValue(
+		x_snc_devtools.GetPackageDependencyTree(
+			'x_snc_deployer'),
+		'_dependencies');
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-24 10:04:42</sys_created_on>
+        <sys_id>b280c8901b1965105b76777d8b4bcbc6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AppGetDependencies</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_b280c8901b1965105b76777d8b4bcbc6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-24 10:04:42</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -20,16 +20,30 @@
 	
 	var strRepoUrl = GetParam('repourl');
 	var strVersion = GetParam('version');
+	var strState = GetParam('state');
 	var strMode = GetParam('mode');
 	var strHide = GetParam('hide');
 	
 	
-	var strState = 'form';
+	if (strState == '')
+	{
+		strState = 'form';
+	}
 	
+	if (strState == 'viewer')
+	{
+		if (IsValidUrl(strRepoUrl) == false || IsValidVersion(strVersion) == false)
+		{
+			strState = 'form';
+		}
+	}	
+	
+	/*
 	if (IsValidUrl(strRepoUrl) && IsValidVersion(strVersion))
 	{
 		strState = 'viewer';
 	}
+	*/
 	
 	var strRepoType = GetRepositoryType(strRepoUrl);
 	var grCredential = GetCredentialForRepository(strRepoUrl);
@@ -39,20 +53,6 @@
 	strHtml += '<h1>Deployer - Repository Viewer</h1>';
 	
 	
-	strHtml += '<div>';
-	
-	strHtml += '<b>Repository Url:</b> '+strRepoUrl+'<br/>';
-	strHtml += '<b>Version:</b> '+strVersion+'<br/>';
-	strHtml += '<b>Source Control System:</b> ' + strRepoType + '<br/>';
-	
-	strHtml += '<b>Credential available:</b> ' + ((IsValidRecord(grCredential))?('yes'):('no')) + '<br/>';
-	
-	
-	strHtml += '</div>';
-	
-	
-	
-
 	switch (strState)
 	{
 		case 'viewer':
@@ -76,6 +76,8 @@
 		strHtml += '<input type="text" name="repourl" id="url" size="200" value="'+strRepoUrl+'"></input><br/>';
 		strHtml += '<label for="version">Version</label><br/>';
 		strHtml += '<input type="text" name="version" id="version" size="12" value="'+strVersion+'"></input><br/>';
+		
+		strHtml += '<input type="hidden" name="state" value="viewer"></input><br/>';
 
 		strHtml += '<input type="submit" value="Go"></input>';
 	
@@ -88,6 +90,19 @@
 	function HtmlRenderPageRepositoryViewerStateViewer()
 	{
 		var strHtml = '';
+		
+		strHtml += '<div>';
+
+		strHtml += '<a href="?state=form&repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&hide='+strHide+'">Back</a><br/>';
+		
+		strHtml += '<b>Repository Url:</b>&#160;<a href="'+strRepoUrl+'" target="_blank">'+strRepoUrl+'</a><br/>';
+		strHtml += '<b>Version:</b> '+strVersion+'<br/>';
+		strHtml += '<b>Source Control System:</b> ' + strRepoType + '<br/>';
+
+		strHtml += '<b>Credential available:</b> ' + ((IsValidRecord(grCredential))?('yes'):('no')) + '<br/>';
+
+
+		strHtml += '</div>';		
 		
 		var aHidePackages = [];
 		if (strMode == '')
@@ -104,18 +119,18 @@
 				{
 					id: 'list',
 					text: 'Dependency List',
-					url: '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&mode=list&hide='+strHide
+					url: '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&state=viewer&mode=list&hide='+strHide
 				},
 				{
 					id: 'tree',
 					text: 'Dependency Tree',
-					url: '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&mode=tree&hide='+strHide
+					url: '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&state=viewer&mode=tree&hide='+strHide
 				},
 			],
 			strMode);
 
 		strHtml += '<div style="padding-top: 10px;">';
-			strHtml += HtmlRenderRepoDependencies(strRepoUrl,strMode,aHidePackages);
+			strHtml += HtmlRenderRepoDependencies(strRepoUrl,strVersion,strMode,aHidePackages);
 		strHtml += '</div>';
 
 		return strHtml;
@@ -126,13 +141,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 13:52:39</sys_created_on>
         <sys_id>e4373617970ae910a6a07767f053af52</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>HtmlRenderPageRepositoryViewer</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_e4373617970ae910a6a07767f053af52</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-12 16:23:11</sys_updated_on>
+        <sys_updated_on>2023-04-28 17:32:06</sys_updated_on>
     </sys_script_include>
 </record_update>

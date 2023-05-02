@@ -72,7 +72,7 @@
 		
 		strHtml += '<form>'; //' action="'+strFormAction+'">';
 
-		strHtml += '<label for="repourl">Repository Url</label><br/>';
+		strHtml += '<label for="repourl">Repository</label><br/>';
 		strHtml += '<input type="text" name="repourl" id="url" size="200" value="'+strRepoUrl+'"></input><br/>';
 		strHtml += '<label for="version">Version</label><br/>';
 		strHtml += '<input type="text" name="version" id="version" size="12" value="'+strVersion+'"></input><br/>';
@@ -141,13 +141,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 13:52:39</sys_created_on>
         <sys_id>e4373617970ae910a6a07767f053af52</sys_id>
-        <sys_mod_count>36</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>HtmlRenderPageRepositoryViewer</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_e4373617970ae910a6a07767f053af52</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-28 17:32:06</sys_updated_on>
+        <sys_updated_on>2023-05-02 14:51:38</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -22,7 +22,10 @@ SourceControlAPI.prototype = {
 	
 	ParseRepoUrl: function(strRepoUrl)
 	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
 		var StringReplace = x_snc_devtools.StringReplace;
+		var StringFind = x_snc_devtools.StringFind;
+		
 		var strRepoType = GetRepositoryType(strRepoUrl);
 		switch (strRepoType)
 		{
@@ -41,8 +44,45 @@ SourceControlAPI.prototype = {
 				result['owner'] = aComponents[aComponents.length-2];
 				return result;
 				break;
+				
 			case 'gitlab':
-				break;
+				
+				var strProject = StringReplace(strRepoUrl,'https://','');
+				strProject = StringReplace(strProject,'.git','');
+				var nFirstSlash = StringFind(strProject,'/');
+				strProject = strProject.substring(nFirstSlash+1);
+				var result = {};
+				if (strProject == 'sm.now/platform')
+				{
+					strProject = '177693';
+				}
+				if (strProject == 'sm.now/devtools')
+				{
+					strProject = '173267';
+				}				
+				result['project'] = strProject;
+				
+				function GetRepositoryApi(strRepoUrl)
+				{
+					var grRepoCredentials = new GlideRecord('x_snc_deployer_repository_credentials');
+					grRepoCredentials.orderByDesc('url');
+					grRepoCredentials.addActiveQuery();
+					grRepoCredentials.query();
+					while (grRepoCredentials.next())
+					{
+						if (strRepoUrl.indexOf(grRepoCredentials.url) == 0)
+						{
+							return GetStringValue(grRepoCredentials.api_url);
+						}
+					}
+					return false;
+				}
+				
+				result['api_url'] = GetRepositoryApi(strRepoUrl);
+				
+				//result['api_url'] = 'https://gitlab.devops.telekom.de/api/v4/';
+				return result;			
+				
 			default:
 				return false;
 		}	
@@ -51,15 +91,20 @@ SourceControlAPI.prototype = {
 	
 	GetBranchesFromRepo: function(strRepoUrl)
 	{
+		Debug('GetBranchesFromRepo: '+strRepoUrl);
 		var GetValue = x_snc_devtools.GetValue;
 		
 		var strRepoType = GetRepositoryType(strRepoUrl);
+		
+		Debug('GetRepositoryType: '+strRepoType);
 		if (strRepoType == false)
 		{
 			return false;
 		}
 		
 		var grCredential = GetCredentialForRepository(strRepoUrl);
+		Debug('GetCredentialForRepository');
+		Debug(grCredential);
 		if (grCredential == false)
 		{
 			return false;
@@ -93,7 +138,29 @@ SourceControlAPI.prototype = {
 				return aResult;
 				
 			case 'gitlab':
-				return false;
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strProject = GetValue(parsed,'project');
+				
+				var gitlab = new x_snc_devtools.GitLabAPI();
+				gitlab.SetCredential(grCredential.sys_id);
+				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var aBranches = gitlab.GetBranchesFromRepo(strProject);
+				
+				var aResult = [];
+				
+				for (var nBranch = 0; nBranch < aBranches.length; nBranch++)
+				{
+					aResult.push(GetValue(aBranches,nBranch,'name'));
+				}
+				
+				return aResult;				
 				
 			default:
 				return false;
@@ -102,7 +169,7 @@ SourceControlAPI.prototype = {
 		
 	},
 	
-	GetFilesFromRepo: function(strRepoUrl,strVersion)
+	GetFilesFromRepo: function(strRepoUrl,strBranch)
 	{
 		var GetValue = x_snc_devtools.GetValue;
 
@@ -134,7 +201,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grCredential.sys_id);
 
-				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,'master','/');
+				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,strBranch,'/');
 				
 				var aResult = [];
 				
@@ -151,7 +218,34 @@ SourceControlAPI.prototype = {
 				return aResult;
 				
 			case 'gitlab':
-				return false;
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strProject = GetValue(parsed,'project');
+				
+				var gitlab = new x_snc_devtools.GitLabAPI();
+				gitlab.SetCredential(grCredential.sys_id);
+				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var aFiles = gitlab.GetFilesFromBranch(strProject,strBranch,'');
+				
+				var aResult = [];
+				
+				for (var nFile = 0; nFile < aFiles.length; nFile++)
+				{
+					var strType = GetValue(aFiles,nFile,'type');
+					if (strType == 'blob')
+					{
+						var strPath = GetValue(aFiles,nFile,'path');
+						aResult.push(strPath);
+					}
+				}
+				
+				return aResult;	
 				
 			default:
 				return false;
@@ -200,7 +294,25 @@ SourceControlAPI.prototype = {
 				return GetValue(file,'content');
 				
 			case 'gitlab':
-				return false;
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strProject = GetValue(parsed,'project');
+				
+				var gitlab = new x_snc_devtools.GitLabAPI();
+				gitlab.SetCredential(grCredential.sys_id);
+				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var file = gitlab.GetFile(strProject,strBranch,strPath);
+				if (file == false)
+				{
+					return false;
+				}
+								
+				return GetValue(file,'content');				
 				
 			default:
 				return false;
@@ -214,9 +326,8 @@ SourceControlAPI.prototype = {
 		var ParseXml = x_snc_devtools.ParseXml;
 		var GetValue = x_snc_devtools.GetValue;
 		var IsObject = x_snc_devtools.IsObject;
-		
+
 		var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch);
-		//Debug('GetPackageRecordFromRepo: '+x_snc_devtools.RenderValue(aFiles));
 		if (aFiles == false)
 		{
 			return false;
@@ -240,7 +351,6 @@ SourceControlAPI.prototype = {
 				var strXml = Base64Decode(strContent);
 				var packageRecord = ParseXml(strXml);
 				packageRecord = GetValue(packageRecord,'record_update','sys_app');
-				//Debug('GetPackageRecordFromRepo: packageRecord'+x_snc_devtools.RenderValue(packageRecord));
 				if (IsObject(packageRecord))
 				{
 					return packageRecord;
@@ -260,7 +370,6 @@ SourceControlAPI.prototype = {
 		var GetStringValue = x_snc_devtools.GetStringValue;	
 		var IsValidSysId = x_snc_devtools.IsValidSysId;
 		var Clone = x_snc_devtools.Clone;
-		
 		
 		var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch);
 		if (aFiles == false)
@@ -304,13 +413,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-04-28 16:59:36</sys_updated_on>
+        <sys_updated_on>2023-05-03 15:51:48</sys_updated_on>
     </sys_script_include>
 </record_update>

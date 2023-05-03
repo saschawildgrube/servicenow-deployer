@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>f59ad6db9786e910a6a07767f053afa2</sys_id>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>a688d7061baee110cd6153d16b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>type</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>799ad6db9786e910a6a07767f053afa2</sys_id>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>2a88d7061baee110cd6153d16b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,55 +32,55 @@
             <element>credential</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>f99ad6db9786e910a6a07767f053afa2</sys_id>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>aa88d7061baee110cd6153d16b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>active</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>2e88d7061baee110cd6153d16b4bcbbd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>3</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>7d9ad6db9786e910a6a07767f053afa2</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
-            <sys_user/>
-            <type>.split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>active</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>fd9ad6db9786e910a6a07767f053afa2</sys_id>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>ae88d7061baee110cd6153d16b4bcbbd</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
             <sys_user/>
-            <type/>
+            <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
             <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>719ad6db9786e910a6a07767f053afa3</sys_id>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>2288d7061baee110cd6153d16b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
@@ -88,13 +88,27 @@
             <element>url</element>
             <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-04-12 11:46:38</sys_created_on>
-            <sys_id>f19ad6db9786e910a6a07767f053afa3</sys_id>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>a288d7061baee110cd6153d16b4bcbbe</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-04-12 11:46:38</sys_updated_on>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>api_url</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-05-03 15:36:15</sys_created_on>
+            <sys_id>2688d7061baee110cd6153d16b4bcbbe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_repository_credentials" sys_domain="global" view="Default view">1e4a96db9786e910a6a07767f053afaf</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-05-03 15:36:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

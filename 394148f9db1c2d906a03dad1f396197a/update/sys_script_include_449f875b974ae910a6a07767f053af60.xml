@@ -183,18 +183,224 @@
 	SetValue(aDependencies,result,'_dependencies');
 	
 	return result;
-}]]></script>
+}
+
+/*
+
+function GetRepoDependencyTree(strRepoUrl,strVersions,aCurrentPath)
+{
+	Debug('GetRepoDependencyTree START');
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetArrayValue = x_snc_devtools.GetArrayValue;
+	var ArrayValueExists = x_snc_devtools.ArrayValueExists;
+	var GetCleanAppName = x_snc_devtools.GetCleanAppName;
+	var GetValue = x_snc_devtools.GetValue;
+	var Clone = x_snc_devtools.Clone;
+	var SetValue = x_snc_devtools.SetValue;
+	var IsVersionCompatible = x_snc_devtools.IsVersionCompatible;
+	var IsValidUrl = x_snc_devtools.IsValidUrl;
+	
+	function GetDependencyStatusSummary(aStatusValues)
+	{
+		aStatusValues = GetArrayValue(aStatusValues);
+		var strStatusSummary = 'ok';
+		if (ArrayValueExists(aStatusValues,'incompatible_version'))
+		{
+			strStatusSummary = 'incompatible_version';
+		}
+		if (ArrayValueExists(aStatusValues,'missing'))
+		{
+			strStatusSummary = 'missing';
+		}
+		if (ArrayValueExists(aStatusValues,'circular'))
+		{
+			strStatusSummary = 'circular';
+		}		
+		return strStatusSummary;
+	}
+	
+	var aVersions = GetArrayValue(strVersions);
+	
+	sourcecontrol = new SourceControlAPI();	
+	
+	var aBranches = sourcecontrol.GetBranchesFromRepo(strRepoUrl);
+		
+	Debug(aBranches);
+	
+	if (aBranches == false)
+	{
+		return false;
+	}
+	
+	function GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions)
+	{
+		var aBranches = sourcecontrol.GetBranchesFromRepo(strRepoUrl);
+		
+		Debug('After sourcecontrol.GetBranchesFromRepo');
+		Debug(aBranches);	
+		
+		for (var nBranch = 0; nBranch < aBranches.length; nBranch++)
+		{
+			var strCurrentBranch = aBranches[nBranch];
+			for (var nVersion = 0; nVersion < aVersions.length; nVersion++)
+			{
+				var strVersion = aVersions[nVersion];
+				if (strCurrentBranch.endsWith(strVersion))
+				{
+					var packagerecord = sourcecontrol.GetPackageRecordFromRepo(strRepoUrl,strCurrentBranch);
+					Debug(packagerecord);
+					if (IsVersionCompatible(packagerecord.version,strVersion))
+					{
+						packagerecord = SetValue(strCurrentBranch,packagerecord,'branch');
+						return packagerecord;
+					}
+				}
+			}		
+
+			
+		}	
+		
+		for (var nBranch = 0; nBranch < aBranches.length; nBranch++)
+		{
+			var strCurrentBranch = aBranches[nBranch];
+			if (strCurrentBranch.startsWith('dev') == false) // IsRelevantBranch?
+			{
+				var packagerecord = sourcecontrol.GetPackageRecordFromRepo(strRepoUrl,strCurrentBranch);
+				Debug(packagerecord);
+				for (var nVersion = 0; nVersion < aVersions.length; nVersion++)
+				{
+					var strVersion = aVersions[nVersion];
+					if (IsVersionCompatible(packagerecord.version,strVersion))
+					{
+						packagerecord = SetValue(strCurrentBranch,packagerecord,'branch');
+						return packagerecord;
+					}
+				}		
+			}
+		}
+		Debug('No fitting version found');
+		return false;
+	}
+	
+
+	var result = GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions);
+	if (result == false)
+	{
+		return false;
+	}
+	
+	var strBranch = result.branch;
+	
+	aCurrentPath = GetArrayValue(aCurrentPath);
+	if (aCurrentPath.length == 0)
+	{
+		aCurrentPath.push(GetValue(result,'sys_id'));
+	}
+	
+	//Debug(result);
+
+	result['name'] = GetCleanAppName(result['name']);
+	result['dependency_status_summary'] = 'ok';
+	
+	var aDependencies = [];
+	
+	var strVersion = strVersions;
+	
+	var aDependencyRecords = sourcecontrol.GetDependencyRecordsFromRepo(strRepoUrl,strBranch);
+	
+	for (var nDependency = 0; nDependency < aDependencyRecords.length; nDependency++)
+	{
+		var dependency = {};
+		var dependencyRecord = aDependencyRecords[nDependency];
+		var strCompatibleVersions = GetStringValue(GetValue(dependencyRecord,'versions'));
+		var strRepoUrl = GetStringValue(GetValue(dependencyRecord,'repo_url'));
+		
+		if (ArrayValueExists(aCurrentPath,GetStringValue(GetValue(dependencyRecord,'dependency'))) == true)
+		{
+			dependency['name'] = dependencyRecord.name;
+			dependency['sys_id'] = dependencyRecord.dependency;
+			dependency['dependency_status'] = 'circular';
+		}
+		else
+		{
+			var aNewCurrentPath = Clone(aCurrentPath);
+			aNewCurrentPath.push(GetStringValue(dependencyRecord.dependency));
+			
+			if (IsValidUrl(strRepoUrl) == false)
+			{
+				dependency = {
+					sys_id: GetStringValue(dependencyRecord.dependency),
+					name: GetStringValue(dependencyRecord.name),
+					repo_url: GetStringValue(dependencyRecord.repo_url),
+					dependency_status: 'invalid_repo_url'
+					};
+			}
+			else
+			{
+				
+				dependency = GetRepoDependencyTree(strRepoUrl,dependencyRecord['versions'],aNewCurrentPath);
+				dependency['repo_url'] = strRepoUrl;
+				if (dependency == false)
+				{
+					dependency = {
+						sys_id: GetStringValue(dependencyRecord.dependency),
+						name: GetStringValue(dependencyRecord.name),
+						repo_url: GetStringValue(dependencyRecord.repo_url),
+						dependency_status: 'missing'
+						};
+				}
+				else
+				{
+					var strDependencyVersion = GetValue(dependency,'version');
+					var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
+					var bCompatibleVersion = false;
+					for (var nVersion = 0; nVersion < aCompatibleVersions.length; nVersion++)
+					{
+						var strRequiredVersion = aCompatibleVersions[nVersion];
+						if (IsVersionCompatible(strDependencyVersion,strRequiredVersion) == true)
+						{
+							bCompatibleVersion = true;
+						}
+					}
+					if (bCompatibleVersion == true)
+					{
+						dependency['dependency_status'] = 'ok';
+					}
+					else
+					{
+						dependency['dependency_status'] = 'incompatible_version';
+					}
+
+				}
+			}
+		}
+		dependency['compatible_versions'] = strCompatibleVersions;
+		
+		result['dependency_status_summary'] = GetDependencyStatusSummary(
+			[result['dependency_status_summary'],
+			dependency['dependency_status'],
+			dependency['dependency_status_summary']]);
+		
+		aDependencies.push(dependency);
+	}
+	
+	SetValue(aDependencies,result,'_dependencies');
+	
+	return result;
+}
+
+*/]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:38:30</sys_created_on>
         <sys_id>449f875b974ae910a6a07767f053af60</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>GetRepoDependencyTree</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_449f875b974ae910a6a07767f053af60</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-03 13:59:47</sys_updated_on>
+        <sys_updated_on>2023-05-05 15:47:32</sys_updated_on>
     </sys_script_include>
 </record_update>

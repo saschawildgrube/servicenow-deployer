@@ -95,10 +95,10 @@ SourceControlAPI.prototype = {
 	
 	GetBranchesFromRepo: function(strRepoUrl)
 	{
-		Debug('GetBranchesFromRepo: '+strRepoUrl);
+		//Debug('GetBranchesFromRepo: '+strRepoUrl);
 		var GetValue = x_snc_devtools.GetValue;
 		
-		var aBranches = this.m_cache.GetItem('GetBranchesFromRepo',strRepoUrl);
+		var aBranches = this.m_cache.GetItem('GetBranchesFromRepo'+strRepoUrl);
 		if (aBranches != null)
 		{
 			return aBranches;
@@ -106,15 +106,15 @@ SourceControlAPI.prototype = {
 		
 		var strRepoType = GetRepositoryType(strRepoUrl);
 		
-		Debug('GetRepositoryType: '+strRepoType);
+		//Debug('GetRepositoryType: '+strRepoType);
 		if (strRepoType == false)
 		{
 			return false;
 		}
 		
 		var grCredential = GetCredentialForRepository(strRepoUrl);
-		Debug('GetCredentialForRepository');
-		Debug(grCredential);
+		//Debug('GetCredentialForRepository');
+		//Debug(grCredential);
 		if (grCredential == false)
 		{
 			return false;
@@ -147,7 +147,7 @@ SourceControlAPI.prototype = {
 				
 				this.m_nRequestCount += github.GetRequestCount();
 				
-				this.m_cache.SetItem(aResult,'GetBranchesFromRepo',strRepoUrl);
+				this.m_cache.SetItem('GetBranchesFromRepo'+strRepoUrl,aResult);
 				return aResult;
 				
 			case 'gitlab':
@@ -175,27 +175,35 @@ SourceControlAPI.prototype = {
 				
 				this.m_nRequestCount += gitlab.GetRequestCount();
 
-				this.m_cache.SetItem(aResult,'GetBranchesFromRepo',strRepoUrl);
+				this.m_cache.SetItem('GetBranchesFromRepo'+strRepoUrl,aResult);
 				return aResult;				
 				
 			default:
-				this.m_cache.SetItem(false,'GetBranchesFromRepo',strRepoUrl);
+				this.m_cache.SetItem('GetBranchesFromRepo'+strRepoUrl,false);
 				return false;
 		}
 				
 		
 	},
 	
-	GetFilesFromRepo: function(strRepoUrl,strBranch)
+	GetFilesFromRepo: function(strRepoUrl,strBranch,strPath)
 	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
 		var GetValue = x_snc_devtools.GetValue;
 
-		var aFiles = this.m_cache.GetItem('GetFilesFromRepo',strRepoUrl,strBranch);
+		strPath = GetStringValue(strPath);
+		if (strPath == '')
+		{
+			strPath = '/';
+		}	
+		
+		var aFiles = this.m_cache.GetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath);
 		if (aFiles != null)
 		{
+			//Debug('GetFilesFromRepo: Cache Hit!');
 			return aFiles;
-		}		
-		
+		}
+				
 		var strRepoType = GetRepositoryType(strRepoUrl);
 		if (strRepoType == false)
 		{
@@ -224,7 +232,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grCredential.sys_id);
 
-				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,strBranch,'/');
+				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,strBranch,strPath);
 				
 				var aResult = [];
 				
@@ -233,14 +241,14 @@ SourceControlAPI.prototype = {
 					var strType = GetValue(aFiles,nFile,'type');
 					if (strType == 'file')
 					{
-						var strPath = GetValue(aFiles,nFile,'path');
-						aResult.push(strPath);
+						var strFilePath = GetValue(aFiles,nFile,'path');
+						aResult.push(strFilePath);
 					}
 				}
 				
 				this.m_nRequestCount += github.GetRequestCount();
 				
-				this.m_cache.SetItem(aResult,'GetFilesFromRepo',strRepoUrl,strBranch);
+				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,aResult);
 				return aResult;
 				
 			case 'gitlab':
@@ -266,18 +274,18 @@ SourceControlAPI.prototype = {
 					var strType = GetValue(aFiles,nFile,'type');
 					if (strType == 'blob')
 					{
-						var strPath = GetValue(aFiles,nFile,'path');
-						aResult.push(strPath);
+						var strFilePath = GetValue(aFiles,nFile,'path');
+						aResult.push(strFilePath);
 					}
 				}
 				
 				this.m_nRequestCount += gitlab.GetRequestCount();
 				
-				this.m_cache.SetItem(aResult,'GetFilesFromRepo',strRepoUrl,strBranch);
+				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,aResult);
 				return aResult;	
 				
 			default:
-				this.m_cache.SetItem(false,'GetFilesFromRepo',strRepoUrl,strBranch);
+				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,false);
 				return false;
 		}
 		
@@ -287,7 +295,7 @@ SourceControlAPI.prototype = {
 	{
 		var GetValue = x_snc_devtools.GetValue;
 
-		var strContent = this.m_cache.GetItem('GetFilesFromRepo',strRepoUrl,strBranch,strPath);
+		var strContent = this.m_cache.GetItem('GetFileContent'+strRepoUrl+strBranch+strPath);
 		if (strContent != null)
 		{
 			return strContent;
@@ -330,7 +338,7 @@ SourceControlAPI.prototype = {
 				this.m_nRequestCount += github.GetRequestCount();
 				
 				var strContent = GetValue(file,'content');
-				this.m_cache.SetItem(strContent,'GetFileContent',strRepoUrl,strBranch,strPath);
+				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
 				return strContent;
 				
 			case 'gitlab':
@@ -355,11 +363,11 @@ SourceControlAPI.prototype = {
 				this.m_nRequestCount += gitlab.GetRequestCount();
 				
 				var strContent = GetValue(file,'content');
-				this.m_cache.SetItem(strContent,'GetFileContent',strRepoUrl,strBranch,strPath);
+				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
 				return strContent;			
 				
 			default:
-				this.m_cache.SetItem(false,'GetFileContent',strRepoUrl,strBranch,strPath);
+				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,false);
 				return false;
 		}
 		
@@ -372,6 +380,7 @@ SourceControlAPI.prototype = {
 		var GetValue = x_snc_devtools.GetValue;
 		var IsObject = x_snc_devtools.IsObject;
 
+		//var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch,'**/sys_app_');
 		var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch);
 		if (aFiles == false)
 		{
@@ -457,13 +466,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>55</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-30 06:40:13</sys_updated_on>
+        <sys_updated_on>2023-05-30 09:26:28</sys_updated_on>
     </sys_script_include>
 </record_update>

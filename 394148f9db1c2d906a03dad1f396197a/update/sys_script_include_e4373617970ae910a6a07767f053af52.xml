@@ -9,7 +9,7 @@
         <name>HtmlRenderPageRepositoryViewer</name>
         <script><![CDATA[function HtmlRenderPageRepositoryViewer()
 {
-	
+	var GetStringValue = x_snc_devtools.GetStringValue;
 	var GetParam = x_snc_devtools.GetParam;
 	var IsValidVersion = x_snc_devtools.IsValidVersion;
 	var IsValidUrl = x_snc_devtools.IsValidUrl;
@@ -17,6 +17,10 @@
 	var GetArrayValue = x_snc_devtools.GetArrayValue;
 	var IsValidRecord = x_snc_devtools.IsValidRecord;
 	var IsValidSysId = x_snc_devtools.IsValidSysId;	
+	var IsObject = x_snc_devtools.IsObject;
+	var ParseJson = x_snc_devtools.ParseJson;
+	var GetValue = x_snc_devtools.GetValue;
+
 	
 	var strRepoAppStatusSysId = GetParam('repository_application_status');
 	var strRepoUrl = GetParam('repourl');
@@ -29,11 +33,15 @@
 	if (strState == '')
 	{
 		strState = 'form';
+		if (IsValidSysId(strRepoAppStatusSysId) == true)
+		{
+			strState = 'viewer';
+		}
 	}
 	
 	if (strState == 'viewer')
 	{
-		if ((IsValidUrl(strRepoUrl) == false || IsValidVersion(strVersion) == false) && IsValidSysId(strRepoAppStatusSysId) == false)
+		if ((IsValidUrl(strRepoUrl) == false || IsValidVersion(strVersion) == false) && (IsValidSysId(strRepoAppStatusSysId) == false))
 		{
 			strState = 'form';
 		}
@@ -46,8 +54,6 @@
 	}
 	*/
 	
-	var strRepoType = GetRepositoryType(strRepoUrl);
-	var grCredential = GetCredentialForRepository(strRepoUrl);
 	
 	var strHtml = '';
 
@@ -90,11 +96,59 @@
 	
 	function HtmlRenderPageRepositoryViewerStateViewer()
 	{
+
+		// Ad-hoc or canned?
+		
+		var strUrlList = '';
+		var strUrlTree = '';
+		
+		var dependencytree = null;
+		if (IsValidSysId(strRepoAppStatusSysId) == true)
+		{
+			var grRepoAppSatus = new GlideRecord('x_snc_deployer_repository_application_status');
+			if (grRepoAppSatus.get(strRepoAppStatusSysId) == true)
+			{
+				var strJson = GetStringValue(grRepoAppSatus.dependency_tree_json);
+				dependencytree = ParseJson(strJson);
+				if (IsObject(dependencytree) == false)
+				{
+					dependencytree = null;
+				}
+				else
+				{
+					strRepoUrl = GetValue(dependencytree,'x_snc_devtools_repo_url');
+					strVersion = GetValue(dependencytree,'version');
+					strUrlList = '?repository_application_status='+encodeURI(strRepoAppStatusSysId)+'&state=viewer&mode=list&hide='+strHide;		
+					strUrlTree = '?repository_application_status='+encodeURI(strRepoAppStatusSysId)+'&state=viewer&mode=tree&hide='+strHide;	
+					
+				}
+			}
+		}
+		if (IsObject(dependencytree) == false)
+		{
+			dependencytree = GetRepoDependencyTree(strRepoUrl,strVersion);
+			strUrlList = '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&state=viewer&mode=list&hide='+strHide;		
+			strUrlTree = '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&state=viewer&mode=tree&hide='+strHide;
+
+		}
+		
+		var strRepoType = GetRepositoryType(strRepoUrl);
+		var grCredential = GetCredentialForRepository(strRepoUrl);			
+		
+		
 		var strHtml = '';
 		
 		strHtml += '<div>';
 
-		strHtml += '<a href="?state=form&repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&hide='+strHide+'">Back</a><br/>';
+		if (IsValidSysId(strRepoAppStatusSysId) == false)
+		{
+			strHtml += '<a href="?state=form&repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&hide='+strHide+'">Back</a><br/>';
+		}
+		else
+		{
+			strHtml += '<a href="/x_snc_deployer_repository_application_status.do?sys_id='+strRepoAppStatusSysId+'">Back</a><br/>';
+		}
+		
 		
 		strHtml += '<b>Repository Url:</b>&#160;<a href="'+strRepoUrl+'" target="_blank">'+strRepoUrl+'</a><br/>';
 		strHtml += '<b>Version:</b> '+strVersion+'<br/>';
@@ -114,24 +168,26 @@
 		{
 			aHidePackages = GetArrayValue(strHide);
 		}
+		
+		
 
 		strHtml += HtmlRenderTabNavigation(
 			[
 				{
 					id: 'list',
 					text: 'Dependency List',
-					url: '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&state=viewer&mode=list&hide='+strHide
+					url: strUrlList
 				},
 				{
 					id: 'tree',
 					text: 'Dependency Tree',
-					url: '?repourl='+encodeURI(strRepoUrl)+'&version='+encodeURI(strVersion)+'&state=viewer&mode=tree&hide='+strHide
+					url: strUrlTree
 				},
 			],
 			strMode);
-
+	
 		strHtml += '<div style="padding-top: 10px;">';
-			strHtml += HtmlRenderRepoDependencies(strRepoUrl,strVersion,strMode,aHidePackages);
+			strHtml += HtmlRenderRepoDependencies(dependencytree,strMode,aHidePackages);
 		strHtml += '</div>';
 
 		return strHtml;
@@ -143,13 +199,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 13:52:39</sys_created_on>
         <sys_id>e4373617970ae910a6a07767f053af52</sys_id>
-        <sys_mod_count>39</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>HtmlRenderPageRepositoryViewer</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_e4373617970ae910a6a07767f053af52</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-09 16:56:53</sys_updated_on>
+        <sys_updated_on>2023-06-09 17:42:01</sys_updated_on>
     </sys_script_include>
 </record_update>

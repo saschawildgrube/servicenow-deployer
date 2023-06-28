@@ -3,6 +3,14 @@
         <element label="Dependency Tree JSON" max_length="10000" name="dependency_tree_json" read_only="true" type="string"/>
         <element attributes="no_truncate=true" display="true" label="Display" max_length="200" name="display" read_only="true" type="string"/>
         <element attributes="no_truncate=true" label="Repository Url" mandatory="true" max_length="200" name="repo_url" type="string"/>
+        <element choice="1" default="draft" label="Status" max_length="40" name="status" read_only="true" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Draft" sequence="1" value="draft"/>
+                <element inactive_on_update="false" label="Processing" sequence="2" value="processing"/>
+                <element inactive_on_update="false" label="Ready for Deployment" sequence="3" value="ok"/>
+                <element inactive_on_update="false" label="NOT ready for Deployment" sequence="4" value="error"/>
+            </choice>
+        </element>
         <element label="Version" mandatory="true" max_length="10" name="version" type="string"/>
     </element>
 </database>

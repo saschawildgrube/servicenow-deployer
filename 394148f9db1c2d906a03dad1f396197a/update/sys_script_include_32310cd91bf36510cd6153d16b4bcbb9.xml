@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.DevToolsGetInstancePipelineName</api_name>
+        <caller_access>1</caller_access>
+        <client_callable>false</client_callable>
+        <description>The function DevToolsGetInstancePipelineName is called by the DevTools extension point instance class and returns the pipeline name of an instance based on the given actual name.</description>
+        <name>DevToolsGetInstancePipelineName</name>
+        <script><![CDATA[function DevToolsGetInstancePipelineName(strInstanceName)
+{
+	// TODO: Create the specific mapping of instance names to pipeline instance names...
+	
+	switch (strInstanceName)
+	{
+		case 'acme':
+			return 'prod';
+		case 'acmetest':
+			return 'test';
+		case 'acmedev':
+			return 'dev';
+		default:
+	}
+	
+	return '';
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-07-01 19:18:37</sys_created_on>
+        <sys_id>32310cd91bf36510cd6153d16b4bcbb9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DevToolsGetInstancePipelineName</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_32310cd91bf36510cd6153d16b4bcbb9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-01 19:18:37</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -144,11 +144,13 @@
 		var dependencyRecord = aDependencyRecords[nDependency];
 		var strCompatibleVersions = GetStringValue(GetValue(dependencyRecord,'versions'));
 		var strRepoUrl = GetStringValue(GetValue(dependencyRecord,'repo_url'));
+		var strPackageClass = GetStringValue(GetValue(dependencyRecord,'package_class'));
 		
 		if (ArrayValueExists(aCurrentPath,GetStringValue(GetValue(dependencyRecord,'dependency'))) == true)
 		{
-			dependency['name'] = dependencyRecord.name;
 			dependency['sys_id'] = dependencyRecord.dependency;
+			dependency['name'] = dependencyRecord.name;
+			dependency['package_class'] = strPackageClass;
 			dependency['dependency_status'] = 'circular';
 		}
 		else
@@ -158,18 +160,34 @@
 
 			if (strRepoUrl == '')
 			{
-				dependency = {
-					sys_id: GetStringValue(dependencyRecord.dependency),
-					name: GetStringValue(dependencyRecord.name),
-					repo_url: '',
-					dependency_status: 'missing_repo_url'
-					};	
+				if (strPackageClass == 'sys_app')
+				{
+					dependency = {
+						sys_id: GetStringValue(dependencyRecord.dependency),
+						name: GetStringValue(dependencyRecord.name),
+						package_class: strPackageClass,
+						repo_url: '',
+						dependency_status: 'missing_repo_url',
+						};	
+				}
+				else
+				{
+					dependency = {
+						sys_id: GetStringValue(dependencyRecord.dependency),
+						name: GetStringValue(dependencyRecord.name),
+						package_class: strPackageClass,
+						repo_url: '',
+						dependency_status: 'out_of_scope'
+						};						
+				}
+				
 			}
 			else if (IsValidUrl(strRepoUrl) == false)
 			{
 				dependency = {
 					sys_id: GetStringValue(dependencyRecord.dependency),
 					name: GetStringValue(dependencyRecord.name),
+					package_class: strPackageClass,
 					repo_url: GetStringValue(dependencyRecord.repo_url),
 					dependency_status: 'invalid_repo_url'
 					};
@@ -177,18 +195,21 @@
 			else
 			{
 				dependency = GetRepoDependencyTree(strRepoUrl,dependencyRecord['versions'],aNewCurrentPath,sourcecontrol);
-				dependency['repo_url'] = strRepoUrl;
 				if (dependency == false)
 				{
 					dependency = {
 						sys_id: GetStringValue(dependencyRecord.dependency),
 						name: GetStringValue(dependencyRecord.name),
+						package_class: strPackageClass,
 						repo_url: GetStringValue(dependencyRecord.repo_url),
 						dependency_status: 'missing'
 						};
 				}
 				else
 				{
+					dependency['package_class'] = strPackageClass;
+					dependency['repo_url'] = strRepoUrl;
+					
 					// Second line of defence: if there is no compatible version, GetRepoDependencyTree should have returned false anyway
 					var strDependencyVersion = GetValue(dependency,'version');
 					var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
@@ -237,13 +258,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:38:30</sys_created_on>
         <sys_id>449f875b974ae910a6a07767f053af60</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>GetRepoDependencyTree</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_449f875b974ae910a6a07767f053af60</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-17 11:06:36</sys_updated_on>
+        <sys_updated_on>2023-07-19 19:31:30</sys_updated_on>
     </sys_script_include>
 </record_update>

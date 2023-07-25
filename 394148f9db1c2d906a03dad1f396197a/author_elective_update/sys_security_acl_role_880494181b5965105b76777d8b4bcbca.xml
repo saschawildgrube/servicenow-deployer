@@ -33,16 +33,16 @@
         <sys_created_by/>
         <sys_created_on>2023-02-20 05:57:26</sys_created_on>
         <sys_id>511458181b5965105b76777d8b4bcb17</sys_id>
-        <sys_mod_count/>
+        <sys_mod_count>0</sys_mod_count>
         <sys_recorded_at>1866d65fd700000000</sys_recorded_at>
-        <sys_updated_by/>
-        <sys_updated_on/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-03 15:55:21</sys_updated_on>
         <type>Access Roles</type>
         <update_guid>111458187959651020ff3632c617c117</update_guid>
         <update_guid_history>111458187959651020ff3632c617c117:-1137173754</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="Deployer REST APIs.snc_internal">991498181b5965105b76777d8b4bcb12</sys_audit_delete>
+        <sys_audit_delete display_value="">991498181b5965105b76777d8b4bcb12</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 11:30:05</sys_created_on>

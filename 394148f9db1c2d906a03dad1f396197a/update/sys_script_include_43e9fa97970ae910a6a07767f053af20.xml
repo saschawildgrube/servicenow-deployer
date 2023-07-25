@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.HtmlRenderRepoDependencies</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders the html dependency tree or list based on a given dependencytree object.</description>
+        <name>HtmlRenderRepoDependencies</name>
+        <script><![CDATA[function HtmlRenderRepoDependencies(dependencytree, strMode, aHidePackages)
+{
+	var GetIntegerValue = x_snc_devtools.GetIntegerValue;
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetValue = x_snc_devtools.GetValue;
+	var GetArrayValue = x_snc_devtools.GetArrayValue;
+	var HtmlRenderError = x_snc_devtools.HtmlRenderError;
+	var IsObject = x_snc_devtools.IsObject;
+	var ArrayValueExists = x_snc_devtools.ArrayValueExists;
+	var HtmlRenderValue = x_snc_devtools.HtmlRenderValue;
+	var StringFormat = x_snc_devtools.StringFormat;
+	var GetDependencyListFromTree = x_snc_devtools.GetDependencyListFromTree;
+	
+	strMode = GetStringValue(strMode);
+	aHidePackages = GetArrayValue(aHidePackages);
+	
+	if (strMode == '')
+	{
+		strMode = 'tree';
+	}
+
+	var strHtml = '';
+	var bError = false;
+	
+	function GetRepoUrlFromPackage(oPackage)
+	{
+		var strRepoUrl = GetStringValue(GetValue(oPackage,'x_snc_devtools_repo_url'));
+		if (strRepoUrl != '')
+		{
+			return strRepoUrl;
+		}
+		strRepoUrl = GetStringValue(GetValue(oPackage,'repo_url'));
+		if (strRepoUrl != '')
+		{
+			return strRepoUrl;
+		}
+		return 'not specified';
+	}
+			
+	function HtmlRenderPackage(oPackage,nLevel)
+	{
+		nLevel = GetIntegerValue(nLevel);
+		var nLeft = nLevel * 30;
+
+		var strHtml = '';
+		
+		strHtml += '<div style="margin-left: '+nLeft+'px; margin-right: 10px; margin-bottom:5px; padding-top: 5px; padding-bottom: 2px; padding-left: 20px; padding-right:15px; background-color: #EEEEEE; border-radius: 10px;">';
+		
+		var strVersion = ' ' + GetStringValue(oPackage.version);
+		var strDependencyStatus = GetStringValue(GetValue(oPackage,'dependency_status'));
+		
+		var strAppName = GetValue(oPackage,'name');
+		if (strDependencyStatus != 'missing')
+		{
+			strAppName += ' ' + strVersion;
+		}
+		
+		//var strAppUrl = GetInstanceRecordURL('sys_package',oPackage.sys_id,'devtools');
+		//var strAppLink = HtmlRenderLink(strAppUrl,'<b>'+strAppName+'</b>',true);
+		
+		strHtml += strAppName;
+		
+		
+		strHtml += '<p>';
+		if (nLevel > 0)
+		{
+
+			if (strDependencyStatus != 'ok' && strDependencyStatus != 'out_of_scope')
+			{
+				bError = true;
+			}
+			if (strDependencyStatus != 'circular' && strDependencyStatus != 'conflicting_versions')
+			{
+				strHtml += 'Compatible Version(s): ' + GetValue(oPackage,'compatible_versions');
+				
+				strHtml += ' / ';
+			}
+			
+			function HtmlRenderDependencyStatus(strDependencyStatus)
+			{
+				switch (strDependencyStatus)
+				{
+					case 'ok':
+						return '<span style="color: green; font-weight: bold;">OK</span>';
+					case 'missing':
+					case 'incompatible_version':
+						return '<span style="color: red; font-weight: bold;">APPLICATON VERSION NOT FOUND IN REPOSITORY</span>';
+					case 'invalid_repo_url':
+						return '<span style="color: red; font-weight: bold;">INVALID REPOSITORY URL</span>';
+					case 'missing_repo_url':
+						return '<span style="color: red; font-weight: bold;">MISSING REPOSITORY URL</span>';						
+					case 'circular':
+						return '<span style="color: red; font-weight: bold;">CIRCULAR DEPENDENCY</span>';
+					case 'conflicting_versions':
+						return '<span style="color: red; font-weight: bold;">CONFLICTING VERSION REQUIREMENTS</span>';		
+					case 'out_of_scope':
+						return '<span style="color: blue; font-weight: bold;">OUT OF SCOPE</span>';							
+					default:
+						return '<span style="color: red; font-weight: bold;">UNDEFINED</span>'
+				}
+			}
+			
+			strHtml += 'Status: ' + HtmlRenderDependencyStatus(strDependencyStatus);
+			strHtml += '<br/>';
+			if (strDependencyStatus == 'ok')
+			{
+				strHtml += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
+					GetRepoUrlFromPackage(oPackage),
+					GetValue(oPackage,'branch'));
+			}
+			else if (strDependencyStatus == 'missing_repo_url')
+			{
+				
+			}		
+			else if (strDependencyStatus == 'out_of_scope')
+			{
+				strHtml += StringFormat(
+					'The package class <b>{0}</b> is out of scope for the dependency analysis. Availability for deployment must be checked manually.',
+					GetValue(oPackage,'package_class'));
+										
+			}				
+			else if (strDependencyStatus == 'invalid_repo_url')
+			{
+				strHtml += StringFormat('Repository: {0}<br/>',
+					GetRepoUrlFromPackage(oPackage));
+			}
+			else
+			{
+				strHtml += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a><br/>',
+					GetRepoUrlFromPackage(oPackage));
+			}	
+		}
+		else
+		{
+			strHtml += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
+				GetRepoUrlFromPackage(oPackage),
+				GetValue(oPackage,'branch'));
+			
+		}
+	
+			
+		var aDependencies = GetArrayValue(GetValue(oPackage,'_dependencies'));
+
+		if (   strDependencyStatus != 'circular'
+			&& strDependencyStatus != 'missing_repo_url'
+			&& strDependencyStatus != 'missing'
+		    && strDependencyStatus != 'out_of_scope')
+		{
+			if (strMode == 'tree')
+			{
+				strHtml += 'Dependencies: '+ aDependencies.length +'<br/>';
+			}
+		}
+		strHtml += '</p>';
+		strHtml += '</div>';
+		
+		for (var nDependency = 0; nDependency < aDependencies.length; nDependency++)
+		{
+			
+			if (ArrayValueExists(aHidePackages,GetValue(aDependencies,nDependency,'sys_id')) == false)
+			{
+				strHtml += HtmlRenderPackage(aDependencies[nDependency], nLevel+1);
+			}
+		}
+				
+		return strHtml;
+	}
+	
+	
+	if (strMode == 'list')
+	{
+		var aPackageList = GetDependencyListFromTree(dependencytree);
+		if (aPackageList == false)
+		{
+			return HtmlRenderError('Could not identify the given package or its dependencies!');
+		}
+		
+		var nPackageCount = 0;
+		for (var nPackage = 0; nPackage < aPackageList.length; nPackage++)
+		{
+			if (aPackageList[nPackage]['dependency_status'] != 'circular')
+			{
+				nPackageCount++;
+			}
+		}
+		strHtml += '<p style="padding-left: 20px;">'+nPackageCount+' package(s) in total:</p>';
+		for (var nPackage = 0; nPackage < aPackageList.length; nPackage++)
+		{
+			strHtml += HtmlRenderPackage(aPackageList[nPackage],(nPackage < aPackageList.length-1) ? (1) : (0));
+		}
+		
+		//strHtml += HtmlRenderValue(aPackageList);
+	}
+	else 
+	{
+		var oPackage = dependencytree;
+		if (IsObject(oPackage) == false)
+		{
+			return HtmlRenderError('Could not identify the given package or its dependencies!');
+		}	
+
+		strHtml += HtmlRenderPackage(oPackage,0);
+		
+		//strHtml += HtmlRenderValue(oPackage);
+	}
+	
+	if (bError == true)
+	{
+		strHtml =
+			HtmlRenderError('At least one circular dependency, missing package or incompatible package version has been detected, see below for details!')
+			+ '<div style="height: 10px;"></div>' 
+			+ strHtml;
+	}	
+	
+	return strHtml;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-12 15:10:20</sys_created_on>
+        <sys_id>43e9fa97970ae910a6a07767f053af20</sys_id>
+        <sys_mod_count>40</sys_mod_count>
+        <sys_name>HtmlRenderRepoDependencies</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_43e9fa97970ae910a6a07767f053af20</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-24 06:14:39</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -17,9 +17,12 @@
 	<p>Welcome to Deployer - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
 	<h2>Features</h2> 
-	<p>The Deployer app provides several tools to support a fully automated CICD pipeline. The Deployer app has capabilities to be used on target instances for deplyoments - that is the instances to which apps are to be deployed.<!--and on the instance that orchestrates the CICD automation-->.</p>
+	<p>The Deployer app provides several tools to support a fully automated CICD pipeline. Its capabilities can be used on target instances for deplyoments - that is the instances to which apps are to be deployed - and on the instance that orchestrates the CICD process.</p>
 	<h3>Target instance features</h3>
 	<p>The Deployer app exposes a REST API to execute the installation scripts of an app and all of its dependencies.</p>
+	<h3>CICD instance features</h3>
+	<p>The Deployer&#160;<a href="/x_snc_deployer_repository.do" target="_blank">Repository Viewer</a>&#160;can be used to analyse a given repository and check its readyness for deployment.</p>
+	<p>&#160;<a href="/x_snc_deployer_repository_credentials_list.do" target="_blank">Repository Credentials</a>&#160;need be configured so that the Deployer can access a public or internal source control system based on the repository URL alone. Repository Credentials allow to map credential records with specific repository URLs or just fractions of URLs to cover multiple repositories.</p>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -28,7 +31,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'San Diego,Tokyo',
+				'Tokyo,Utah',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -66,13 +69,13 @@
 	<h3>REST APIs</h3>
 	<g2:no_escape>$[docapi.RenderRestApis()]</g2:no_escape>		
 	
-<!--
 	<h3>UI Actions</h3>
 	<g2:no_escape>$[docapi.RenderUIActions()]</g2:no_escape>		
-	
+
 	<h3>Script Includes</h3>
 	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
-	
+
+<!--	
 	<h3>UI Scripts</h3>
 	<g2:no_escape>$[docapi.RenderUIScripts()]</g2:no_escape>	
 	
@@ -98,6 +101,25 @@
 		<li>TODO: document changes here</li>
 	</ol>
 -->
+	
+	<h3>1.1.0 - 2023-07-25</h3>
+	<ol>
+		<li>Deployer is now fully tested in Utah.</li>
+		<li>San Diego is no longer actively supported.</li>
+		<li>DevTools 1.65.0 is now required because of the contained GitLabAPI and GitHubAPI classes and the new GetDependencyListFromTree() function.</li>
+		<li>Deployer now supports the analysis of the deployment readyness of an application version stored in a source code repository.</li>
+		<li>The exposed functions allow pipeline automation apps to use the repository application status information as input.</li> 
+		<li>Added x_snc_deployer.viewer, x_snc_deployer.manager and x_snc_deployer.admin roles.</li> 
+		<li>The Deployer menu is now accessible to users with the x_snc_deployer.viewer role.</li>
+		<li>Removed the menu item "Repository Viewer (ad-hoc)".</li>
+		<li>Added function GetCredentialForRepository().</li>
+		<li>Added function GetRepositoryType().</li>
+		<li>Added function SourceControlAPI::GetRequestCount().</li>
+		<li>Added function IsBranchDeployable().</li>
+		<li>Added function GetLatestRepoDependencyTree().</li>
+		<li>Added function GetLatestRepoDependencyList().</li>
+	</ol>	
+	
 	<h3>1.0.0 - 2023-02-24</h3>
 	<p>First baselined version</p>
 
@@ -110,13 +132,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-02-24 17:50:47</sys_updated_on>
+        <sys_updated_on>2023-07-25 15:28:18</sys_updated_on>
     </sys_ui_page>
 </record_update>

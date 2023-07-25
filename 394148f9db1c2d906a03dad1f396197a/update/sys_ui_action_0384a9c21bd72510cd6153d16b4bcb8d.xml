@@ -35,14 +35,14 @@
 	var strStatus = g_form.getValue('status');
 	if (strStatus != 'ok' && strStatus != 'error')
 	{
-		DoModalMessage('Deployer','The repository application status is not yet finished. Please check again in a few moments!',function(){});
+		DoModalMessage('Deployer - Application Repository Status','The repository application status is not yet finished. Please check again in a few moments!',function(){});
 		return;
 	}
 
 	var nErrors = GetIntegerValue(g_form.getValue('errors'));
 	if (strStatus == 'error' && nErrors == 0)
 	{
-		DoModalMessage('Deployer','The provided repository Url could not be processed.\n\nPlease check the validity of the Url and whether there is a repository credential available!\n',function(){});
+		DoModalMessage('Deployer - Application Repository Status','The provided repository Url could not be processed.\n\nPlease check the validity of the Url and whether there is a repository credential available!\n',function(){});
 		return;
 	}
 	
@@ -60,7 +60,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0384a9c21bd72510cd6153d16b4bcb8d</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>View</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -68,7 +68,7 @@
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_action_0384a9c21bd72510cd6153d16b4bcb8d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-20 09:22:48</sys_updated_on>
+        <sys_updated_on>2023-07-25 06:25:44</sys_updated_on>
         <table>x_snc_deployer_repository_application_status</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

@@ -13,14 +13,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-07-17 11:22:04</sys_created_on>
         <sys_id>819d64de1b047550cd6153d16b4bcbbb</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_atf_step_819d64de1b047550cd6153d16b4bcbbb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-17 11:32:58</sys_updated_on>
+        <sys_updated_on>2023-07-26 12:32:53</sys_updated_on>
         <table/>
         <test display_value="Deployer - GetLatestRepoDependencyTree">448d60de1b047550cd6153d16b4bcb37</test>
         <timeout/>
@@ -35,9 +35,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-07-17 11:22:05</sys_created_on>
         <sys_id>169d64de1b047550cd6153d16b4bcbdc</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-17 11:32:58</sys_updated_on>
+        <sys_updated_on>2023-07-26 12:32:53</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -79,6 +79,9 @@
 	grRepoAppStatus.status = 'error';&#13;
 	x_snc_devtools.GlideRecordInsert(grRepoAppStatus,true);&#13;
 	TestCase_GetLatestRepoDependencyTree(strRepoUrl,strVersion,false);&#13;
+	&#13;
+	// To ensure both records get different time stamps&#13;
+	x_snc_devtools.Sleep(2);&#13;
 	&#13;
 	var grRepoAppStatus = new GlideRecord('x_snc_deployer_repository_application_status');&#13;
 	grRepoAppStatus.initialize();&#13;

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.GetLatestRepoDependencyStatus</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns an object containing the latest available dependency list and tree for the given repository and version or false if no status is available.</description>
+        <name>GetLatestRepoDependencyStatus</name>
+        <script><![CDATA[function GetLatestRepoDependencyStatus(strRepoUrl, strVersion)
+{
+	var GetDependencyListFromTree = x_snc_devtools.GetDependencyListFromTree;
+	var GetDependencyTreeErrorCount = x_snc_devtools.GetDependencyTreeErrorCount;
+	
+	var status = {};
+	
+	status.repo_url = strRepoUrl;
+	status.version = strVersion;
+	status.deployment_ready = false;
+	
+	var tree = GetLatestRepoDependencyTree(strRepoUrl, strVersion);
+	if (tree == false)
+	{
+		return status;
+	}
+	status.tree = tree;
+	
+	status.name = status.tree.name;
+	status.short_description = status.tree.short_description;
+	
+	var list = GetDependencyListFromTree(tree);
+	status.list = list;
+	
+	var nErrors = GetDependencyTreeErrorCount(tree);
+	status.errors = nErrors;
+	if (nErrors == 0)
+	{
+		status.deployment_ready = true;
+	}
+	
+	return status;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-07-31 11:41:07</sys_created_on>
+        <sys_id>f93830fe97d83910a6a07767f053afaa</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>GetLatestRepoDependencyStatus</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_f93830fe97d83910a6a07767f053afaa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-31 11:53:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

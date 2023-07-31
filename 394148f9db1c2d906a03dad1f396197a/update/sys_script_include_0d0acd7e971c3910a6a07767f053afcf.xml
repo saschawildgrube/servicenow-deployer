@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.CleanUpPackageObject</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Removes all fields from a package record object that are not required for preparing and executing deployments.</description>
+        <name>CleanUpPackageObject</name>
+        <script><![CDATA[function CleanUpPackageObject(packagerecord)
+{
+	var IsObject = x_snc_devtools.IsObject;
+	
+	if (IsObject(packagerecord) == false)
+	{
+		return packagerecord;
+	}
+	
+	delete packagerecord.action;
+	delete packagerecord.can_edit_in_studio;
+	delete packagerecord.enforce_license;
+	delete packagerecord.guided_setup_guid;
+	delete packagerecord.hide_on_ui;
+	delete packagerecord.licensable;
+	delete packagerecord.license;
+	delete packagerecord.license_category;
+	delete packagerecord.license_definition;	
+	delete packagerecord.license_model;
+	delete packagerecord.logo;
+	delete packagerecord.menu;
+	delete packagerecord.private;
+	delete packagerecord.restrict_table_access;
+	delete packagerecord.runtime_access_tracking;
+	delete packagerecord.scoped_administration;
+	delete packagerecord.source;
+	delete packagerecord.store_correlation_id;
+	delete packagerecord.store_url;	
+	delete packagerecord.sys_code;	
+	delete packagerecord.sys_created_by;
+	delete packagerecord.sys_created_on;
+	delete packagerecord.sys_mod_count;	
+	delete packagerecord.sys_updated_by;	
+	delete packagerecord.sys_updated_on;
+	delete packagerecord.template;
+	delete packagerecord.trackable;
+	delete packagerecord.uninstall_blocked;	
+	delete packagerecord.user_role;	
+	delete packagerecord.vendor;
+	delete packagerecord.vendor_prefix;
+	
+	return packagerecord;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-07-31 13:01:08</sys_created_on>
+        <sys_id>0d0acd7e971c3910a6a07767f053afcf</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>CleanUpPackageObject</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_0d0acd7e971c3910a6a07767f053afcf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-07-31 13:12:11</sys_updated_on>
+    </sys_script_include>
+</record_update>

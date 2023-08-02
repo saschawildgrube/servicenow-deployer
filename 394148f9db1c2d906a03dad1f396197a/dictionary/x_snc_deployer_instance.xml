@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="a28794e31bdc7910cd6153d16b4bcbe9" label="Instance" max_length="40" name="x_snc_deployer_instance" type="collection">
+        <element label="Credential" max_length="32" name="credential" reference="discovery_credentials" reference_qual="type=basic_auth^EQ" reference_qual_condition="type=basic_auth^EQ" type="reference"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="Url" mandatory="true" max_length="1024" name="url" type="url"/>
+        <index name="index">
+            <element name="credential"/>
+        </index>
+    </element>
+</database>

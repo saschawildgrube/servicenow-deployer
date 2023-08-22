@@ -34,6 +34,8 @@
 	
 	var aTasks = [];
 	
+	
+	
 	// Install all apps
 	for (var nApp = 0; nApp < aApps.length; nApp++)
 	{
@@ -48,8 +50,7 @@
 		aTasks.push(task);		
 	}
 	
-	// Run Instance scan checks
-	
+
 	// Run installation scripts
 	task = {};
 	task.name = 'Run Installation scripts on instance '+strInstanceName;
@@ -74,13 +75,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-21 15:54:03</sys_updated_on>
+        <sys_updated_on>2023-08-22 13:35:02</sys_updated_on>
     </sys_script_include>
 </record_update>

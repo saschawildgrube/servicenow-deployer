@@ -18,13 +18,17 @@
 
 	<h2>Features</h2> 
 	<p>The Deployer app provides several tools to support a fully automated CICD pipeline. Its capabilities can be used on target instances for deplyoments - that is the instances to which apps are to be deployed - and on the instance that orchestrates the CICD process.</p>
-	<h3>Target instance features</h3>
-	<p>The "Target" instance is an instance to which applications are to be deployed.</p>
-	<p>The Deployer app exposes a REST API to execute the installation scripts of an app and all of its dependencies.</p>
-	<h3>CICD instance features</h3>
-	<p>The "CICD" instance is an instance that is used to run and operate CICD pipeline automation tools.</p>
-	<p>The&#160;<a href="/x_snc_deployer_repository_application_status_list.do" target="_blank">Repository App Status</a>&#160;feature can be used to analyse a given repository and check its readyness for deployment.</p>
-	<p>&#160;<a href="/x_snc_deployer_repository_credentials_list.do" target="_blank">Repository Credentials</a>&#160;need be configured so that the Deployer can access a public or internal source control system based on the repository URL alone. Repository Credentials allow to map credential records with specific repository URLs or just fractions of URLs to cover multiple repositories.</p>
+
+	<h3>CICD Instance features</h3>
+	<p>The "CICD Instance" is an instance that is used to run and operate CICD pipeline automation tools - a control tower.</p>
+	<p>&#160;<a href="/x_snc_deployer_repository_credentials_list.do" target="_blank">Repository Credentials</a>&#160;need be configured so that the Deployer can access a public or internal source control system based on the repository url alone. Repository Credentials allow to map credential records with specific repository urls or just fractions of urls to cover multiple repositories.</p>
+	<p>The&#160;<a href="/x_snc_deployer_repository_application_status_list.do" target="_blank">Repository App Status</a>&#160;feature can be used to analyse a given repository and check its readyness for deployment. To access the repositories, the Repository Credentials must be configured.</p>
+	<p>&#160;<a href="/x_snc_deployer_instance_list.do" target="_blank">Target Instances</a>&#160;need be configured to enable deployments of applications to these instances. The exact steps performed during a deployment can be configured for each Target Instance - e.g., whether to execute the default ATF Test Suite of each installed application and whether CodeSanity checks should be performed during deployment.</p>
+	<p>&#160;<a href="/x_snc_deployer_deployment_list.do" target="_blank">Deployments</a>&#160;represent the specific deployment of an application (and its dependencies) in a given version to a specified Target Instance. As of now Deployer does not conduct any deployment activities itself - it only provides a task list - but stay tuned!</p>	
+
+	<h3>Target Instance features</h3>
+	<p>The "Target Instance" is an instance to which applications are to be deployed.</p>
+	<p>The Deployer app exposes a REST API to check the status of the target instance and to execute the installation scripts of an application and all of its dependencies in the correct order.</p>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -125,7 +129,7 @@
 	
 	<h3>1.3.0 - 2023-TODO</h3>
 	<ol>
-		<li>Introduced the "Deployment" table to keep track on deployments and perform them.</li>
+		<li>Introduced the "Deployment" table to keep track of deployments.</li>
 		<li>Added the "Show Task List" UI action to show a wiki-formatted task list for the deployment.</li>
 		<li>Introduced the "Instance" table to keep configuration and credential references for target instances.</li>
 		<li>The "Validate" UI action can be used to verify if an instance is properly configured and if the credentials enable the execution of API calls on the instance.</li>
@@ -172,13 +176,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>manual</sys_name>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-22 14:44:15</sys_updated_on>
+        <sys_updated_on>2023-09-15 11:34:59</sys_updated_on>
     </sys_ui_page>
 </record_update>

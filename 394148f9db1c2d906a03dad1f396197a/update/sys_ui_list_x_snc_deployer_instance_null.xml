@@ -3,47 +3,77 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9d29dc271bdc7910cd6153d16b4bcbde</list_id>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">766e95211b9db510cd6153d16b4bcb8c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-02 17:20:48</sys_created_on>
-            <sys_id>5929dc271bdc7910cd6153d16b4bcbdf</sys_id>
+            <sys_created_on>2023-09-15 10:18:25</sys_created_on>
+            <sys_id>b66e95211b9db510cd6153d16b4bcb8e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-02 17:20:48</sys_updated_on>
+            <sys_updated_on>2023-09-15 10:18:25</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>url</element>
-            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9d29dc271bdc7910cd6153d16b4bcbde</list_id>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">766e95211b9db510cd6153d16b4bcb8c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-02 17:20:48</sys_created_on>
-            <sys_id>d929dc271bdc7910cd6153d16b4bcbdf</sys_id>
+            <sys_created_on>2023-09-15 10:18:25</sys_created_on>
+            <sys_id>be6e95211b9db510cd6153d16b4bcb8e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-02 17:20:48</sys_updated_on>
+            <sys_updated_on>2023-09-15 10:18:25</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>credential</element>
-            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9d29dc271bdc7910cd6153d16b4bcbde</list_id>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">766e95211b9db510cd6153d16b4bcb8c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-02 17:20:48</sys_created_on>
-            <sys_id>152950671bdc7910cd6153d16b4bcb7a</sys_id>
+            <sys_created_on>2023-09-15 10:18:25</sys_created_on>
+            <sys_id>326e95211b9db510cd6153d16b4bcb8f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-02 17:20:48</sys_updated_on>
+            <sys_updated_on>2023-09-15 10:18:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>codesanity</element>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">766e95211b9db510cd6153d16b4bcb8c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-09-15 10:18:25</sys_created_on>
+            <sys_id>b26e95211b9db510cd6153d16b4bcb8f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-09-15 10:18:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>atf_app_default</element>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">766e95211b9db510cd6153d16b4bcb8c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-09-15 10:18:25</sys_created_on>
+            <sys_id>366e95211b9db510cd6153d16b4bcb8f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-09-15 10:18:25</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
@@ -57,10 +87,10 @@
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-02 17:20:48</sys_created_on>
+            <sys_created_on>2023-09-15 10:18:25</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>9d29dc271bdc7910cd6153d16b4bcbde</sys_id>
+            <sys_id>766e95211b9db510cd6153d16b4bcb8c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>x_snc_deployer_instance</sys_name>
             <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -68,7 +98,7 @@
             <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
             <sys_update_name>sys_ui_list_x_snc_deployer_instance_null</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-02 17:20:48</sys_updated_on>
+            <sys_updated_on>2023-09-15 10:18:25</sys_updated_on>
             <sys_user/>
             <view display_value="Default view" name="NULL">Default view</view>
             <view_name/>

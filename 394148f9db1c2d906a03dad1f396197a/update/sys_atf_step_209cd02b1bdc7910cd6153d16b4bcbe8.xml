@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-08-02 17:35:55</sys_created_on>
+        <sys_id>209cd02b1bdc7910cd6153d16b4bcbe8</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_atf_step_209cd02b1bdc7910cd6153d16b4bcbe8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-08-02 18:00:46</sys_updated_on>
+        <table/>
+        <test display_value="Deployer - Deployer Target API - Get Status">625cdce71bdc7910cd6153d16b4bcb2d</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=209cd02b1bdc7910cd6153d16b4bcbe8"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>209cd02b1bdc7910cd6153d16b4bcbe8</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-08-02 17:35:56</sys_created_on>
+        <sys_id>729c142b1bdc7910cd6153d16b4bcbcb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-08-02 17:35:56</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>209cd02b1bdc7910cd6153d16b4bcbe8</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-08-02 17:35:56</sys_created_on>
+        <sys_id>7a9c142b1bdc7910cd6153d16b4bcbcb</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-08-02 18:00:46</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+&#13;
+&#13;
+	function TestCase_DeployerTargetAPI_GetStatus(oBasicAuth, vExpected)&#13;
+	{&#13;
+		function TestCase_DeployerTargetAPI_GetStatus_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			var vResultParsed = x_snc_devtools.ParseJson(vResult);&#13;
+			test.Log('Result Parsed: '+x_snc_devtools.RenderValue(vResultParsed));&#13;
+			if (vExpected == 'SUCCESS')&#13;
+			{&#13;
+				if (x_snc_devtools.GetValue(vResultParsed,'result','message') == 'SUCCESS')&#13;
+				{&#13;
+					return true;&#13;
+				}&#13;
+				return false;&#13;
+			}&#13;
+			if (x_snc_devtools.GetValue(vResultParsed,'error','message') == vExpected)&#13;
+			{&#13;
+				return true;&#13;
+			}&#13;
+			return false;&#13;
+		}&#13;
+		&#13;
+		var strUrl = '';&#13;
+		strUrl += x_snc_devtools.GetInstanceURL();&#13;
+		strUrl += '/api/x_snc_deployer/target/get_status';&#13;
+		strUrl += '?';&#13;
+		&#13;
+		test.TestCase_HttpRequest(&#13;
+			'Deployer Target API / Get Status',&#13;
+			{&#13;
+				url: strUrl,&#13;
+				basicauth: oBasicAuth&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_DeployerTargetAPI_GetStatus_CheckResult);&#13;
+&#13;
+	}&#13;
+&#13;
+	var strPassword = x_snc_devtools.GetRandomNumericToken(30);&#13;
+	&#13;
+	var testdata = new x_snc_devtools.TestDataAPI('_ATF_DEPLOYER_');&#13;
+&#13;
+	var strUserItil = testdata.CreateUser('ITIL',['itil'],false,'',strPassword);&#13;
+	var grUserItil = x_snc_devtools.GetUserRecord(strUserItil);&#13;
+	var oBasicAuth = {&#13;
+		username: x_snc_devtools.GetStringValue(grUserItil.user_name),&#13;
+		password: strPassword&#13;
+	};&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,'User Not Authorized');&#13;
+&#13;
+	&#13;
+	/*&#13;
+	var strUserAdmin = testdata.CreateUser('ADMIN',['admin'],false,'',strPassword);&#13;
+	var grUserAdmin = x_snc_devtools.GetUserRecord(strUserAdmin);&#13;
+	var oBasicAuth = {&#13;
+		username: x_snc_devtools.GetStringValue(grUserAdmin.user_name),&#13;
+		password: strPassword&#13;
+	};&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,'',null,'APP_NOT_FOUND');&#13;
+	*/&#13;
+&#13;
+	var strUserApi = testdata.CreateUser('API',['x_snc_deployer.api'],true,'',strPassword);&#13;
+	var grUserApi = x_snc_devtools.GetUserRecord(strUserApi);&#13;
+	var oBasicAuth = {&#13;
+		username: x_snc_devtools.GetStringValue(grUserApi.user_name),&#13;
+		password: strPassword&#13;
+	};&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,'SUCCESS');&#13;
+	&#13;
+	/*&#13;
+	var grApp1 = new GlideRecord('sys_app');&#13;
+	grApp1.initialize();&#13;
+	grApp1.name = 'App1';&#13;
+	grApp1.scope = 'x_snc_app1';&#13;
+	var strApp1SysId = x_snc_devtools.GlideRecordInsert(grApp1);&#13;
+	&#13;
+	test.Log('No AppInstall function in App1 means nothing to do, hence installation should be successful.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp1.sys_id,false,'SUCCESS');&#13;
+	&#13;
+	var grSI = new GlideRecord('sys_script_include');&#13;
+	grSI.initialize();&#13;
+	grSI.sys_scope = strApp1SysId;&#13;
+	grSI.name = 'AppInstall';&#13;
+	grSI.api_name = 'x_snc_app1.AppInstall';&#13;
+	grSI.access = 'public';&#13;
+	grSI.script = 'function AppInstall() { gs.info("App1 AppInstall returns true"); return true; }';&#13;
+	var strAppInstall1SysId = x_snc_devtools.GlideRecordInsert(grSI);&#13;
+	&#13;
+	test.Log('The App1 AppInstall function returns true, hence installation should be successful.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp1.sys_id,false,'SUCCESS');&#13;
+	&#13;
+	&#13;
+	var grApp2 = new GlideRecord('sys_app');&#13;
+	grApp2.initialize();&#13;
+	grApp2.name = 'App2';&#13;
+	grApp2.scope = 'x_snc_app2';&#13;
+	var strApp2SysId = x_snc_devtools.GlideRecordInsert(grApp2);&#13;
+&#13;
+	var grSI = new GlideRecord('sys_script_include');&#13;
+	grSI.initialize();&#13;
+	grSI.sys_scope = strApp2SysId;&#13;
+	grSI.name = 'AppInstall';&#13;
+	grSI.api_name = 'x_snc_app2.AppInstall';&#13;
+	grSI.access = 'public';&#13;
+	grSI.script = 'function AppInstall() { gs.info("App2 AppInstall returns true"); return true; }';&#13;
+	var strAppInstall2SysId = x_snc_devtools.GlideRecordInsert(grSI);&#13;
+&#13;
+	test.Log('The App2 AppInstall function returns true, hence installation should be successful.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp2.sys_id,false,'SUCCESS');&#13;
+	&#13;
+	// App1 now depends on App2&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = strApp1SysId;&#13;
+	grDependency.dependency = strApp2SysId;&#13;
+	grDependency.name = 'App2';&#13;
+	x_snc_devtools.GlideRecordInsert(grDependency);&#13;
+	test.Log('App1 and App2 AppInstall() functions return true, so the installation should be sucessful.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp1.sys_id,false,'SUCCESS');&#13;
+	&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = strApp2SysId;&#13;
+	grDependency.dependency = strApp1SysId;&#13;
+	grDependency.name = 'App1';&#13;
+	var strDependencyCircularSysId = x_snc_devtools.GlideRecordInsert(grDependency);&#13;
+	test.Log('The installation should fail due to the circular dependency between App1 and App2.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp1.sys_id,false,'CIRCULAR_DEPENDENCY');&#13;
+	&#13;
+	x_snc_devtools.RecordDelete('x_snc_devtools_dependency',strDependencyCircularSysId); &#13;
+	test.Log('The installation should now pass again as the circular dependency is removed.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp1.sys_id,false,'SUCCESS');&#13;
+	&#13;
+	&#13;
+	var grApp3 = new GlideRecord('sys_app');&#13;
+	grApp3.initialize();&#13;
+	grApp3.name = 'App3';&#13;
+	grApp3.scope = 'x_snc_app3';&#13;
+	var strApp3SysId = x_snc_devtools.GlideRecordInsert(grApp3);&#13;
+&#13;
+	var grSI = new GlideRecord('sys_script_include');&#13;
+	grSI.initialize();&#13;
+	grSI.sys_scope = strApp3SysId;&#13;
+	grSI.name = 'AppInstall';&#13;
+	grSI.api_name = 'x_snc_app3.AppInstall';&#13;
+	grSI.access = 'public';&#13;
+	grSI.script = 'function AppInstall() { gs.info("App3 AppInstall returns false"); return false; }';&#13;
+	var strAppInstall3SysId = x_snc_devtools.GlideRecordInsert(grSI);&#13;
+	test.Log('Installation of App3 fails because AppInstall returns false.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp3.sys_id,false,'INSTALLATION_SCRIPT_FAILED');&#13;
+	&#13;
+	&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = strApp2SysId;&#13;
+	grDependency.dependency = strApp3SysId;&#13;
+	grDependency.name = 'App3';&#13;
+	x_snc_devtools.GlideRecordInsert(grDependency);&#13;
+	test.Log('The installation of App1 fails because it depends on App2 which depends on App3.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp1.sys_id,false,'INSTALLATION_SCRIPT_FAILED');&#13;
+&#13;
+	&#13;
+	&#13;
+	&#13;
+	var grApp4 = new GlideRecord('sys_app');&#13;
+	grApp4.initialize();&#13;
+	grApp4.name = 'App4';&#13;
+	grApp4.scope = 'x_snc_app1';&#13;
+	var strApp4SysId = x_snc_devtools.GlideRecordInsert(grApp4);&#13;
+	&#13;
+	var grSI = new GlideRecord('sys_script_include');&#13;
+	grSI.initialize();&#13;
+	grSI.sys_scope = strApp4SysId;&#13;
+	grSI.name = 'AppInstall';&#13;
+	grSI.api_name = 'x_snc_app4.AppInstall';&#13;
+	grSI.access = 'public';&#13;
+	grSI.script = 'function AppInstall() {'&#13;
+		+'gs.info("App4 AppInstall returns true");'&#13;
+		+'var cache = new x_snc_devtools.TransactionCacheAPI("_ATF_DEVTOOLS_INSTALLAPP_");'&#13;
+		+'cache.SetItem("App4",true);'&#13;
+		+'return true; }';&#13;
+	var strAppInstall4SysId = x_snc_devtools.GlideRecordInsert(grSI);&#13;
+	&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = strApp4SysId;&#13;
+	grDependency.dependency = strApp3SysId;&#13;
+	grDependency.name = 'App3';&#13;
+	var strDependencySysId = x_snc_devtools.GlideRecordInsert(grDependency);&#13;
+	test.Log('The installation of App4 fails because it depends on App3 - and the AppInstall() function of App4 is NOT called.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp4.sys_id,true,'INSTALLATION_SCRIPT_FAILED');&#13;
+	&#13;
+	var cache = new x_snc_devtools.TransactionCacheAPI('_ATF_DEVTOOLS_INSTALLAPP_');&#13;
+	if (cache.GetItem('App4') == true)&#13;
+	{&#13;
+		test.Log('FAILED: App4 AppInstall() should not have been called!');&#13;
+		test.SetResult(false);&#13;
+	}&#13;
+	&#13;
+	x_snc_devtools.RecordDelete('x_snc_devtools_dependency',strDependencySysId); &#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = strApp4SysId;&#13;
+	grDependency.dependency = strApp2SysId;&#13;
+	grDependency.name = 'App2';&#13;
+		&#13;
+	test.Log('App4 is now depending on App2. The installation of App4 should now pass as the toxic dependency to App3 is removed.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp4.sys_id,true,'SUCCESS');&#13;
+	if (cache.GetItem('App4') == false)&#13;
+	{&#13;
+		test.Log('FAILED: App4 AppInstall() should have been called!');&#13;
+		test.SetResult(false);&#13;
+	}	&#13;
+	&#13;
+&#13;
+	var grApp5 = new GlideRecord('sys_app');&#13;
+	grApp5.initialize();&#13;
+	grApp5.name = 'App5';&#13;
+	grApp5.scope = 'x_snc_app1';&#13;
+	var strApp5SysId = x_snc_devtools.GlideRecordInsert(grApp5);&#13;
+&#13;
+	var grDependency = new GlideRecord('x_snc_devtools_dependency');&#13;
+	grDependency.initialize();&#13;
+	grDependency.sys_scope = strApp4SysId;&#13;
+	grDependency.dependency = strApp5SysId;&#13;
+	grDependency.name = 'App5';&#13;
+	test.Log('App4 is now also depending on App5 - which does not have an AppInstall() function. The installation of App4 should pass anyway.');&#13;
+	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,grApp4.sys_id,true,'SUCCESS');&#13;
+	*/&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

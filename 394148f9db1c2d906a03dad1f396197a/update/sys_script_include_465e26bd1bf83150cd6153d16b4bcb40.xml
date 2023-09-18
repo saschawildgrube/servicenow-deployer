@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.HtmlRenderPageDeploymentTaskList</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Renders the html page that displays the wiki-formatted task list for a deployment</description>
+        <name>HtmlRenderPageDeploymentTaskList</name>
+        <script><![CDATA[function HtmlRenderPageDeploymentTaskList()
+{
+	var GetParam = x_snc_devtools.GetParam;
+	var IsValidSysId = x_snc_devtools.IsValidSysId;
+	var GetRecord = x_snc_devtools.GetRecord;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var HtmlRenderError = x_snc_devtools.HtmlRenderError;
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetValue = x_snc_devtools.GetValue;
+	var HtmlEncode = x_snc_devtools.HtmlEncode;
+
+	var strDeploymentSysId = GetParam('deployment');
+	var grDeployment = GetRecord('x_snc_deployer_deployment',strDeploymentSysId);
+	if (IsValidRecord(grDeployment) == false)
+	{
+		return HtmlRenderError('No valid deployment was specified.');
+	}
+
+
+	var strHtml = '';
+	
+	strHtml += '<h1>Deployment Task List</h1>';
+	strHtml += '<p>';
+	strHtml += '<b>'+grDeployment.number+': '+grDeployment.short_description+'</b><br/>';
+	
+	strHtml += '<b>Repository Url:</b>&#160;'+ grDeployment.repo_url + '<br/>';
+	strHtml += '<b>Version:</b>&#160;'+grDeployment.version + '<br/>';
+	strHtml += '<b>Target Instance Name:</b>&#160;'+grDeployment.instance.name + '<br/>';
+	strHtml += '<b>Target Instance Url:</b>&#160;'+grDeployment.instance.url + '<br/>';
+	strHtml += HtmlEncode(grDeployment.description);
+	strHtml += '</p>';
+	
+	/*var strRepoAppStatusSysId = GetStringValue(grDeployment.repository_application_status); 
+	var grRepoAppStatus = GetRecord('x_snc_deployer_repository_application_status',strRepoAppStatusSysId);
+	if (IsValidRecord(grRepoAppStatus) == false)
+	{
+		return strHtml + HtmlRenderError('The deployment does not refert to a repository application status.');
+	}
+	
+	grAppRepoStatus.dependency_tree_json;
+	*/
+	
+	var status = GetLatestRepoDependencyStatus(grDeployment.repo_url, grDeployment.version);
+	if (status == false)
+	{
+		return strHtml + HtmlRenderError('No status could be retrieved for the deployment.');
+	}
+	
+	var grInstance = GetRecord('x_snc_deployer_instance',grDeployment.instance);
+	
+	var status = GetDeploymentTasks(status,grInstance);
+	
+	var aTasks = GetValue(status,'tasks');
+	
+	strHtml += '<pre>';
+	
+	for (var nTask = 0; nTask < aTasks.length; nTask++)
+	{
+		var task = aTasks[nTask];
+		strHtml += '* '+task.name+'\n';
+	}
+	
+	strHtml += '</pre>';
+
+	
+	return strHtml;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-08-22 14:27:57</sys_created_on>
+        <sys_id>465e26bd1bf83150cd6153d16b4bcb40</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>HtmlRenderPageDeploymentTaskList</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_465e26bd1bf83150cd6153d16b4bcb40</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-15 10:48:02</sys_updated_on>
+    </sys_script_include>
+</record_update>

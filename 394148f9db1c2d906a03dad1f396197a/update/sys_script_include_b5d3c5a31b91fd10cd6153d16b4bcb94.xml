@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.GetApplicationStatus</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Retrieves an array of objects representing the applications available on the target instance. </description>
+        <name>GetApplicationStatus</name>
+        <script><![CDATA[function GetApplicationStatus()
+{
+	var Clone = x_snc_devtools.Clone;
+
+	var aApps = [];
+	
+	var grApps = new GlideRecord('sys_app');
+	grApps.orderBy('name');
+	grApps.query();
+	while (grApps.next())
+	{
+		var app = Clone(grApps);
+		delete app.can_edit_in_studio;
+		delete app.enforce_license;
+		delete app.guided_setup_guid;
+		delete app.hide_on_ui;
+		delete app.installed_as_dependency
+		delete app.licensable;
+		delete app.license;
+		delete app.license_category;
+		delete app.license_definition;
+		delete app.license_model;
+		delete app.logo;
+		delete app.menu;
+		delete app.private;
+		delete app.restrict_table_access;
+		delete app.runtime_access_tracking;
+		delete app.source;
+		delete app.sys_created_by;
+		delete app.sys_created_on;
+		delete app.sys_meta;
+		delete app.sys_mod_count;
+		delete app.sys_tags;
+		delete app.sys_updated_by;
+		delete app.sys_updated_on;
+		delete app.template;
+		delete app.trackable;
+		delete app.uninstall_blocked;
+		delete app.user_role;
+	
+		aApps.push(app);
+	}
+	
+	var grCustomizations = new GlideRecord('sys_app_customization');
+	grCustomizations.query();
+	while (grCustomizations.next())
+	{
+		var custom = Clone(grCustomizations);
+		aApps.push(custom);
+	}
+		
+	return aApps;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-21 13:33:07</sys_created_on>
+        <sys_id>b5d3c5a31b91fd10cd6153d16b4bcb94</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>GetApplicationStatus</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_b5d3c5a31b91fd10cd6153d16b4bcb94</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-21 13:54:14</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -49,27 +49,35 @@
 	grAppRepoStatus.dependency_tree_json;
 	*/
 	
-	var status = GetLatestRepoDependencyStatus(grDeployment.repo_url, grDeployment.version);
+	/*var status = GetLatestRepoDependencyStatus(grDeployment.repo_url, grDeployment.version);
 	if (status == false)
 	{
 		return strHtml + HtmlRenderError('No status could be retrieved for the deployment.');
 	}
 	
 	var grInstance = GetRecord('x_snc_deployer_instance',grDeployment.instance);
+	*/
 	
-	var status = GetDeploymentTasks(status,grInstance);
 	
-	var aTasks = GetValue(status,'tasks');
-	
-	strHtml += '<pre>';
-	
-	for (var nTask = 0; nTask < aTasks.length; nTask++)
+	var aTasks = GetDeploymentTasks(grDeployment);
+
+	if (aTasks.length == 0)
 	{
-		var task = aTasks[nTask];
-		strHtml += '* '+task.name+'\n';
+		strHtml += HtmlRenderError('Unable to derive tasks for deployment.');
+	}
+	else
+	{
+		strHtml += '<pre>';
+
+		for (var nTask = 0; nTask < aTasks.length; nTask++)
+		{
+			var task = aTasks[nTask];
+			strHtml += '* '+task.name+'\n';
+		}
+
+		strHtml += '</pre>';
 	}
 	
-	strHtml += '</pre>';
 
 	
 	return strHtml;
@@ -78,13 +86,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-22 14:27:57</sys_created_on>
         <sys_id>465e26bd1bf83150cd6153d16b4bcb40</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>HtmlRenderPageDeploymentTaskList</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_465e26bd1bf83150cd6153d16b4bcb40</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-15 10:48:02</sys_updated_on>
+        <sys_updated_on>2023-09-21 15:31:58</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -2,12 +2,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
-        <api_name>x_snc_deployer.ValidateInstance</api_name>
+        <api_name>x_snc_deployer.GetApplicationListFromInstance</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>Returns true if the given instance is correctly configured and accessible.</description>
-        <name>ValidateInstance</name>
-        <script><![CDATA[function ValidateInstance(grInstance)
+        <description>Returns the array of applications from an instance.</description>
+        <name>GetApplicationListFromInstance</name>
+        <script><![CDATA[function GetApplicationListFromInstance(grInstance)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var HttpRequest = x_snc_devtools.HttpRequest;
@@ -15,10 +15,7 @@
 	var GetRecord = x_snc_devtools.GetRecord;
 	var ParseJson = x_snc_devtools.ParseJson;
 	var GetValue = x_snc_devtools.GetValue;
-	var IsValidVersion = x_snc_devtools.IsValidVersion;
-	var IsVersionCompatible = x_snc_devtools.IsVersionCompatible;
-	var GetAppRecord = x_snc_devtools.GetAppRecord;
-
+	var IsArray = x_snc_devtools.IsArray;
 
 	if (IsValidRecord(grInstance) == false)
 	{
@@ -43,7 +40,6 @@
 	var strUrl = '';
 	strUrl += GetStringValue(grInstance.url);
 	strUrl += '/api/x_snc_deployer/target/get_status';
-
 	
 	var strResult = HttpRequest(
 		{
@@ -67,34 +63,26 @@
 		return false;
 	}
 	
-	var strTargetDeployerVersion = GetValue(result,'result','deployer_version');
-	if (IsValidVersion(strTargetDeployerVersion) == false)
-	{
-		return false;
-	}
-	
-	var grAppDeployer = GetAppRecord('x_snc_deployer');
-	var strDeployerVersion = GetStringValue(grAppDeployer.version);
-	
-	if (IsVersionCompatible(strTargetDeployerVersion,strDeployerVersion) == false)
-	{
-		return false;
-	}
+	var aApps = GetValue(result,'result','apps');
 
-		
-	return true;
+	if (IsArray(aApps) != true)
+	{
+		return false;
+	}
+	
+	return aApps;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-08-02 17:46:46</sys_created_on>
-        <sys_id>39ee50ab1bdc7910cd6153d16b4bcb79</sys_id>
-        <sys_mod_count>17</sys_mod_count>
-        <sys_name>ValidateInstance</sys_name>
+        <sys_created_on>2023-09-21 13:57:48</sys_created_on>
+        <sys_id>f22ac92b1b91fd10cd6153d16b4bcbb0</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>GetApplicationListFromInstance</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
-        <sys_update_name>sys_script_include_39ee50ab1bdc7910cd6153d16b4bcb79</sys_update_name>
+        <sys_update_name>sys_script_include_f22ac92b1b91fd10cd6153d16b4bcbb0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-22 12:56:19</sys_updated_on>
+        <sys_updated_on>2023-09-22 12:56:12</sys_updated_on>
     </sys_script_include>
 </record_update>

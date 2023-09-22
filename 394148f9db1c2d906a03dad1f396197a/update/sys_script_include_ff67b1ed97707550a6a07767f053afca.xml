@@ -7,19 +7,38 @@
         <client_callable>false</client_callable>
         <description>Returns the status object including the required deployment tasks based on the given status and instance objects.</description>
         <name>GetDeploymentTasks</name>
-        <script><![CDATA[function GetDeploymentTasks(status,instance)
+        <script><![CDATA[function GetDeploymentTasks(vDeployment)
 {
 	var IsObject = x_snc_devtools.IsObject;
 	var GetValue = x_snc_devtools.GetValue;
 	var GetArrayValue = x_snc_devtools.GetArrayValue;
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var GetBoolValue = x_snc_devtools.GetBoolValue;
-
+	var CompareVersion = x_snc_devtools.CompareVersion;
+	var GetRecord = x_snc_devtools.GetRecord;
+	var IsValidSysId = x_snc_devtools.IsValidSysId;
 	
-	if (IsObject(status) == false)
+
+	var deployment = vDeployment;
+	
+	if (IsObject(vDeployment) == false)
+	{
+		deployment = GetRecord('x_snc_deployer_deployment',vDeployment);
+	}
+	
+	
+	
+	if (IsObject(deployment) == false)
 	{
 		return false;
 	}
+	
+	var instance = GetValue(deployment,'instance');
+	if (IsValidSysId(instance))
+	{
+		instance = GetRecord('x_snc_deployer_instance',GetValue(deployment,'instance'));
+	}
+	
 	if (IsObject(instance) == false)
 	{
 		return false;
@@ -33,29 +52,107 @@
 	
 	var bCodeSanity = GetBoolValue(GetValue(instance,'codesanity'));
 	var bDefaultATF = GetBoolValue(GetValue(instance,'atf_app_default'));
-			
+	
+	var bRefresh = GetBoolValue(GetValue(deployment,'refresh'));
+	var bEnforceDowngrade = GetBoolValue(GetValue(deployment,'enforce_downgrade'));
+
+	var bSkipCodeSanity = GetBoolValue(GetValue(deployment,'skip_codesanity'));
+	var bSkipDefaultATF = GetBoolValue(GetValue(deployment,'skip_atf_app_default'));
+	
+	if (bCodeSanity == true)
+	{
+		if (bSkipCodeSanity == true)
+		{
+			bCodeSanity = false;
+		}
+	}
+	if (bDefaultATF == true)
+	{
+		if (bSkipDefaultATF == true)
+		{
+			bDefaultATF = false;
+		}
+	}	
+	
+	
+	var aAppsOnTarget = GetApplicationListFromInstance(instance);
+	
+	var status = GetValue(deployment,'status');
+	if (IsObject(status) == false)
+	{
+		status = GetLatestRepoDependencyStatus(GetValue(deployment,'repo_url'), GetValue(deployment,'version'));	
+	}
+	
 	var aApps = GetArrayValue(GetValue(status,'list'));
 	
 	var aTasks = [];
+
+	// Install all applications
 	
-	
+	// to capture the last app
 	var app = {};
-	
-	// Install all apps
 	for (var nApp = 0; nApp < aApps.length; nApp++)
 	{
 		app = aApps[nApp];
-		
 		var strAppName = app.name + ' ' + app.version;
+		
+		// Check if the app already exists on the target instance:
+		var appOnTargetFound = null;
+		for (var nAppOnTarget = 0; nAppOnTarget < aAppsOnTarget.length; nAppOnTarget++)
+		{
+			var appOnTarget = aAppsOnTarget[nAppOnTarget];
+			if (appOnTarget.sys_id == app.sys_id)
+			{
+				appOnTargetFound = appOnTarget;
+				break;
+			}
+		}
+		
+		if (appOnTargetFound == null)
+		{
 
-		var task = {};
-		task.name = 'Install application "'+strAppName+'" on instance "'+strInstanceName+'"';
-		aTasks.push(task);
+			var task = {};
+			task.name = 'Install application "'+app.name+'" version "'+app.version+'" on instance "'+strInstanceName+'" via "Import From Source Control"';
+			aTasks.push(task);
+		}
+		else
+		{
+			if (appOnTarget.version == app.version)
+			{
+				if (bRefresh == true)
+				{				
+					var task = {};
+					task.name = 'Refresh application "'+app.name+'" in current version "'+app.version+'" on instance "'+strInstanceName+'" via "Apply Remote Changes"';
+					aTasks.push(task);				
+
+				}
+			}
+			else
+			{
+				if (CompareVersion(appOnTarget.version,app.version) < 1) // target is lower
+				{
+					var task = {};
+					task.name = 'Update application "'+app.name+'" to version "'+app.version+'" on instance "'+strInstanceName+'" via "Switch Branch"';
+					aTasks.push(task);	
+				}
+				else
+				{
+					if (bEnforceDowngrade == true)
+					{
+						var task = {};
+						task.name = 'Downgrade application "'+app.name+'" to version "'+app.version+'" on instance "'+strInstanceName+'" via "Switch Branch"';
+						aTasks.push(task);	
+					}
+				}
+				
+			}
+		}
+		
 		
 		if (bCodeSanity == true)
 		{
 			var task = {};
-			task.name = 'Execute CodeSanity checks on application "'+strAppName+'" on instance "'+strInstanceName+'"';
+			task.name = 'Execute CodeSanity checks on application "'+app.name+'" on instance "'+strInstanceName+'"';
 			aTasks.push(task);		
 		}
 		
@@ -74,29 +171,25 @@
 		{
 			var app = aApps[nApp];
 
-			var strAppName = app.name + ' ' + app.version;
-
 			var task = {};
-			task.name = 'Execute application default ATF Test Suite "'+strAppName+'" on instance "'+strInstanceName+'"';
+			task.name = 'Execute application default ATF Test Suite "'+app.name+'" on instance "'+strInstanceName+'"';
 			aTasks.push(task);
 		}
 	}
 	
-	status.tasks = aTasks;
-	
-	return status;
+	return aTasks;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>34</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-15 10:40:41</sys_updated_on>
+        <sys_updated_on>2023-09-22 12:24:09</sys_updated_on>
     </sys_script_include>
 </record_update>

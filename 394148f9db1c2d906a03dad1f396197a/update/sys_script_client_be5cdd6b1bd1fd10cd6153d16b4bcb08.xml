@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>enforce_downgrade_enable</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Deployment - Reset Enforce Downgrade</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate)
+{
+	if (isLoading || newValue === '')
+	{
+		return;
+	}
+
+	if (newValue == 'true')
+	{
+		DoModalMessage(
+			'Warning',
+			'Be careful with activating "Enforce Downgrade"!\n'
+			+'This may lead to installing OLDER versions of applications than are already installed on the target instance.',
+			function(){});
+	}
+	else if (newValue == 'false')
+	{
+		g_form.setValue('enforce_downgrade','false');
+	}
+
+   //Type appropriate comment here, and begin script below
+   
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-09-21 15:18:36</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>be5cdd6b1bd1fd10cd6153d16b4bcb08</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Deployment - Reset Enforce Downgrade</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_client_be5cdd6b1bd1fd10cd6153d16b4bcb08</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-09-21 15:25:33</sys_updated_on>
+        <table>x_snc_deployer_deployment</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

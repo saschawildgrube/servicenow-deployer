@@ -152,10 +152,8 @@
 		{
 			var app = aApps[nApp];
 
-			var strAppName = app.name + ' ' + app.version;
-
 			var task = {};
-			task.name = 'Execute application default ATF Test Suite "'+strAppName+'" on instance "'+strInstanceName+'"';
+			task.name = 'Execute application default ATF Test Suite "'+app.name+'" on instance "'+strInstanceName+'"';
 			aTasks.push(task);
 		}
 	}
@@ -166,13 +164,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-22 07:59:12</sys_updated_on>
+        <sys_updated_on>2023-09-22 08:08:30</sys_updated_on>
     </sys_script_include>
 </record_update>

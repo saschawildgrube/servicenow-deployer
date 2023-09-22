@@ -130,7 +130,7 @@
 	<h3>1.4.0 - 2023-TODO</h3>
 	<ol>
 		<li>Deployer Target API / Get Status now also returns the application status.</li>
-		<li>Added function GetApplicationStatus() to retrieve an array of applications and customization applications.</li>
+		<li>Added function GetApplicationListFromInstance() to retrieve an array of applications and customization applications from a target instance.</li>
 	</ol>	
 	
 	<h3>1.3.0 - 2023-09-18</h3>
@@ -182,13 +182,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>52</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-21 13:55:57</sys_updated_on>
+        <sys_updated_on>2023-09-21 15:02:17</sys_updated_on>
     </sys_ui_page>
 </record_update>

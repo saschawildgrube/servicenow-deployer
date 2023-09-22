@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="skip_atf_app_default" label="Skip running default ATF Test Suite for each application" language="en" table="x_snc_deployer_deployment">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>skip_atf_app_default</element>
+            <help/>
+            <hint/>
+            <label>Skip running default ATF Test Suite for each application</label>
+            <language>en</language>
+            <name>x_snc_deployer_deployment</name>
+            <plural>Skip running default ATF Test Suite for each applications</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-09-22 12:20:13</sys_created_on>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Skip running default ATF Test Suite for each application</sys_name>
+            <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_deployer_deployment_skip_atf_app_default_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-09-22 12:21:31</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

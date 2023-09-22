@@ -6,6 +6,8 @@
         <element label="Enforce Refresh Applications" max_length="40" name="refresh" type="boolean"/>
         <element label="Repository Application Status" max_length="32" name="repository_application_status" reference="x_snc_deployer_repository_application_status" reference_qual="status=ok^EQ" reference_qual_condition="status=ok^EQ" type="reference"/>
         <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
+        <element label="Skip running default ATF Test Suite for each application" max_length="40" name="skip_atf_app_default" type="boolean"/>
+        <element label="Skip running CodeSanity checks for each application" max_length="40" name="skip_codesanity" type="boolean"/>
         <element label="Version" max_length="20" name="version" type="string"/>
     </element>
 </database>

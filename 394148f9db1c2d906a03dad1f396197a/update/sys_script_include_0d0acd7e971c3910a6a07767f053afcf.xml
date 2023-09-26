@@ -34,6 +34,7 @@
 	delete packagerecord.enforce_license;
 	delete packagerecord.guided_setup_guid;
 	delete packagerecord.hide_on_ui;
+	delete packagerecord.installed_as_dependency;
 	delete packagerecord.licensable;
 	delete packagerecord.license;
 	delete packagerecord.license_category;
@@ -62,20 +63,20 @@
 	delete packagerecord.user_role;	
 	delete packagerecord.vendor;
 	delete packagerecord.vendor_prefix;
-	
+
 	return packagerecord;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-07-31 13:01:08</sys_created_on>
         <sys_id>0d0acd7e971c3910a6a07767f053afcf</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>CleanUpPackageObject</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_0d0acd7e971c3910a6a07767f053afcf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-31 13:36:27</sys_updated_on>
+        <sys_updated_on>2023-09-26 13:39:51</sys_updated_on>
     </sys_script_include>
 </record_update>

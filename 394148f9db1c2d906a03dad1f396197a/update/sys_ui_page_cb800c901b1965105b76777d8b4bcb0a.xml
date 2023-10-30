@@ -137,6 +137,7 @@
 		<li>Added "Credentials" menu item.</li>
 		<li>Added UI action "New Version" to create a new Repo App Status for a new version.</li>
 		<li>The system property "x_snc_deployer.required_target_version" now defines the minimum version of the Deployer app that must be installed on the target instance.</li>
+		<li>Menu items "Log" and "Test Suite" are only visible for x_snc_deployer.admin users.</li>
 	</ol>	
 	
 	<h3>1.4.0 - 2023-09-22</h3>
@@ -198,13 +199,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>66</sys_mod_count>
+        <sys_mod_count>67</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-30 08:22:33</sys_updated_on>
+        <sys_updated_on>2023-10-30 13:13:15</sys_updated_on>
     </sys_ui_page>
 </record_update>

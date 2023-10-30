@@ -45,6 +45,31 @@
 		}
 		return 'not specified';
 	}
+	
+	function HtmlRenderDependencyStatus(strDependencyStatus)
+	{
+		switch (strDependencyStatus)
+		{
+			case 'ok':
+				return '<span style="color: green; font-weight: bold;">OK</span>';
+			case 'missing':
+				return '<span style="color: red; font-weight: bold;">APPLICATON VERSION NOT FOUND IN REPOSITORY</span>';
+			case 'incompatible_version':
+				return '<span style="color: red; font-weight: bold;">APPLICATON VERSION NOT FOUND IN REPOSITORY</span>';
+			case 'invalid_repo_url':
+				return '<span style="color: red; font-weight: bold;">INVALID REPOSITORY URL</span>';
+			case 'missing_repo_url':
+				return '<span style="color: red; font-weight: bold;">MISSING REPOSITORY URL</span>';						
+			case 'circular':
+				return '<span style="color: red; font-weight: bold;">CIRCULAR DEPENDENCY</span>';
+			case 'conflicting_versions':
+				return '<span style="color: red; font-weight: bold;">CONFLICTING VERSION REQUIREMENTS</span>';		
+			case 'out_of_scope':
+				return '<span style="color: blue; font-weight: bold;">OUT OF SCOPE</span>';							
+			default:
+				return '<span style="color: red; font-weight: bold;">UNDEFINED</span>'
+		}
+	}	
 			
 	function HtmlRenderPackage(oPackage,nLevel)
 	{
@@ -57,6 +82,7 @@
 		
 		var strVersion = ' ' + GetStringValue(oPackage.version);
 		var strDependencyStatus = GetStringValue(GetValue(oPackage,'dependency_status'));
+		var strDependencyStatusSummary = GetStringValue(GetValue(oPackage,'dependency_status_summary'));
 		
 		var strAppName = GetValue(oPackage,'name');
 		if (strDependencyStatus != 'missing')
@@ -78,35 +104,15 @@
 			{
 				bError = true;
 			}
+			if (strDependencyStatusSummary != 'ok')
+			{
+				bError = true;
+			}			
 			if (strDependencyStatus != 'circular' && strDependencyStatus != 'conflicting_versions')
 			{
 				strHtml += 'Compatible Version(s): ' + GetValue(oPackage,'compatible_versions');
 				
 				strHtml += ' / ';
-			}
-			
-			function HtmlRenderDependencyStatus(strDependencyStatus)
-			{
-				switch (strDependencyStatus)
-				{
-					case 'ok':
-						return '<span style="color: green; font-weight: bold;">OK</span>';
-					case 'missing':
-					case 'incompatible_version':
-						return '<span style="color: red; font-weight: bold;">APPLICATON VERSION NOT FOUND IN REPOSITORY</span>';
-					case 'invalid_repo_url':
-						return '<span style="color: red; font-weight: bold;">INVALID REPOSITORY URL</span>';
-					case 'missing_repo_url':
-						return '<span style="color: red; font-weight: bold;">MISSING REPOSITORY URL</span>';						
-					case 'circular':
-						return '<span style="color: red; font-weight: bold;">CIRCULAR DEPENDENCY</span>';
-					case 'conflicting_versions':
-						return '<span style="color: red; font-weight: bold;">CONFLICTING VERSION REQUIREMENTS</span>';		
-					case 'out_of_scope':
-						return '<span style="color: blue; font-weight: bold;">OUT OF SCOPE</span>';							
-					default:
-						return '<span style="color: red; font-weight: bold;">UNDEFINED</span>'
-				}
 			}
 			
 			strHtml += 'Status: ' + HtmlRenderDependencyStatus(strDependencyStatus);
@@ -141,7 +147,8 @@
 		}
 		else
 		{
-			strHtml += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
+			strHtml += StringFormat('Status Summary: {0}<br/>Repository: <a href="{1}" target="_blank">{1}</a> / Branch: {2} <br/>',
+				HtmlRenderDependencyStatus(GetStringValue(GetValue(oPackage,'dependency_status_summary'))),
 				GetRepoUrlFromPackage(oPackage),
 				GetValue(oPackage,'branch'));
 			
@@ -197,8 +204,10 @@
 		{
 			strHtml += HtmlRenderPackage(aPackageList[nPackage],(nPackage < aPackageList.length-1) ? (1) : (0));
 		}
-		
-		//strHtml += HtmlRenderValue(aPackageList);
+		if (AppGetProperty('logging.verbosity') == 'debug')
+		{		
+			strHtml += HtmlRenderValue(aPackageList);
+		}
 	}
 	else 
 	{
@@ -210,7 +219,10 @@
 
 		strHtml += HtmlRenderPackage(oPackage,0);
 		
-		//strHtml += HtmlRenderValue(oPackage);
+		if (AppGetProperty('logging.verbosity') == 'debug')
+		{
+			strHtml += HtmlRenderValue(oPackage);
+		}
 	}
 	
 	if (bError == true)
@@ -228,13 +240,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:10:20</sys_created_on>
         <sys_id>43e9fa97970ae910a6a07767f053af20</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>HtmlRenderRepoDependencies</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_43e9fa97970ae910a6a07767f053af20</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-07-24 06:14:39</sys_updated_on>
+        <sys_updated_on>2023-10-27 17:05:36</sys_updated_on>
     </sys_script_include>
 </record_update>

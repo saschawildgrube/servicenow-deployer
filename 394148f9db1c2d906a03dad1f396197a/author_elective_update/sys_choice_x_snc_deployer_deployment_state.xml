@@ -39,7 +39,7 @@
             <element>state</element>
             <hint/>
             <inactive>false</inactive>
-            <label>Preparing</label>
+            <label>Ready</label>
             <language>en</language>
             <name>x_snc_deployer_deployment</name>
             <sequence>2</sequence>
@@ -48,29 +48,10 @@
             <sys_created_on>2023-08-03 19:28:39</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 19:28:39</sys_updated_on>
-            <value>2000</value>
-        </sys_choice>
-        <sys_choice action="INSERT_OR_UPDATE">
-            <dependent_value/>
-            <element>state</element>
-            <hint/>
-            <inactive>false</inactive>
-            <label>Waiting for User</label>
-            <language>en</language>
-            <name>x_snc_deployer_deployment</name>
-            <sequence>3</sequence>
-            <synonyms/>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-08-03 19:10:29</sys_created_on>
-            <sys_domain>global</sys_domain>
-            <sys_domain_path>/</sys_domain_path>
             <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 19:28:24</sys_updated_on>
-            <value>3000</value>
+            <sys_updated_on>2023-10-30 07:45:08</sys_updated_on>
+            <value>2000</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
@@ -80,16 +61,35 @@
             <label>In Progress</label>
             <language>en</language>
             <name>x_snc_deployer_deployment</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-08-03 19:10:29</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>6</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-10-30 07:45:13</sys_updated_on>
+            <value>3000</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Cancelled</label>
+            <language>en</language>
+            <name>x_snc_deployer_deployment</name>
             <sequence>4</sequence>
             <synonyms/>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2023-08-03 19:10:08</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>1</sys_mod_count>
+            <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 19:28:00</sys_updated_on>
-            <value>4000</value>
+            <sys_updated_on>2023-10-30 07:45:04</sys_updated_on>
+            <value>11000</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
@@ -105,10 +105,10 @@
             <sys_created_on>2023-08-03 19:29:22</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
+            <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-08-03 19:29:41</sys_updated_on>
-            <value>9000</value>
+            <sys_updated_on>2023-10-30 07:44:50</sys_updated_on>
+            <value>12000</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>

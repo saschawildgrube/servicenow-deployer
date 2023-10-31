@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ab1dc2dc1bdeb1106c17fdd49b4bcb26" extends="task" label="Deployment Task" max_length="40" name="x_snc_deployer_deployment_task" type="collection">
+        <element label="Deployment" mandatory="true" max_length="32" name="deployment" reference="x_snc_deployer_deployment" type="reference"/>
+    </element>
+</database>

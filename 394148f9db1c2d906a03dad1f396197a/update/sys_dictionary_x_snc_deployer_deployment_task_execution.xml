@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="deployment" table="x_snc_deployer_deployment_task">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="execution" table="x_snc_deployer_deployment_task">
         <active>true</active>
         <array>false</array>
         <attributes/>
@@ -10,13 +10,13 @@
 	return '';  // return the calculated value
 
 })(current);]]></calculation>
-        <choice/>
+        <choice>3</choice>
         <choice_field/>
         <choice_table/>
-        <column_label>Deployment</column_label>
+        <column_label>Execution</column_label>
         <comments/>
         <create_roles/>
-        <default_value/>
+        <default_value>manual</default_value>
         <defaultsort/>
         <delete_roles/>
         <dependent/>
@@ -26,21 +26,21 @@
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>deployment</element>
+        <element>execution</element>
         <element_reference>false</element_reference>
         <foreign_database/>
         <formula/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="Reference">reference</internal_type>
+        <internal_type display_value="Choice">choice</internal_type>
         <mandatory>true</mandatory>
-        <max_length>32</max_length>
+        <max_length>40</max_length>
         <name>x_snc_deployer_deployment_task</name>
         <next_element/>
         <primary>false</primary>
         <read_only>true</read_only>
         <read_roles/>
-        <reference display_value="" name="x_snc_deployer_deployment">x_snc_deployer_deployment</reference>
+        <reference/>
         <reference_cascade_rule/>
         <reference_floats>false</reference_floats>
         <reference_key/>
@@ -51,14 +51,14 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-10-31 09:34:53</sys_created_on>
-        <sys_name>Deployment</sys_name>
+        <sys_created_on>2023-10-31 10:45:18</sys_created_on>
+        <sys_name>Execution</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
-        <sys_update_name>sys_dictionary_x_snc_deployer_deployment_task_deployment</sys_update_name>
+        <sys_update_name>sys_dictionary_x_snc_deployer_deployment_task_execution</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-31 10:05:44</sys_updated_on>
+        <sys_updated_on>2023-10-31 10:46:14</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

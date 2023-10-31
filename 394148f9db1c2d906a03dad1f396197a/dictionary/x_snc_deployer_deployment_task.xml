@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="ab1dc2dc1bdeb1106c17fdd49b4bcb26" extends="task" label="Deployment Task" max_length="40" name="x_snc_deployer_deployment_task" type="collection">
-        <element label="Deployment" mandatory="true" max_length="32" name="deployment" reference="x_snc_deployer_deployment" type="reference"/>
+        <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" type="reference"/>
+        <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
+                <element inactive_on_update="false" label="Automatic" sequence="2" value="automatic"/>
+            </choice>
+        </element>
     </element>
 </database>

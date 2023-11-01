@@ -9,10 +9,11 @@
         <name>TargetInstanceATFTestSuiteRun</name>
         <script><![CDATA[function TargetInstanceATFTestSuiteRun(grInstance,strSuite)
 {
-	Log('TargetInstanceATFTestSuiteRun');
+	Debug('TargetInstanceATFTestSuiteRun');
 	var GetValue = x_snc_devtools.GetValue;
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var IsValidSysId = x_snc_devtools.IsValidSysId;
+	
 	
 	strSuite = GetStringValue(strSuite);
 	
@@ -23,12 +24,13 @@
 	}
 	else
 	{
-		strSuiteParam = 'test_suite_name='+strSuite;
+		strSuiteParam = 'test_suite_name='+encodeURIComponent(strSuite);
 	}
 	
-	var result = TargetInstanceRequest(grInstance,'sn_cicd/testsuite/run?'+strSuiteParam,' ');
+	var result = TargetInstanceRequest(grInstance,'sn_cicd/testsuite/run?'+strSuiteParam,'{}');
 	
-	Log(result);
+	Debug('AFTER TargetInstanceRequest');
+	Debug(result);
 	
 	var strProgressId = GetValue(result,'result','links','progress','id');
 	
@@ -65,13 +67,13 @@ ___["status_message"]:
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-01 10:54:03</sys_created_on>
         <sys_id>4749efe41bd235106c17fdd49b4bcb2e</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>TargetInstanceATFTestSuiteRun</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_4749efe41bd235106c17fdd49b4bcb2e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-01 13:26:33</sys_updated_on>
+        <sys_updated_on>2023-11-01 14:09:42</sys_updated_on>
     </sys_script_include>
 </record_update>

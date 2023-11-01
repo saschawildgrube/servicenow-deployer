@@ -50,6 +50,8 @@
 		return false;
 	}
 	
+		
+	
 	var bCodeSanity = GetBoolValue(GetValue(instance,'codesanity'));
 	var bDefaultATF = GetBoolValue(GetValue(instance,'atf_app_default'));
 	
@@ -58,6 +60,30 @@
 
 	var bSkipCodeSanity = GetBoolValue(GetValue(deployment,'skip_codesanity'));
 	var bSkipDefaultATF = GetBoolValue(GetValue(deployment,'skip_atf_app_default'));
+	
+	var strPreferredExecutionMode = GetStringValue(GetValue(deployment,'preferred_execution'));
+	if (strPreferredExecutionMode == '')
+	{
+		strPreferredExecutionMode = 'manual';
+	}
+	
+	function GetDeploymentTaskExecutionMode(strAction)
+	{
+		/*if (strPreferredExecutionMode == 'manual')
+		{
+			return 'manual';
+		}*/
+		return GetDeploymentTaskSupportedExecutionMode(strAction);
+	}
+	
+	function MakeTask(strAction,strId)
+	{
+		var task = {};
+		task.action = strAction;
+		task.execution = GetDeploymentTaskExecutionMode(strAction);
+		task.id = strId;
+		return task;
+	}
 	
 	if (bCodeSanity == true)
 	{
@@ -111,8 +137,8 @@
 		if (appOnTargetFound == null)
 		{
 
-			var task = {};
-			task.name = 'Install application "'+app.name+'" version "'+app.version+'" on instance "'+strInstanceName+'" via "Import From Source Control"';
+			var task = MakeTask('install_import_from_source_control',app.sys_id);
+			task.short_description = 'Install application "'+app.name+'" version "'+app.version+'" on instance "'+strInstanceName+'" via "Import From Source Control"';
 			aTasks.push(task);
 		}
 		else
@@ -121,8 +147,8 @@
 			{
 				if (bRefresh == true)
 				{				
-					var task = {};
-					task.name = 'Refresh application "'+app.name+'" in current version "'+app.version+'" on instance "'+strInstanceName+'" via "Apply Remote Changes"';
+					var task = MakeTask('install_apply_remote_changes',app.sys_id);
+					task.short_description = 'Refresh application "'+app.name+'" in current version "'+app.version+'" on instance "'+strInstanceName+'" via "Apply Remote Changes"';
 					aTasks.push(task);				
 
 				}
@@ -131,16 +157,16 @@
 			{
 				if (CompareVersion(appOnTarget.version,app.version) < 1) // target is lower
 				{
-					var task = {};
-					task.name = 'Update application "'+app.name+'" to version "'+app.version+'" on instance "'+strInstanceName+'" via "Switch Branch"';
+					var task = MakeTask('install_switch_branch',app.sys_id);
+					task.short_description = 'Update application "'+app.name+'" to version "'+app.version+'" on instance "'+strInstanceName+'" via "Switch Branch"';
 					aTasks.push(task);	
 				}
 				else
 				{
 					if (bEnforceDowngrade == true)
 					{
-						var task = {};
-						task.name = 'Downgrade application "'+app.name+'" to version "'+app.version+'" on instance "'+strInstanceName+'" via "Switch Branch"';
+						var task = MakeTask('install_switch_branch',app.sys_id);
+						task.short_description = 'Downgrade application "'+app.name+'" to version "'+app.version+'" on instance "'+strInstanceName+'" via "Switch Branch"';
 						aTasks.push(task);	
 					}
 				}
@@ -151,8 +177,8 @@
 		
 		if (bCodeSanity == true)
 		{
-			var task = {};
-			task.name = 'Execute CodeSanity checks on application "'+app.name+'" on instance "'+strInstanceName+'"';
+			var task = MakeTask('run_codesanity',app.sys_id);
+			task.short_description = 'Execute CodeSanity checks on application "'+app.name+'" on instance "'+strInstanceName+'"';
 			aTasks.push(task);		
 		}
 		
@@ -160,8 +186,8 @@
 	
 
 	// Run installation scripts
-	task = {};
-	task.name = 'Run Installation scripts on instance "'+strInstanceName+'" (via API on application "'+app.name+'")';
+	var task = MakeTask('run_install_scripts',app.sys_id);
+	task.short_description = 'Run Installation scripts on instance "'+strInstanceName+'" (via API on application "'+app.name+'")';
 	aTasks.push(task);
 
 	// Run application default ATF Test Suites
@@ -171,8 +197,8 @@
 		{
 			var app = aApps[nApp];
 
-			var task = {};
-			task.name = 'Execute application default ATF Test Suite "'+app.name+'" on instance "'+strInstanceName+'"';
+			var task = MakeTask('run_atf_test_suite',app.sys_id);
+			task.short_description = 'Execute application default ATF Test Suite "'+app.name+'" on instance "'+strInstanceName+'"';
 			aTasks.push(task);
 		}
 	}
@@ -183,13 +209,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>39</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-09-22 12:24:09</sys_updated_on>
+        <sys_updated_on>2023-11-01 08:04:08</sys_updated_on>
     </sys_script_include>
 </record_update>

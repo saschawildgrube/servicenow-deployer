@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>deployer_instance_validate</action_name>
+        <action_name>deployer_instance_createdeployment</action_name>
         <active>true</active>
         <client>false</client>
         <client_script_v2><![CDATA[function onClick(g_form) {
 
 }]]></client_script_v2>
-        <comments>Validates if the instance is configured correctly and if it is up and running.</comments>
+        <comments>Creates a new deployment based on the current Repository Application Status.</comments>
         <condition/>
         <form_action>true</form_action>
         <form_button>true</form_button>
@@ -27,48 +27,34 @@
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
         <messages/>
-        <name>Validate</name>
+        <name>Create Deployment</name>
         <onclick/>
-        <order>100</order>
+        <order>200</order>
         <script><![CDATA[current.update();
-var bResult = ValidateInstance(current);
-if (bResult == false)
-{
-	gs.addErrorMessage(
-		x_snc_devtools.HtmlEncode(
-		'The instance is NOT ready for deployment operations.\n'
-		+'Verify that:\n'
-		+'- The url is correct\n'
-		+'- The correct credentials are selected\n'
-		+'- The user account on the target instance has the x_snc_deployer.api role\n'
-		+'- The user account on the traget instance is active and has web service access\n'
-		+'- The Deployer application is active on the target instance\n'
-		+'- The version of the Deployer application on the target instance is compatible to the local application version'));
-}
-else
-{
-	gs.addInfoMessage('The target instance is ready for deployment operations.');
-}
-x_snc_devtools.RedirectToRecord(current);]]></script>
+var grDeployment = new GlideRecord('x_snc_deployer_deployment');
+grDeployment.initialize();
+grDeployment.instance = current.sys_id;
+grDeployment.insert();
+x_snc_devtools.RedirectToRecord(grDeployment);]]></script>
         <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
         <show_update>true</show_update>
         <sys_class_name>sys_ui_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-08-02 17:45:41</sys_created_on>
+        <sys_created_on>2023-11-02 12:31:36</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>4d4e586b1bdc7910cd6153d16b4bcbed</sys_id>
-        <sys_mod_count>11</sys_mod_count>
-        <sys_name>Validate</sys_name>
+        <sys_id>f13901011bda75106c17fdd49b4bcbb4</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Create Deployment</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
-        <sys_update_name>sys_ui_action_4d4e586b1bdc7910cd6153d16b4bcbed</sys_update_name>
+        <sys_update_name>sys_ui_action_f13901011bda75106c17fdd49b4bcbb4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-02 12:34:28</sys_updated_on>
+        <sys_updated_on>2023-11-02 12:34:23</sys_updated_on>
         <table>x_snc_deployer_instance</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

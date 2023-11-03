@@ -16,6 +16,7 @@
             </choice>
         </element>
         <element label="ID" max_length="32" name="id" type="string"/>
+        <element label="Retry Count" max_length="40" name="retry_count" read_only="true" type="integer"/>
         <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
     </element>
 </database>

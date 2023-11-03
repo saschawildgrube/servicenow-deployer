@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
-        <conditions table="x_snc_deployer_repository_application_status">sys_created_onISNOTEMPTY^EQ<item endquery="false" field="sys_created_on" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+        <conditions table="x_snc_deployer_deployment_task">retry_count&lt;1^EQ<item endquery="false" field="retry_count" goto="false" newquery="false" operator="&lt;" or="false" value="1"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>
         <description/>
@@ -21,23 +21,23 @@
 
 }]]></script_true>
         <set_values/>
-        <short_description>Repository Application Status - All fields read only after creation</short_description>
+        <short_description>Deployment Task - Hide Retry Count</short_description>
         <sys_class_name>sys_ui_policy</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-06-09 13:53:44</sys_created_on>
+        <sys_created_on>2023-11-03 16:01:09</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>3fb3ed821bd72510cd6153d16b4bcb0c</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Repository Application Status - All fields read only after creation</sys_name>
+        <sys_id>e0b2c3d91bdeb5106c17fdd49b4bcb1d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Deployment Task - Hide Retry Count</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
-        <sys_update_name>sys_ui_policy_3fb3ed821bd72510cd6153d16b4bcb0c</sys_update_name>
+        <sys_update_name>sys_ui_policy_e0b2c3d91bdeb5106c17fdd49b4bcb1d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-03 10:05:21</sys_updated_on>
-        <table>x_snc_deployer_repository_application_status</table>
+        <sys_updated_on>2023-11-03 16:06:25</sys_updated_on>
+        <table>x_snc_deployer_deployment_task</table>
         <ui_type>0</ui_type>
         <view/>
     </sys_ui_policy>

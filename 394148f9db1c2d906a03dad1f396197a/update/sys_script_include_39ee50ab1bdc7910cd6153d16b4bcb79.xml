@@ -38,7 +38,7 @@
 
 	if (grInstance.codesanity == true)
 	{
-		var strScanSuiteSysId = GetValue(status,'codesanity_scansuite_sys_id');
+		var strScanSuiteSysId = GetValue(status,'codesanity_scansuite');
 		if (IsValidSysId(strScanSuiteSysId) == false)
 		{
 			return false;
@@ -51,13 +51,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-02 17:46:46</sys_created_on>
         <sys_id>39ee50ab1bdc7910cd6153d16b4bcb79</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>TargetInstanceValidate</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_39ee50ab1bdc7910cd6153d16b4bcb79</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-03 16:40:57</sys_updated_on>
+        <sys_updated_on>2023-11-03 16:43:43</sys_updated_on>
     </sys_script_include>
 </record_update>

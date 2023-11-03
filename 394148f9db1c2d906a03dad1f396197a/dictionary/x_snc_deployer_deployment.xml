@@ -14,6 +14,7 @@
         <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
         <element label="Skip running default ATF Test Suite for each application" max_length="40" name="skip_atf_app_default" type="boolean"/>
         <element label="Skip running CodeSanity checks for each application" max_length="40" name="skip_codesanity" type="boolean"/>
+        <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
         <element label="Version" max_length="20" name="version" type="string"/>
     </element>
 </database>

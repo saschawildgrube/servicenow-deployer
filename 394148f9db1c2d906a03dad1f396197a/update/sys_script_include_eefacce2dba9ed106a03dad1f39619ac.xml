@@ -176,10 +176,11 @@ SourceControlAPI.prototype = {
 	
 	GetFilesFromRepo: function(strRepoUrl,strBranch,strPath)
 	{
-		Debug('GetFilesFromRepo '+strRepoUrl+' '+strBranch+' '+strPath);
 		var GetStringValue = x_snc_devtools.GetStringValue;
 		var GetValue = x_snc_devtools.GetValue;
 
+		strRepoUrl = GetStringValue(strRepoUrl);
+		strBranch = GetStringValue(strBranch);
 		strPath = GetStringValue(strPath);
 		if (strPath == '')
 		{
@@ -436,13 +437,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>84</sys_mod_count>
+        <sys_mod_count>85</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-07 11:33:19</sys_updated_on>
+        <sys_updated_on>2023-11-07 11:36:30</sys_updated_on>
     </sys_script_include>
 </record_update>

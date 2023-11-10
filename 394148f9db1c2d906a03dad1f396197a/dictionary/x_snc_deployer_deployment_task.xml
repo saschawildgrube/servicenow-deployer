@@ -8,6 +8,7 @@
                 <element inactive_on_update="false" label="run_atf_test_suite_default" sequence="20" value="Run default ATF Test Suite"/>
             </choice>
         </element>
+        <element label="Branch" max_length="100" name="branch" type="string"/>
         <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" type="reference"/>
         <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
             <choice>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.TargetInstanceSourceControlImport</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>TODO</description>
+        <name>TargetInstanceSourceControlImport</name>
+        <script><![CDATA[function TargetInstanceSourceControlImport(grInstance,strRepoUrl)
+{
+	Debug('TargetInstanceSourceControlImport');
+	var GetValue = x_snc_devtools.GetValue;
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var IsValidSysId = x_snc_devtools.IsValidSysId;
+	
+	
+	strSuite = GetStringValue(strSuite);
+	
+	var strSuiteParam = '';
+	if (IsValidSysId(strSuite) == true)
+	{
+		strSuiteParam = 'test_suite_sys_id='+strSuite;
+	}
+	else
+	{
+		strSuiteParam = 'test_suite_name='+encodeURIComponent(strSuite);
+	}
+	
+	var result = TargetInstanceRequest(grInstance,'sn_cicd/testsuite/run?'+strSuiteParam,'{}');
+	
+	Debug('AFTER TargetInstanceRequest');
+	Debug(result);
+	
+	var strProgressId = GetValue(result,'result','links','progress','id');
+	
+	if (IsValidSysId(strProgressId) == false)
+	{
+		return false;
+	}
+	
+	/*
+	
+	___["links"]:
+______["progress"]:
+_________["id"]: 9d9dafecdb9e7910f0f1d03cd3961999
+_________["url"]: https://wildvancouver.service-now.com/api/sn_cicd/progress/9d9dafecdb9e7910f0f1d03cd3961999
+___["percent_complete"]: 0
+___["status"]: 0
+___["status_detail"]:
+___["status_label"]: Pending
+___["status_message"]:
+	
+	*/
+	
+	/*
+	
+	if (GetValue(result,'result','message') != 'SUCCESS')
+	{
+		return false;
+	}
+	*/
+		
+	return strProgressId;	
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-03 16:49:08</sys_created_on>
+        <sys_id>40cd87951b12f5106c17fdd49b4bcb13</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>TargetInstanceSourceControlImport</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_40cd87951b12f5106c17fdd49b4bcb13</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-03 17:06:50</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</application>
+        <file_path/>
+        <instance_id>25322e70dbb92590c1a4c5970596192e</instance_id>
+        <instance_name>wildgrubeutah</instance_name>
+        <name>sys_script_include_40cd87951b12f5106c17fdd49b4bcb13</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_deployer.TargetInstanceSourceControlImport&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;TODO&lt;/description&gt;&lt;name&gt;TargetInstanceSourceControlImport&lt;/name&gt;&lt;script&gt;&lt;![CDATA[function TargetInstanceSourceControlImport(grInstance,strRepoUrl)
+{
+	Debug('TargetInstanceSourceControlImport');
+	var GetValue = x_snc_devtools.GetValue;
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var IsValidSysId = x_snc_devtools.IsValidSysId;
+	
+	
+	strSuite = GetStringValue(strSuite);
+	
+	var strSuiteParam = '';
+	if (IsValidSysId(strSuite) == true)
+	{
+		strSuiteParam = 'test_suite_sys_id='+strSuite;
+	}
+	else
+	{
+		strSuiteParam = 'test_suite_name='+encodeURIComponent(strSuite);
+	}
+	
+	var result = TargetInstanceRequest(grInstance,'sn_cicd/testsuite/run?'+strSuiteParam,'{}');
+	
+	Debug('AFTER TargetInstanceRequest');
+	Debug(result);
+	
+	var strProgressId = GetValue(result,'result','links','progress','id');
+	
+	if (IsValidSysId(strProgressId) == false)
+	{
+		return false;
+	}
+	
+	/*
+	
+	___["links"]:
+______["progress"]:
+_________["id"]: 9d9dafecdb9e7910f0f1d03cd3961999
+_________["url"]: https://wildvancouver.service-now.com/api/sn_cicd/progress/9d9dafecdb9e7910f0f1d03cd3961999
+___["percent_complete"]: 0
+___["status"]: 0
+___["status_detail"]:
+___["status_label"]: Pending
+___["status_message"]:
+	
+	*/
+	
+	/*
+	
+	if (GetValue(result,'result','message') != 'SUCCESS')
+	{
+		return false;
+	}
+	*/
+		
+	return strProgressId;	
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-11-03 16:49:08&lt;/sys_created_on&gt;&lt;sys_id&gt;40cd87951b12f5106c17fdd49b4bcb13&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;TargetInstanceSourceControlImport&lt;/sys_name&gt;&lt;sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer"&gt;394148f9db1c2d906a03dad1f396197a&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Deployer WORK IN PROGRESS"&gt;394148f9db1c2d906a03dad1f396197a&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_40cd87951b12f5106c17fdd49b4bcb13&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-11-03 17:06:50&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>706599303</payload_hash>
+        <record_name>TargetInstanceSourceControlImport</record_name>
+        <reverted_from/>
+        <source>0fadde701b9471100e0b2f836b4bcbac</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-03 17:06:51</sys_created_on>
+        <sys_id>53c1d3991b12f5106c17fdd49b4bcb1b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18b9626dc1b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-03 17:06:51</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>97c1d399a412f510cb855c0a73f4601a</update_guid>
+        <update_guid_history>97c1d399a412f510cb855c0a73f4601a:706599303,b3ddc795ed12f510b34b5ee45c8c6e5b:-1546697248,08cd87953f12f510c4175ef06b9b3d14:-752052763</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-03 17:08:05</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>8212c7320d7448f08d8aa9a972cc9810</sys_id>
+        <sys_metadata>40cd87951b12f5106c17fdd49b4bcb13</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TargetInstanceSourceControlImport</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
+        <sys_update_name>sys_script_include_40cd87951b12f5106c17fdd49b4bcb13</sys_update_name>
+        <sys_update_version display_value="sys_script_include_40cd87951b12f5106c17fdd49b4bcb13">53c1d3991b12f5106c17fdd49b4bcb1b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-03 17:08:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

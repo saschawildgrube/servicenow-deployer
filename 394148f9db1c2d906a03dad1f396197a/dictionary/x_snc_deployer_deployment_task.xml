@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ab1dc2dc1bdeb1106c17fdd49b4bcb26" extends="task" label="Deployment Task" max_length="40" name="x_snc_deployer_deployment_task" type="collection">
+        <element choice="1" default="custom" label="Action" max_length="40" name="action" read_only="true" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Install Application through Import from Source Control" sequence="1" value="install_import_from_source_control"/>
+                <element inactive_on_update="false" label="Run CodeSanity Instance Scan Suite" sequence="5" value="run_codesanity"/>
+                <element inactive_on_update="false" label="Run Installation Scripts" sequence="10" value="run_install_scripts"/>
+                <element inactive_on_update="false" label="run_atf_test_suite_default" sequence="20" value="Run default ATF Test Suite"/>
+            </choice>
+        </element>
+        <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" type="reference"/>
+        <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
+                <element inactive_on_update="false" label="Automatic" sequence="2" value="automatic"/>
+            </choice>
+        </element>
+        <element label="ID" max_length="32" name="id" type="string"/>
+        <element label="Retry Count" max_length="40" name="retry_count" read_only="true" type="integer"/>
+        <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.TargetInstanceSourceControlImport</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Imports an application from source control on the target instance.</description>
+        <name>TargetInstanceSourceControlImport</name>
+        <script><![CDATA[function TargetInstanceSourceControlImport(grInstance,strRepoUrl,strBranch)
+{
+	//Debug('TargetInstanceSourceControlImport');
+	var GetValue = x_snc_devtools.GetValue;
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var IsValidSysId = x_snc_devtools.IsValidSysId;
+	
+	/*
+	strSuite = GetStringValue(strSuite);
+	
+	var strSuiteParam = '';
+	if (IsValidSysId(strSuite) == true)
+	{
+		strSuiteParam = 'test_suite_sys_id='+strSuite;
+	}
+	else
+	{
+		strSuiteParam = 'test_suite_name='+encodeURIComponent(strSuite);
+	}
+	
+	var result = TargetInstanceRequest(grInstance,'sn_cicd/testsuite/run?'+strSuiteParam,'{}');
+	
+	Debug('AFTER TargetInstanceRequest');
+	Debug(result);
+	
+	var strProgressId = GetValue(result,'result','links','progress','id');
+	
+	if (IsValidSysId(strProgressId) == false)
+	{
+		return false;
+	}
+*/
+	//return strProgressId;
+	return false;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-11-03 17:07:33</sys_created_on>
+        <sys_id>b9f197991b12f5106c17fdd49b4bcb62</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>TargetInstanceSourceControlImport</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_b9f197991b12f5106c17fdd49b4bcb62</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-10 15:30:24</sys_updated_on>
+    </sys_script_include>
+</record_update>

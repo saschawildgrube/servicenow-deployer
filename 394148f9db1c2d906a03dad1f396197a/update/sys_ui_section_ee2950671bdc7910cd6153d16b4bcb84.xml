@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>264e55211b9db510cd6153d16b4bcb0f</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>21aa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>name</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>a64e55211b9db510cd6153d16b4bcb0f</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>a1aa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>url</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>2a4e55211b9db510cd6153d16b4bcb0f</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>25aa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>credential</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>aa4e55211b9db510cd6153d16b4bcb0f</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>a5aa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -60,13 +60,13 @@
             <element>.split</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>2e4e55211b9db510cd6153d16b4bcb0f</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>29aa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -74,13 +74,13 @@
             <element>codesanity</element>
             <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>ae4e55211b9db510cd6153d16b4bcb0f</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>a9aa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -88,29 +88,71 @@
             <element>atf_app_default</element>
             <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>224e55211b9db510cd6153d16b4bcb10</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>2daa9be81b9235106c17fdd49b4bcb36</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>platform_app_scope</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>adaa9be81b9235106c17fdd49b4bcb36</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>7</position>
+            <position>8</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2023-09-15 10:17:52</sys_created_on>
-            <sys_id>a24e55211b9db510cd6153d16b4bcb10</sys_id>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>21aa9be81b9235106c17fdd49b4bcb37</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2023-09-15 10:17:52</sys_updated_on>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>smoke_test</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>a1aa9be81b9235106c17fdd49b4bcb37</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>smoke_test_instructions</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-11-01 09:50:03</sys_created_on>
+            <sys_id>25aa9be81b9235106c17fdd49b4bcb37</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_deployer_instance" sys_domain="global" view="Default view">ee2950671bdc7910cd6153d16b4bcb84</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-11-01 09:50:03</sys_updated_on>
+            <sys_user/>
+            <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>

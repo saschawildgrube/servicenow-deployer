@@ -2,12 +2,19 @@
     <element db_object_id="d8e9f57b1b90f910cd6153d16b4bcb06" extends="task" label="Deployment" max_length="40" name="x_snc_deployer_deployment" type="collection">
         <element label="Enforce Downgrade" max_length="40" name="enforce_downgrade" type="boolean"/>
         <element label="Enable Enforce Downgrade" max_length="40" name="enforce_downgrade_enable" type="boolean"/>
+        <element choice="3" default="automatic" label="Preferred Execution" max_length="40" name="execution" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Automatic" sequence="1" value="automatic"/>
+                <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
+            </choice>
+        </element>
         <element label="Instance" mandatory="true" max_length="32" name="instance" reference="x_snc_deployer_instance" type="reference"/>
         <element label="Enforce Refresh Applications" max_length="40" name="refresh" type="boolean"/>
-        <element label="Repository Application Status" max_length="32" name="repository_application_status" reference="x_snc_deployer_repository_application_status" reference_qual="status=ok^EQ" reference_qual_condition="status=ok^EQ" type="reference"/>
+        <element label="Repository Application Status" max_length="32" name="repository_application_status" reference="x_snc_deployer_repository_application_status" reference_qual="status=ok^ORDERBYDESCsys_updated_on^EQ" reference_qual_condition="status=ok^ORDERBYDESCsys_updated_on^EQ" type="reference"/>
         <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
         <element label="Skip running default ATF Test Suite for each application" max_length="40" name="skip_atf_app_default" type="boolean"/>
         <element label="Skip running CodeSanity checks for each application" max_length="40" name="skip_codesanity" type="boolean"/>
+        <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
         <element label="Version" max_length="20" name="version" type="string"/>
     </element>
 </database>

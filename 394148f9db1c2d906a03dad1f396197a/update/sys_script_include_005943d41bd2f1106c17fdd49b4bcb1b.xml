@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.IsDeploymentReadyToCancel</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns true if the given deployment is ready to enter the "cancelled" state.&#13;
+The deployment must be in state "in progress" and there must not be any failed tasks.</description>
+        <name>IsDeploymentReadyToCancel</name>
+        <script><![CDATA[function IsDeploymentReadyToCancel(grDeployment)
+{
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+
+	if (IsValidRecord(grDeployment) == false)
+	{
+		return false;
+	}	
+	if (grDeployment.state != GetDeploymentState('inprogress'))
+	{
+		return false;
+	}
+	var grTasks = new GlideRecord('x_snc_deployer_deployment_task');
+	grTasks.addQuery('deployment','=',grDeployment.sys_id);
+	grTasks.addQuery('state','=',GetDeploymentTaskState('cancelled'));
+	grTasks.query();
+	if (grTasks.getRowCount() == 0)
+	{
+		return false;
+	}
+	
+	
+	return true;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-10-31 13:55:50</sys_created_on>
+        <sys_id>005943d41bd2f1106c17fdd49b4bcb1b</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>IsDeploymentReadyToCancel</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_005943d41bd2f1106c17fdd49b4bcb1b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-11-01 17:20:18</sys_updated_on>
+    </sys_script_include>
+</record_update>

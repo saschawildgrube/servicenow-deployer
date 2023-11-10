@@ -44,8 +44,9 @@
         <reference_cascade_rule/>
         <reference_floats>false</reference_floats>
         <reference_key/>
-        <reference_qual>status=ok^EQ</reference_qual>
-        <reference_qual_condition table="x_snc_deployer_repository_application_status">status=ok^EQ<item display_value="Ready for Deployment" endquery="false" field="status" goto="false" newquery="false" operator="=" or="false" value="ok"/>
+        <reference_qual>status=ok^ORDERBYDESCsys_updated_on^EQ</reference_qual>
+        <reference_qual_condition table="x_snc_deployer_repository_application_status">status=ok^ORDERBYDESCsys_updated_on^EQ<item display_value="Ready for Deployment" endquery="false" field="status" goto="false" newquery="false" operator="=" or="false" value="ok"/>
+            <item endquery="false" field="" goto="false" newquery="false" operator="ORDERBYDESC" or="false" value="sys_updated_on"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </reference_qual_condition>
         <reference_type/>
@@ -60,7 +61,7 @@
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_dictionary_x_snc_deployer_deployment_repository_application_status</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-08-03 19:41:52</sys_updated_on>
+        <sys_updated_on>2023-10-31 09:25:06</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

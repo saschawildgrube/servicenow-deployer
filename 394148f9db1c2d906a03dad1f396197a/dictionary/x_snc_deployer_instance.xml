@@ -5,6 +5,10 @@
         <element label="Credential" max_length="32" name="credential" reference="discovery_credentials" reference_qual="type=basic_auth^EQ" reference_qual_condition="type=basic_auth^EQ" type="reference"/>
         <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
         <element label="&quot;Platform&quot; Application Scope" max_length="40" name="platform_app_scope" type="string"/>
+        <element label="Post-Deployment Activities" max_length="40" name="post_deployment_activities" type="boolean"/>
+        <element label="Post-Deployment Activities Instructions" max_length="2000" name="post_deployment_activities_instructions" type="string"/>
+        <element label="Pre Deployment Activities" max_length="40" name="pre_deployment_activities" type="boolean"/>
+        <element label="Pre-Deployment Activities Instructions" max_length="2000" name="pre_deployment_activities_instructions" type="string"/>
         <element label="Smoke Test" max_length="40" name="smoke_test" type="boolean"/>
         <element label="Smoke Test Instructions" mandatory="true" max_length="4000" name="smoke_test_instructions" type="string"/>
         <element label="Url" mandatory="true" max_length="1024" name="url" type="url"/>

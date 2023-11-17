@@ -150,7 +150,6 @@
 		
 		if (appOnTargetFound == null)
 		{
-
 			var task = MakeTask('install_import_from_source_control',app.sys_id);
 			task.short_description = 'Install application "'+app.name+'" version "'+app.version+'" on instance "'+strInstanceName+'" via "Import From Source Control"';
 			aTasks.push(task);
@@ -163,8 +162,8 @@
 				{				
 					var task = MakeTask('install_apply_remote_changes',app.sys_id);
 					task.short_description = 'Refresh application "'+app.name+'" in current version "'+app.version+'" on instance "'+strInstanceName+'" via "Apply Remote Changes"';
+					task.branch = GetStringValue(app.branch);
 					aTasks.push(task);				
-
 				}
 			}
 			else
@@ -175,6 +174,7 @@
 					{
 						var task = MakeTask('install_apply_remote_changes',app.sys_id);
 						task.short_description = 'Update application "'+app.name+'" in to version "'+app.version+'" (or higher) on instance "'+strInstanceName+'" via "Apply Remote Changes" from master branch.';
+						task.branch = 'master';
 						aTasks.push(task);			
 					}
 					else
@@ -184,9 +184,6 @@
 						task.branch = GetStringValue(app.branch);
 						aTasks.push(task);
 					}
-					
-					/*
-					*/
 				}
 				else
 				{
@@ -198,7 +195,6 @@
 						aTasks.push(task);	
 					}
 				}
-				
 			}
 		}
 		
@@ -266,13 +262,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>61</sys_mod_count>
+        <sys_mod_count>62</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-17 10:10:05</sys_updated_on>
+        <sys_updated_on>2023-11-17 10:34:06</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -7,27 +7,31 @@
         <client_callable>false</client_callable>
         <description>Triggers the action "Apply Remote Changes" for the given application for the current branch on the target instance.</description>
         <name>TargetInstanceSourceControlApplyChanges</name>
-        <script><![CDATA[function TargetInstanceSourceControlApplyChanges(grInstance,strAppId)
+        <script><![CDATA[function TargetInstanceSourceControlApplyChanges(grInstance,strAppId,strBranch)
 {
 	//Debug('TargetInstanceSourceControlApplyChanges');
 	var GetValue = x_snc_devtools.GetValue;
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var IsValidSysId = x_snc_devtools.IsValidSysId;
 	
-	/*
-	strSuite = GetStringValue(strSuite);
+
+	strAppId = GetStringValue(strAppId);
 	
-	var strSuiteParam = '';
-	if (IsValidSysId(strSuite) == true)
+	var strAppParam = '';
+	if (IsValidSysId(strAppId) == true)
 	{
-		strSuiteParam = 'test_suite_sys_id='+strSuite;
+		strAppParam = 'app_sys_id='+strAppId;
 	}
 	else
 	{
-		strSuiteParam = 'test_suite_name='+encodeURIComponent(strSuite);
+		strAppParam = 'app_scope='+strAppId;
 	}
 	
-	var result = TargetInstanceRequest(grInstance,'sn_cicd/testsuite/run?'+strSuiteParam,'{}');
+	var strBranchParam = 'branch_name=' + encodeURIComponent(strBranch);
+	
+	var strQuery = strAppParam + '&' + strBranchParam;
+	
+	var result = TargetInstanceRequest(grInstance,'sn_cicd/sc/apply_changes?'+strQuery,'{}');
 	
 	
 	var strProgressId = GetValue(result,'result','links','progress','id');
@@ -36,21 +40,20 @@
 	{
 		return false;
 	}
-*/
-	//return strProgressId;
-	return false;
+
+	return strProgressId;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-03 17:06:02</sys_created_on>
         <sys_id>67919f591b12f5106c17fdd49b4bcbf6</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>TargetInstanceSourceControlApplyChanges</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_67919f591b12f5106c17fdd49b4bcbf6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-10 15:30:08</sys_updated_on>
+        <sys_updated_on>2023-11-10 18:10:03</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -21,17 +21,28 @@
 
 	<h3>CICD Instance features</h3>
 	<p>The "CICD Instance" is an instance that is used to run and operate CICD pipeline automation tools - a control tower.</p>
-	<p>&#160;<a href="/x_snc_deployer_repository_credentials_list.do" target="_blank">Repository Credentials</a>&#160;need be configured so that the Deployer can access a public or internal source control system based on the repository url alone. Repository Credentials allow to map credential records with specific repository urls or just fractions of urls to cover multiple repositories.</p>
+	<p><a href="/x_snc_deployer_repository_credentials_list.do" target="_blank">Repository Credentials</a>&#160;need be configured so that the Deployer can access a public or internal source control system based on the repository url alone. Repository Credentials allow to map credential records with specific repository urls or just fractions of urls to cover multiple repositories.</p>
 	<p>The&#160;<a href="/x_snc_deployer_repository_application_status_list.do" target="_blank">Repository App Status</a>&#160;feature can be used to analyse a given repository and check its readyness for deployment. To access the repositories, the Repository Credentials must be configured.</p>
-	<p>&#160;<a href="/x_snc_deployer_instance_list.do" target="_blank">Target Instances</a>&#160;need be configured to enable deployments of applications to these instances. The exact steps performed during a deployment can be configured for each Target Instance - e.g., whether to execute the default ATF Test Suite of each installed application and whether CodeSanity checks should be performed during deployment.</p>
-	<p>&#160;<a href="/x_snc_deployer_deployment_list.do" target="_blank">Deployments</a>&#160;represent the specific deployment of an application (and its dependencies) in a given version to a specified Target Instance.</p>
+	<p><a href="/x_snc_deployer_instance_list.do" target="_blank">Target Instances</a>&#160;need be configured to enable deployments of applications to these instances. The exact steps performed during a deployment can be configured for each Target Instance - e.g., whether to execute the default ATF Test Suite of each installed application and whether CodeSanity checks should be performed during deployment.</p>
+	<p><a href="/x_snc_deployer_deployment_list.do" target="_blank">Deployments</a>&#160;represent the specific deployment of an application (and its dependencies) in a given version to a specified Target Instance.</p>
 	<p>Supported automatic deployment tasks:
 		<ul>
+			<li>Installing new versions of imported applications on target instances ("Switch Branch").</li>
+			<li>Installing new versions or refresh the current version of imported applications on target instances ("Apply Remote Changes").</li>
 			<li>Running installation scripts on target instances</li>
 			<li>Running CodeSanity checks on target instances (based on Instance Scan)</li>
 			<li>Running the default ATF Test Suite of applications on target instances</li>
 		</ul>
 	</p>
+	
+	<p>Supported manual deployment tasks:
+		<ul>
+			<li>Importing new applications on target instances ("Import from Source Control").</li>
+			<li>Pre-Deployment Activities.</li>
+			<li>Smoke Testing.</li>
+			<li>Post-Deployment Activities.</li>
+		</ul>
+	</p>	
 
 	<h3>Target Instance features</h3>
 	<p>The "Target Instance" is an instance to which applications are to be deployed.</p>
@@ -127,12 +138,18 @@
 	
 	<h2>Release Notes</h2>
 
-	<!--
+<!--
 	<h3>1.x.0 - 2023-TODO</h3>
 	<ol>
 		<li>TODO: document changes here</li>
 	</ol>
 -->
+	
+	<h3>1.7.0 - 2023-11-17</h3>
+	<ol>
+		<li>Added more supported automatic deployment tasks: Installing applications from source control via switch branch/apply remote changes.</li>
+		<li>Now supporting instance specific manual pre and post deployment activities.</li>
+	</ol>	
 	
 	<h3>1.6.0 - 2023-11-10</h3>
 	<ol>
@@ -225,13 +242,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>82</sys_mod_count>
+        <sys_mod_count>88</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-10 16:31:10</sys_updated_on>
+        <sys_updated_on>2023-11-17 14:35:09</sys_updated_on>
     </sys_ui_page>
 </record_update>

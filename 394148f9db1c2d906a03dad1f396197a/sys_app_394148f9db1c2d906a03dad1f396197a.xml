@@ -29,16 +29,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-01-10 08:56:01</sys_created_on>
         <sys_id>394148f9db1c2d906a03dad1f396197a</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-30 15:57:59</sys_updated_on>
+        <sys_updated_on>2023-11-10 17:16:05</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.6.0</version>
+        <version>1.7.0</version>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-deployer</x_snc_devtools_documentation_url>
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha.wildgrube@servicenow.com</x_snc_devtools_maintainer_email>

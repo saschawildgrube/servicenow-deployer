@@ -149,6 +149,8 @@
 	<ol>
 		<li>Deployer is fully tested in Vancouver.</li>
 		<li>Tokyo is no longer actively supported.</li>
+		<li>DevTools 1.79.0 is now required because of StringStripTrailingSlash().</li>
+		<li>Deployer can now properly handle a repository url path with a trailing slash.</li>
 		<li>The "Prepare" UI Action is no longer available for new deployments. Some options are instance specific and can only be selected once the deployment has been saved with a selected target instance.</li>
 	</ol>	
 	
@@ -249,13 +251,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-27 14:15:39</sys_updated_on>
+        <sys_updated_on>2024-01-05 10:24:27</sys_updated_on>
     </sys_ui_page>
 </record_update>

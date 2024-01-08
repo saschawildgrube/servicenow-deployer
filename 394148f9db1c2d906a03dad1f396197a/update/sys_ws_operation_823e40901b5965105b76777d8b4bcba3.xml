@@ -9,6 +9,7 @@
         <name>Run Installation Scripts</name>
         <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
 
+	var GetBoolValue = x_snc_devtools.GetBoolValue;
 	
 	function GetParam(strParam)
 	{
@@ -32,7 +33,8 @@
 	}
 	
 	var strAppSysId = GetParam('application_sys_id');
-	var bStopOnError = GetParam('stop_on_error');
+	var bStopOnError = GetBoolValue(GetParam('stop_on_error'));
+	var bAsync = GetBoolValue(GetParam('async'));
 	
 	var grApp = x_snc_devtools.GetAppRecord(strAppSysId);
 	if (x_snc_devtools.IsValidRecord(grApp) == false)
@@ -49,19 +51,44 @@
 		return;
 	}	
 	
-	var bResult = x_snc_devtools.InstallApp(grApp,bStopOnError);
-
-	if (bResult == false)
+	if (bAsync == true)
 	{
-		Error('INSTALLATION_SCRIPT_FAILED','One of the AppInstall() functions in one of the applications returned an error. Please check the logs on the target instance for details!');
+		Error('ASYNC_NOT_SUPPORTED','Async mode is not yet supported!');
 		return;
+		//var bResult = x_snc_devtools.InstallApp(grApp,bStopOnError);
+		/*
+		if (bResult == false)
+		{
+			Error('INSTALLATION_SCRIPT_FAILED','One of the AppInstall() functions in one of the applications returned an error. Please check the logs on the target instance for details!');
+			return;
+
+		}
+
+		var body = {};
+		body.message = 'SUCCESS';
+		body.detail = 'All AppInstall() scripts have been executed successfully.';
+		response.setBody(body);
+		*/
+		
+	}
+	else
+	{
+		var bResult = x_snc_devtools.InstallApp(grApp,bStopOnError);
+
+		if (bResult == false)
+		{
+			Error('INSTALLATION_SCRIPT_FAILED','One of the AppInstall() functions in one of the applications returned an error. Please check the logs on the target instance for details!');
+			return;
+
+		}
+
+		var body = {};
+		body.message = 'SUCCESS';
+		body.detail = 'All AppInstall() scripts have been executed successfully.';
+		response.setBody(body);
 		
 	}
 	
-	var body = {};
-	body.message = 'SUCCESS';
-	body.detail = 'All AppInstall() scripts have been executed successfully.';
-	response.setBody(body);
 	
 
 	return;
@@ -80,14 +107,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 11:04:59</sys_created_on>
         <sys_id>823e40901b5965105b76777d8b4bcba3</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>Run Installation Scripts</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ws_operation_823e40901b5965105b76777d8b4bcba3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-05-31 12:23:29</sys_updated_on>
+        <sys_updated_on>2024-01-08 15:18:55</sys_updated_on>
         <web_service_definition display_value="Deployer Target API">2c6640981b1965105b76777d8b4bcb6f</web_service_definition>
         <web_service_version/>
     </sys_ws_operation>

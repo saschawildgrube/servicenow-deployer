@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="159495631bc3b1506c17fdd49b4bcb70" label="Pipelines to Instances" max_length="40" name="x_snc_deployer_m2m_pipline_instance" type="collection">
+        <element attributes="encode_utf8=false" label="Instances" max_length="32" name="instance" reference="x_snc_deployer_instance" type="reference"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element attributes="encode_utf8=false" label="Pipelines" max_length="32" name="pipeline" reference="x_snc_deployer_pipeline" type="reference"/>
+        <index name="index">
+            <element name="instance"/>
+        </index>
+        <index name="index2">
+            <element name="pipeline"/>
+        </index>
+    </element>
+</database>

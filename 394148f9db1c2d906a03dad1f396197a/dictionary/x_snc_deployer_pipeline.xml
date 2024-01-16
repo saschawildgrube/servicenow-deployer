@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="23e3dd231bc3b1506c17fdd49b4bcba8" label="Pipeline" max_length="40" name="x_snc_deployer_pipeline" type="collection">
+        <element display="true" label="Name" mandatory="true" max_length="80" name="name" type="string"/>
+    </element>
+</database>

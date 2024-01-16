@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.GetPipelineStatus</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Retrieves the status information for a given pipeline.</description>
+        <name>GetPipelineStatus</name>
+        <script><![CDATA[function GetPipelineStatus(vPipeline)
+{
+	var GetRecord = x_snc_devtools.GetRecord;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetIntegerValue = x_snc_devtools.GetIntegerValue;
+	var IsArray = x_snc_devtools.IsArray;
+	var GetValue = x_snc_devtools.GetValue;
+	var SetValue = x_snc_devtools.SetValue;
+
+	var status = {};
+	
+	var grPipeline = GetRecord('x_snc_deployer_pipeline',vPipeline);
+	if (IsValidRecord(grPipeline) == false)
+	{
+		return false;
+	}
+	status.name = GetStringValue(grPipeline.name);
+
+	var grPipelineToInstance = new GlideRecord('x_snc_deployer_m2m_pipline_instance');
+	grPipelineToInstance.orderBy('order');
+	grPipelineToInstance.addQuery('pipeline','=',grPipeline.sys_id);
+	grPipelineToInstance.query();
+	if (grPipelineToInstance.getRowCount() == 0)
+	{
+		status.error = 'There are no instances associated to this pipeline!';
+	}
+	var aInstances = [];
+	while (grPipelineToInstance.next())
+	{
+		var instance = {};
+		var grInstance = GetRecord('x_snc_deployer_instance',grPipelineToInstance.instance);
+		if (IsValidRecord(grInstance) == false)
+		{
+			instance.error = 'An invalid instance has been associated with this pipeline!';
+		}
+		else
+		{
+			instance.name = GetStringValue(grInstance.name);
+			instance.url = GetStringValue(grInstance.url);
+			instance.order = GetIntegerValue(grPipelineToInstance.order);
+			instance.platform_app_scope = GetStringValue(grInstance.platform_app_scope);
+			var aAppList = TargetInstanceGetApplicationList(grInstance);
+
+			instance.apps = aAppList;
+		}
+		aInstances.push(instance);
+	}
+	status.instances = aInstances;
+	
+	var aPipelineApps = [];
+	
+	for (var nInstance = 0; nInstance < aInstances.length; nInstance++)
+	{
+		var instance = aInstances[nInstance];
+		var aInstanceApps = instance.apps;
+		if (IsArray(aInstanceApps))
+		{
+			for (var nApp = 0; nApp < aInstanceApps.length; nApp++)
+			{
+				var app = aInstanceApps[nApp];
+				//var strAppSysId = GetValue(app,'sys_id');
+				
+				var nExistingPipelineApp = false;
+				for (var nPipelineApp = 0; nPipelineApp < aPipelineApps.length; nPipelineApp++)
+				{
+					if (app.sys_id == GetValue(aPipelineApps,nPipelineApp,'sys_id'))
+					{
+						nExistingPipelineApp = nPipelineApp;
+					}
+				}
+				
+				if (nExistingPipelineApp === false)
+				{
+					var pipeline_app = {};
+					pipeline_app.sys_id = app.sys_id;
+					pipeline_app.name = app.name;
+					pipeline_app.scope = app.scope;
+					pipeline_app.instances = {};
+					SetValue(app.version,pipeline_app,'instances',instance.name,'version');
+					//var instance_app = {};
+					//instance_app
+					//pipeline_app.version = app.version;
+					aPipelineApps.push(pipeline_app);
+				}
+				else
+				{
+					SetValue(app.version,aPipelineApps,nExistingPipelineApp,'instances',instance.name,'version');
+					
+				}
+			}
+		}
+	}
+	status.apps = aPipelineApps;
+	
+	return status;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-17 16:02:04</sys_created_on>
+        <sys_id>6ac821671b07b1506c17fdd49b4bcbbd</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>GetPipelineStatus</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_6ac821671b07b1506c17fdd49b4bcbbd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-17 18:11:19</sys_updated_on>
+    </sys_script_include>
+</record_update>

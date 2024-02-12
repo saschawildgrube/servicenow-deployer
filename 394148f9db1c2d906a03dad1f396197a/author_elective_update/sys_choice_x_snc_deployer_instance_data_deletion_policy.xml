@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="data_deletion_policy" table="x_snc_deployer_instance" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>data_deletion_policy</element>
+            <name>x_snc_deployer_instance</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-12 13:15:53</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>data_deletion_policy</sys_name>
+            <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+            <sys_update_name>sys_choice_x_snc_deployer_instance_data_deletion_policy</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-12 13:15:53</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_deletion_policy</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Deny</label>
+            <language>en</language>
+            <name>x_snc_deployer_instance</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-12 13:15:53</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-12 13:15:53</sys_updated_on>
+            <value>deny</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_deletion_policy</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Confirm</label>
+            <language>en</language>
+            <name>x_snc_deployer_instance</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-12 13:16:13</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-12 13:16:13</sys_updated_on>
+            <value>confirm</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_deletion_policy</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Warn</label>
+            <language>en</language>
+            <name>x_snc_deployer_instance</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-02-12 13:16:26</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-02-12 13:59:10</sys_updated_on>
+            <value>warn</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

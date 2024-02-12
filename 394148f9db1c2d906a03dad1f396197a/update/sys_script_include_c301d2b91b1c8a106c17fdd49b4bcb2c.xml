@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.IdentifyDataDeletion</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Identifies the tables (sys_db_object) and columns (sys_dictionary) which are going to be deleted based on the current list of applications on an instance and the to-be-installed list of applications.</description>
+        <name>IdentifyDataDeletion</name>
+        <script><![CDATA[function IdentifyDataDeletion(aAppsCurrent, aAppsToBeInstalled)
+{
+	var GetArrayValue = x_snc_devtools.GetArrayValue;
+	var GetValue = x_snc_devtools.GetValue;
+	
+	aAppsCurrent = GetArrayValue(aAppsCurrent);
+	aAppsToBeInstalled = GetArrayValue(aAppsToBeInstalled);
+	
+	var datadeletion = {};
+	
+	var aSysDBObject = [];
+	var aSysDictionary = [];
+
+	for (var nAppToBeInstalled = 0; nAppToBeInstalled < aAppsToBeInstalled.length; nAppToBeInstalled++)
+	{
+		var appToBeInstalled = aAppsToBeInstalled[nAppToBeInstalled];
+		
+		for (var nAppCurrent = 0; nAppCurrent < aAppsCurrent.length; nAppCurrent++)
+		{
+			var appCurrent = aAppsCurrent[nAppCurrent];
+			if (GetValue(appCurrent,'sys_id') == GetValue(appToBeInstalled,'sys_id'))
+			{
+				var aSysDBObjectCurrent = GetArrayValue(GetValue(appCurrent,'_sys_db_object'));
+				var aSysDBObjectToBeInstalled = GetArrayValue(GetValue(appToBeInstalled,'_sys_db_object'));
+
+				for (var nSysDBObjectCurrent = 0; nSysDBObjectCurrent < aSysDBObjectCurrent.length; nSysDBObjectCurrent++)
+				{
+					var bFound = false;
+					for (var nSysDBObjectToBeInstalled = 0; nSysDBObjectToBeInstalled < aSysDBObjectToBeInstalled.length; nSysDBObjectToBeInstalled++)
+					{
+						if (GetValue(aSysDBObjectCurrent[nSysDBObjectCurrent],'name')
+							== GetValue(aSysDBObjectToBeInstalled[nSysDBObjectToBeInstalled],'name'))
+						{
+							bFound = true;
+						}
+					}
+					
+					if (bFound == false)
+					{
+						aSysDBObject.push(aSysDBObjectCurrent[nSysDBObjectCurrent]);
+					}
+				}
+				
+				var aSysDictionaryToBeInstalled = GetArrayValue(GetValue(appToBeInstalled,'_sys_dictionary'));
+				var aSysDictionaryCurrent = GetArrayValue(GetValue(appCurrent,'_sys_dictionary'));
+				
+			}
+		}
+	}
+	
+	datadeletion['_sys_db_object'] = aSysDBObject;
+	datadeletion['_sys_dictionary'] = aSysDictionary;
+	
+	return datadeletion;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-12 12:01:33</sys_created_on>
+        <sys_id>c301d2b91b1c8a106c17fdd49b4bcb2c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IdentifyDataDeletion</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_c301d2b91b1c8a106c17fdd49b4bcb2c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-12 12:01:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

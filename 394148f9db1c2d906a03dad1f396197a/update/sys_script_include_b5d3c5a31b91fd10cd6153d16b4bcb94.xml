@@ -12,6 +12,7 @@
 	var Clone = x_snc_devtools.Clone;
 	var GetCleanAppName = x_snc_devtools.GetCleanAppName;
 	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetAppDefaultTestSuite = x_snc_devtools.GetAppDefaultTestSuite;
 
 	var aApps = [];
 	
@@ -22,19 +23,14 @@
 	{
 		var app = CleanUpPackageObject(grApps);
 				
-		// Use DevTools GetAppDefaultTestSuite() instead!
-		var grTestSuite = new GlideRecord('sys_atf_test_suite');
-		grTestSuite.addQuery('sys_scope','=',app.sys_id);
-		grTestSuite.addQuery('name','=',GetCleanAppName(app.name));
-		grTestSuite.query();
-		if (grTestSuite.getRowCount() == 1)
+		// Default Test Suite
+		var grTestSuite = GetAppDefaultTestSuite(app.sys_id);
+		if (IsValidRecord(grTestSuite) == true)
 		{
-			if (grTestSuite.next() == true)
-			{
-				app.atf_test_suite_default_sys_id = GetStringValue(grTestSuite.sys_id);
-			}
+			app.atf_test_suite_default_sys_id = GetStringValue(grTestSuite.sys_id);
 		}
 
+		// Tables
 		var aSDBOs = [];
 		var grSDBO = new GlideRecord('sys_db_object');
 		grSDBO.addQuery('sys_scope','=',app.sys_id);
@@ -45,6 +41,7 @@
 		}
 		app['_sys_db_object'] = aSDBOs;
 		
+		// Columns
 		var aSDs = [];
 		var grSD = new GlideRecord('sys_dictionary');
 		grSD.addQuery('sys_scope','=',app.sys_id);
@@ -74,13 +71,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-09-21 13:33:07</sys_created_on>
         <sys_id>b5d3c5a31b91fd10cd6153d16b4bcb94</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>GetApplicationStatus</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_b5d3c5a31b91fd10cd6153d16b4bcb94</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-05 14:31:18</sys_updated_on>
+        <sys_updated_on>2024-02-12 16:38:43</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -30,7 +30,7 @@
         <name>Cancel</name>
         <onclick/>
         <order>-18000</order>
-        <script><![CDATA[if (current.close_notes == '')
+        <script><![CDATA[if (current.close_notes == '' && current.state != GetDeploymentState('ready'))
 {
 	gs.addErrorMessage('Please add a close note.');
 }
@@ -51,7 +51,7 @@ x_snc_devtools.RedirectToRecord(current);]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8a1e640c1b9a71106c17fdd49b4bcb94</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Cancel</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -59,7 +59,7 @@ x_snc_devtools.RedirectToRecord(current);]]></script>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_action_8a1e640c1b9a71106c17fdd49b4bcb94</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-03 10:18:21</sys_updated_on>
+        <sys_updated_on>2024-02-13 13:34:09</sys_updated_on>
         <table>x_snc_deployer_deployment</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

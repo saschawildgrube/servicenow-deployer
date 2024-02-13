@@ -16,6 +16,10 @@ The deployment must be in state "in progress" and there must not be any failed t
 	{
 		return false;
 	}	
+	if (grDeployment.state == GetDeploymentState('ready'))
+	{
+		return true;
+	}
 	if (grDeployment.state != GetDeploymentState('inprogress'))
 	{
 		return false;
@@ -36,13 +40,13 @@ The deployment must be in state "in progress" and there must not be any failed t
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-31 13:55:50</sys_created_on>
         <sys_id>005943d41bd2f1106c17fdd49b4bcb1b</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>IsDeploymentReadyToCancel</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_005943d41bd2f1106c17fdd49b4bcb1b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-01 17:20:18</sys_updated_on>
+        <sys_updated_on>2024-02-13 13:25:12</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -18,6 +18,13 @@
         <element label="Pre-Deployment Activities Instructions" max_length="2000" name="pre_deployment_activities_instructions" type="string"/>
         <element label="Smoke Test" max_length="40" name="smoke_test" type="boolean"/>
         <element label="Smoke Test Instructions" mandatory="true" max_length="4000" name="smoke_test_instructions" type="string"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="DEV" sequence="1" value="dev"/>
+                <element inactive_on_update="false" label="TEST" sequence="2" value="test"/>
+                <element inactive_on_update="false" label="PROD" sequence="3" value="prod"/>
+            </choice>
+        </element>
         <element label="Url" mandatory="true" max_length="1024" name="url" type="url"/>
         <index name="index">
             <element name="credential"/>

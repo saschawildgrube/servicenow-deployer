@@ -161,6 +161,7 @@
 		<li>The checkbox "Enforce Downgrade" on the Deployment form was not read-only by default. This has been fixed.</li>
 		<li>The "Prepare" button is now hidden if no instance has been selected yet for a deployment.</li>
 		<li>The "Run Installation Scripts" REST API endpoint no longer requires the "async" parameter - to ensure full backward compatibility.</li>
+		<li>The Deployment and the Repository Application Status forms now reload when there is a status change.</li> 
 	</ol>	
 	
 	<h3>1.8.0 - 2024-01-16</h3>
@@ -273,13 +274,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>107</sys_mod_count>
+        <sys_mod_count>108</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-12 16:38:50</sys_updated_on>
+        <sys_updated_on>2024-02-13 10:17:44</sys_updated_on>
     </sys_ui_page>
 </record_update>

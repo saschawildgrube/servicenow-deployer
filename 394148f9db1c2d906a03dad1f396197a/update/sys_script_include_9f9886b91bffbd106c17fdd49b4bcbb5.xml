@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.CleanUpSysDBObjectObject</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Removes all fields from a syS_db_object record object that are not required for preparing and executing deployments.</description>
+        <name>CleanUpSysDBObjectObject</name>
+        <script><![CDATA[function CleanUpSysDBObjectObject(vSysDBObjectRecord)
+{
+	var IsObject = x_snc_devtools.IsObject;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var Clone = x_snc_devtools.Clone;
+
+	var sysdbobjectrecord = null;
+	
+	if (IsValidRecord(vSysDBObjectRecord) == true)
+	{
+		sysdbobjectrecord = Clone(vSysDBObjectRecord,true);
+	}
+	else
+	{
+		if (IsObject(vSysDBObjectRecord) == false)
+		{
+			return vSysDBObjectRecord;
+		}
+		sysdbobjectrecord = vSysDBObjectRecord;
+	}
+	
+	delete sysdbobjectrecord.sys_meta;
+	delete sysdbobjectrecord.access;
+	delete sysdbobjectrecord.actions_access;
+	delete sysdbobjectrecord.alter_access;
+	delete sysdbobjectrecord.caller_access;
+	delete sysdbobjectrecord.client_scripts_access;
+	delete sysdbobjectrecord.configuration_access;
+	delete sysdbobjectrecord.create_access;
+	delete sysdbobjectrecord.create_access_controls;
+	delete sysdbobjectrecord.delete_access;
+	delete sysdbobjectrecord.extension_model;
+	delete sysdbobjectrecord.is_extendable;
+	delete sysdbobjectrecord.live_feed_enabled;
+	delete sysdbobjectrecord.number_ref;
+	delete sysdbobjectrecord.read_access;
+	delete sysdbobjectrecord.provider_class;
+	delete sysdbobjectrecord.scriptable_table;
+	delete sysdbobjectrecord.super_class;
+	delete sysdbobjectrecord.sys_class_code;
+	delete sysdbobjectrecord.sys_class_name;
+	delete sysdbobjectrecord.sys_class_path;
+	delete sysdbobjectrecord.sys_created_by;
+	delete sysdbobjectrecord.sys_created_on;
+	delete sysdbobjectrecord.sys_mod_count;
+	delete sysdbobjectrecord.sys_name;
+	delete sysdbobjectrecord.sys_package;
+	delete sysdbobjectrecord.sys_policy;
+	delete sysdbobjectrecord.sys_scope;
+	delete sysdbobjectrecord.sys_update_name;
+	delete sysdbobjectrecord.sys_updated_by;
+	delete sysdbobjectrecord.sys_updated_on;
+	delete sysdbobjectrecord.update_access;
+	delete sysdbobjectrecord.user_role;
+	delete sysdbobjectrecord.ws_access;
+
+	return sysdbobjectrecord;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-18 14:38:14</sys_created_on>
+        <sys_id>9f9886b91bffbd106c17fdd49b4bcbb5</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>CleanUpSysDBObjectObject</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_9f9886b91bffbd106c17fdd49b4bcbb5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-18 15:16:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

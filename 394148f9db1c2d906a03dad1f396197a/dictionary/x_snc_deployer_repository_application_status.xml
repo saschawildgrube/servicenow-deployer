@@ -10,8 +10,9 @@
                 <element inactive_on_update="false" label="Processing" sequence="2" value="processing"/>
                 <element inactive_on_update="false" label="Ready for Deployment" sequence="3" value="ok"/>
                 <element inactive_on_update="false" label="NOT ready for Deployment" sequence="4" value="error"/>
+                <element inactive_on_update="false" label="Reviewed Dev Branch" sequence="5" value="dev"/>
             </choice>
         </element>
-        <element label="Version" mandatory="true" max_length="10" name="version" type="string"/>
+        <element label="Version (or &quot;dev&quot;)" mandatory="true" max_length="10" name="version" type="string"/>
     </element>
 </database>

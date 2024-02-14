@@ -54,6 +54,7 @@
 	
 	var bCodeSanity = GetBoolValue(GetValue(instance,'codesanity'));
 	var bDefaultATF = GetBoolValue(GetValue(instance,'atf_app_default'));
+	var strDataDeletionPolicy = GetStringValue(GetValue(instance,'data_deletion_policy'));
 	var bPreDeploymentActivities = GetBoolValue(GetValue(instance,'pre_deployment_activities'));
 	var bPostDeploymentActivities = GetBoolValue(GetValue(instance,'post_deployment_activities'));
 	var bSmokeTest = GetBoolValue(GetValue(instance,'smoke_test'));
@@ -64,6 +65,11 @@
 
 	var bSkipCodeSanity = GetBoolValue(GetValue(deployment,'skip_codesanity'));
 	var bSkipDefaultATF = GetBoolValue(GetValue(deployment,'skip_atf_app_default'));
+	
+	if (strDataDeletionPolicy == '')
+	{
+		strDataDeletionPolicy = 'deny';
+	}
 	
 	var strPreferredExecution = GetStringValue(GetValue(deployment,'execution'));
 	if (strPreferredExecution == '')
@@ -117,6 +123,75 @@
 	
 	var aTasks = [];
 
+	// Confirm Data Deletion
+	var datadeletion = IdentifyDataDeletion(aAppsOnTarget,aApps);
+	if (datadeletion == false)
+	{
+		var strMessage =
+				'The Repository Application Status cannot be used for the deployment.\n'
+				+ 'The Repository Application Status has been generated with Deployer version 1.8.0 or earlier.\n'
+				+ 'Earlier versions did not gather the informaton required to identify potential data deletion.\n'
+				+ 'Please create a new Repository Application Status using the same parameters!\n';
+			gs.addErrorMessage(x_snc_devtools.HtmlEncode(strMessage));		
+		return false;
+	}
+	
+	
+	if (GetValue(datadeletion,'datadeletion') == true)
+	{
+		var strDetails = 'The deployment will DELETE DATA on the target instance!\n';
+		strDetails += '\n';
+
+		strDetails = 'The following tables are going to be deleted:\n';
+		var aSysDBObject = GetArrayValue(GetValue(datadeletion,'_sys_db_object'));
+		for (var nObject = 0; nObject < aSysDBObject.length; nObject++)
+		{
+			var sysDBObject = aSysDBObject[nObject];
+			strDetails += GetValue(sysDBObject,'name') + ' ("'+GetValue(sysDBObject,'label')+'")\n';
+		}
+		strDetails += '\n';
+
+		strDetails += 'The following columns are going to be deleted:\n';
+		var aSysDictionary = GetArrayValue(GetValue(datadeletion,'_sys_dictionary'));
+		for (var nDictionary = 0; nDictionary < aSysDictionary.length; nDictionary++)
+		{
+			var sysDictionary = aSysDictionary[nDictionary];
+			strDetails += GetValue(sysDictionary,'name') + '.'+GetValue(sysDictionary,'element')+' ("'+GetValue(sysDictionary,'column_label')+'")\n';
+		}
+
+		if (strDataDeletionPolicy == 'deny')
+		{
+			var strMessage = 'THE DEPLOYMENT CANNOT PROCEED.\n'
+				+ 'The data deletion policy of the target instance denies data deletion.\n\n'
+				+ strDetails;
+			gs.addErrorMessage(x_snc_devtools.HtmlEncode(strMessage));
+			return false;
+		}		
+		
+		//if (strDataDeletionPolicy == 'warn')
+		//{
+			var strMessage = 'WARNING: THE DEPLOYMENT WILL DELETE DATA!\n'
+				+ '\n'
+				+ strDetails;
+			gs.addErrorMessage(x_snc_devtools.HtmlEncode(strMessage));
+		//}		
+		if (strDataDeletionPolicy == 'confirm')
+		{
+			var task = MakeTask('data_deletion_confirm');
+			task.short_description = 'CONFIRM DATA DELETION';
+
+			strDetails += '\n';
+			strDetails += 'To proceed, a confirmation is required!\n';
+			strDetails += '\n';
+			strDetails += 'Mark the task as completed to confirm the deletion of all data contained in the listed tables and columns.\n';
+			strDetails += '\n';
+			strDetails += 'THIS CANNOT BE UNDONE!\n';
+
+						
+			task.description = strDetails;
+			aTasks.push(task);				
+		}
+	}
 	
 	// Perform Pre Deployment Activities
 	if (bPreDeploymentActivities == true)
@@ -262,13 +337,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>90</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-17 11:06:35</sys_updated_on>
+        <sys_updated_on>2024-02-13 10:25:14</sys_updated_on>
     </sys_script_include>
 </record_update>

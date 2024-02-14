@@ -430,7 +430,105 @@ SourceControlAPI.prototype = {
 		}
 		return aDependencies;
 	},
+
+	GetSysDBObjectRecordsFromRepo: function(strRepoUrl,strBranch)
+	{
+		var Base64Decode = x_snc_devtools.Base64Decode;
+		var ParseXml = x_snc_devtools.ParseXml;
+		var GetValue = x_snc_devtools.GetValue;
+		var SetValue = x_snc_devtools.SetValue;
+		var GetStringValue = x_snc_devtools.GetStringValue;	
+		var IsValidSysId = x_snc_devtools.IsValidSysId;
+		var Clone = x_snc_devtools.Clone;
+		var IsObject = x_snc_devtools.IsObject;
+		
+		var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch);
+		if (aFiles == false)
+		{
+			return false;
+		}
+		
+		var aSysDBObjects = [];
+		
+		for (var nFile = 0; nFile < aFiles.length; nFile++)
+		{
+			var strPath = aFiles[nFile];
+			
+			if (   strPath.indexOf('/sys_db_object_') != -1
+				&& strPath.indexOf('author_elective_update/') == -1)
+			{
+				var strContent = this.GetFileContent(strRepoUrl,strBranch,strPath);
+				if (strContent == false)
+				{
+					return false;
+				}
+				var strXml = Base64Decode(strContent);
+				var sysDBObjectRecord = ParseXml(strXml);
+				sysDBObjectRecord = GetValue(sysDBObjectRecord,'record_update','sys_db_object');
+				if (IsObject(sysDBObjectRecord) == true)
+				{
+					aSysDBObjects.push(CleanUpSysDBObjectObject(sysDBObjectRecord));
+				}
+			}
+			
+		}
+		return aSysDBObjects;
+	},
 	
+	GetSysDictionaryRecordsFromRepo: function(strRepoUrl,strBranch)
+	{
+		var Base64Decode = x_snc_devtools.Base64Decode;
+		var ParseXml = x_snc_devtools.ParseXml;
+		var GetValue = x_snc_devtools.GetValue;
+		var SetValue = x_snc_devtools.SetValue;
+		var GetStringValue = x_snc_devtools.GetStringValue;	
+		var IsValidSysId = x_snc_devtools.IsValidSysId;
+		var Clone = x_snc_devtools.Clone;
+		var IsObject = x_snc_devtools.IsObject;
+		var IsArray = x_snc_devtools.IsArray;
+		
+		var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch);
+		if (aFiles == false)
+		{
+			return false;
+		}
+		
+		var aSysDictionary = [];
+		
+		for (var nFile = 0; nFile < aFiles.length; nFile++)
+		{
+			var strPath = aFiles[nFile];
+			
+			if (   strPath.indexOf('/sys_dictionary_') != -1
+				&& strPath.indexOf('author_elective_update/') == -1)
+			{
+				var strContent = this.GetFileContent(strRepoUrl,strBranch,strPath);
+				if (strContent == false)
+				{
+					return false;
+				}
+				var strXml = Base64Decode(strContent);
+				var sysDictionaryRecord = ParseXml(strXml);
+				sysDictionaryRecord = GetValue(sysDictionaryRecord,'record_update','sys_dictionary');
+				if (IsObject(sysDictionaryRecord) == true)
+				{
+					delete sysDictionaryRecord.table;
+					var vElement = GetValue(sysDictionaryRecord,'element');
+					if (IsArray(vElement))
+					{
+						sysDictionaryRecord['element'] = GetValue(vElement,0);
+					}
+					if (GetValue(sysDictionaryRecord,'internal_type','content') != 'collection')
+					{
+						aSysDictionary.push(CleanUpSysDictionaryObject(sysDictionaryRecord));
+					}
+				}
+			}
+			
+		}
+		return aSysDictionary;
+	},
+		
 
     type: 'SourceControlAPI'
 };]]></script>
@@ -438,13 +536,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>89</sys_mod_count>
+        <sys_mod_count>100</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-05 10:22:27</sys_updated_on>
+        <sys_updated_on>2024-02-12 16:31:04</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.CleanUpSysDictionaryObject</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Removes all fields from a sys_dictionary record object that are not required for preparing and executing deployments.</description>
+        <name>CleanUpSysDictionaryObject</name>
+        <script><![CDATA[function CleanUpSysDictionaryObject(vSysDictionaryRecord)
+{
+	var IsObject = x_snc_devtools.IsObject;
+	var IsValidRecord = x_snc_devtools.IsValidRecord;
+	var Clone = x_snc_devtools.Clone;
+
+	var sysdictionaryrecord = null;
+	
+	if (IsValidRecord(vSysDictionaryRecord) == true)
+	{
+		sysdictionaryrecord = Clone(vSysDictionaryRecord,true);
+	}
+	else
+	{
+		if (IsObject(vSysDictionaryRecord) == false)
+		{
+			return vSysDictionaryRecord;
+		}
+		sysdictionaryrecord = vSysDictionaryRecord;
+	}
+	
+	delete sysdictionaryrecord.sys_meta;
+	delete sysdictionaryrecord.active;
+	delete sysdictionaryrecord.array;
+	delete sysdictionaryrecord.array_denormalized;
+	delete sysdictionaryrecord.attributes;
+	delete sysdictionaryrecord.audit;
+	delete sysdictionaryrecord.calculation;	
+	delete sysdictionaryrecord.choice;
+	delete sysdictionaryrecord.choice_field;
+	delete sysdictionaryrecord.choice_table;
+	delete sysdictionaryrecord.comments;
+	delete sysdictionaryrecord.create_roles;
+	delete sysdictionaryrecord.default_value;
+	delete sysdictionaryrecord.defaultsort;
+	delete sysdictionaryrecord.delete_roles;
+	delete sysdictionaryrecord.dependent;
+	delete sysdictionaryrecord.dependent_on_field;
+	delete sysdictionaryrecord.display;
+	delete sysdictionaryrecord.dynamic_creation;
+	delete sysdictionaryrecord.dynamic_creation_script;
+	delete sysdictionaryrecord.dynamic_default_value;
+	delete sysdictionaryrecord.element_reference;
+	delete sysdictionaryrecord.dynamic_ref_qual;
+	delete sysdictionaryrecord.foreign_database;
+	delete sysdictionaryrecord.formula;
+	delete sysdictionaryrecord.function_definition;
+	delete sysdictionaryrecord.function_field;
+	delete sysdictionaryrecord.internal_type;
+	delete sysdictionaryrecord.mandatory;
+	delete sysdictionaryrecord.max_length;
+	delete sysdictionaryrecord.next_element;
+	delete sysdictionaryrecord.primary;
+	delete sysdictionaryrecord.read_only;
+	delete sysdictionaryrecord.read_roles;	
+	delete sysdictionaryrecord.reference;	
+	delete sysdictionaryrecord.reference_cascade_rule;	
+	delete sysdictionaryrecord.reference_floats;	
+	delete sysdictionaryrecord.reference_key;	
+	delete sysdictionaryrecord.reference_qual;	
+	delete sysdictionaryrecord.reference_qual_condition;	
+	delete sysdictionaryrecord.reference_type;	
+	delete sysdictionaryrecord.sizeclass;	
+	delete sysdictionaryrecord.spell_check;	
+	delete sysdictionaryrecord.staged;	
+	delete sysdictionaryrecord.sys_class_name;
+	delete sysdictionaryrecord.sys_created_by;	
+	delete sysdictionaryrecord.sys_created_on;	
+	delete sysdictionaryrecord.sys_mod_count;	
+	delete sysdictionaryrecord.sys_name;
+	delete sysdictionaryrecord.sys_package;	
+	delete sysdictionaryrecord.sys_policy;	
+	delete sysdictionaryrecord.sys_scope;	
+	delete sysdictionaryrecord.sys_update_name;	
+	delete sysdictionaryrecord.sys_updated_by;	
+	delete sysdictionaryrecord.sys_updated_on;	
+	delete sysdictionaryrecord.table_reference;	
+	delete sysdictionaryrecord.text_index;	
+	delete sysdictionaryrecord.unique;	
+	delete sysdictionaryrecord.use_dependent_field;	
+	delete sysdictionaryrecord.use_dynamic_default;	
+	delete sysdictionaryrecord.use_reference_qualifier;	
+	delete sysdictionaryrecord.virtual;	
+	delete sysdictionaryrecord.virtual_type;	
+	delete sysdictionaryrecord.widget;		
+	delete sysdictionaryrecord.write_roles;		
+	delete sysdictionaryrecord.xml_view;		
+		
+
+	return sysdictionaryrecord;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-18 14:46:22</sys_created_on>
+        <sys_id>7e7a823d1bffbd106c17fdd49b4bcbf4</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>CleanUpSysDictionaryObject</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_7e7a823d1bffbd106c17fdd49b4bcbf4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-12 16:03:45</sys_updated_on>
+    </sys_script_include>
+</record_update>

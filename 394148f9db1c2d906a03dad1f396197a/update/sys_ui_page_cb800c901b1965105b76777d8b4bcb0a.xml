@@ -162,6 +162,7 @@
 		<li>DevTools 1.82.0 is now required.</li>
 		<li>The Deployment form no longer reloads if the "Close Notes" have been edited.</li>
 		<li>The Deployment Task form now reloads when the status changes to update the UI Action buttons.</li> 
+		<li>The display value of a "Repository Application Status" now indicates that the date/time is in UTC.</li> 
 		<li>Modified ATF test for GetLatestRepoDependencyList() to avoid test flakyness.</li>
 	</ol>	
 	
@@ -298,13 +299,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>127</sys_mod_count>
+        <sys_mod_count>128</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-22 14:07:42</sys_updated_on>
+        <sys_updated_on>2024-02-22 14:34:09</sys_updated_on>
     </sys_ui_page>
 </record_update>

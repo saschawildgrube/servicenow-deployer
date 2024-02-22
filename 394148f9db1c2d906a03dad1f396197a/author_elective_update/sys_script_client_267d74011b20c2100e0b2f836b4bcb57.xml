@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>xxx</description>
+        <field>close_notes</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Deployment - set modified on change</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate)
+{
+	if (isLoading || newValue === '')
+	{
+		return;
+	}
+	console.log('g_form.modified = true');
+	g_form.modified = true;
+	
+/*	if (g_form.modified == true)
+	{
+		return;
+	}
+	location.reload();
+	*/
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-22 08:01:36</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>267d74011b20c2100e0b2f836b4bcb57</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Deployment - set modified on change</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_client_267d74011b20c2100e0b2f836b4bcb57</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-22 09:51:06</sys_updated_on>
+        <table>x_snc_deployer_deployment</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</application>
+        <file_path/>
+        <instance_id>25322e70dbb92590c1a4c5970596192e</instance_id>
+        <instance_name>wildgrubeutah</instance_name>
+        <name>sys_script_client_267d74011b20c2100e0b2f836b4bcb57</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description&gt;xxx&lt;/description&gt;&lt;field&gt;close_notes&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;Deployment - set modified on change&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate)
+{
+	if (isLoading || newValue === '')
+	{
+		return;
+	}
+	console.log('g_form.modified = true');
+	g_form.modified = true;
+	
+/*	if (g_form.modified == true)
+	{
+		return;
+	}
+	location.reload();
+	*/
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-02-22 08:01:36&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;267d74011b20c2100e0b2f836b4bcb57&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Deployment - set modified on change&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer"&gt;394148f9db1c2d906a03dad1f396197a&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Deployer WORK IN PROGRESS"&gt;394148f9db1c2d906a03dad1f396197a&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_267d74011b20c2100e0b2f836b4bcb57&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-02-22 09:51:06&lt;/sys_updated_on&gt;&lt;table&gt;x_snc_deployer_deployment&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;0&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-221295572</payload_hash>
+        <record_name>Deployment - set modified on change</record_name>
+        <reverted_from/>
+        <source>0e64c41d1bf73d106c17fdd49b4bcb35</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-22 09:51:06</sys_created_on>
+        <sys_id>3a8615051b60c2100e0b2f836b4bcbb1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18dd039d1cd0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-22 09:51:06</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>7e861505f760c210053b52348b362db0</update_guid>
+        <update_guid_history>7e861505f760c210053b52348b362db0:-221295572,4cd451c17460c210cc9d8f2249df3972:452660658,1ddd34811620c210e66cd6076bbb67cb:969020289,7e7d74018720c210719cd7ab00a9d759:95056998</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-22 09:55:43</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>1f2ecd80f43d425c875bb44e03d0c910</sys_id>
+        <sys_metadata>267d74011b20c2100e0b2f836b4bcb57</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Deployment - set modified on change</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_parent display_value="Deployment">d8e9f57b1b90f910cd6153d16b4bcb06</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
+        <sys_update_name>sys_script_client_267d74011b20c2100e0b2f836b4bcb57</sys_update_name>
+        <sys_update_version display_value="sys_script_client_267d74011b20c2100e0b2f836b4bcb57">3a8615051b60c2100e0b2f836b4bcbb1</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-22 09:55:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -19,7 +19,8 @@
 	var HtmlRenderValue = x_snc_devtools.HtmlRenderValue;
 	var StringFormat = x_snc_devtools.StringFormat;
 	var GetDependencyListFromTree = x_snc_devtools.GetDependencyListFromTree;
-	
+	var HtmlRenderRoundedBox = x_snc_devtools.HtmlRenderRoundedBox;
+		
 	strMode = GetStringValue(strMode);
 	aHidePackages = GetArrayValue(aHidePackages);
 	
@@ -78,8 +79,11 @@
 
 		var strHtml = '';
 		
-		strHtml += '<div style="margin-left: '+nLeft+'px; margin-right: 10px; margin-bottom:5px; padding-top: 5px; padding-bottom: 2px; padding-left: 20px; padding-right:15px; background-color: #EEEEEE; border-radius: 10px;">';
-		
+		strHtml += '<div style="margin-left: '+nLeft+'px;">';
+
+		var strHtmlInner = '';
+
+				
 		var strVersion = ' ' + GetStringValue(oPackage.version);
 		var strDependencyStatus = GetStringValue(GetValue(oPackage,'dependency_status'));
 		var strDependencyStatusSummary = GetStringValue(GetValue(oPackage,'dependency_status_summary'));
@@ -93,10 +97,10 @@
 		//var strAppUrl = GetInstanceRecordURL('sys_package',oPackage.sys_id,'devtools');
 		//var strAppLink = HtmlRenderLink(strAppUrl,'<b>'+strAppName+'</b>',true);
 		
-		strHtml += strAppName;
+		strHtmlInner += strAppName;
 		
 		
-		strHtml += '<p>';
+		strHtmlInner += '<p>';
 		if (nLevel > 0)
 		{
 
@@ -110,16 +114,16 @@
 			}			
 			if (strDependencyStatus != 'circular' && strDependencyStatus != 'conflicting_versions')
 			{
-				strHtml += 'Compatible Version(s): ' + GetValue(oPackage,'compatible_versions');
+				strHtmlInner += 'Compatible Version(s): ' + GetValue(oPackage,'compatible_versions');
 				
-				strHtml += ' / ';
+				strHtmlInner += ' / ';
 			}
 			
-			strHtml += 'Status: ' + HtmlRenderDependencyStatus(strDependencyStatus);
-			strHtml += '<br/>';
+			strHtmlInner += 'Status: ' + HtmlRenderDependencyStatus(strDependencyStatus);
+			strHtmlInner += '<br/>';
 			if (strDependencyStatus == 'ok')
 			{
-				strHtml += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
+				strHtmlInner += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
 					GetRepoUrlFromPackage(oPackage),
 					GetValue(oPackage,'branch'));
 			}
@@ -129,25 +133,25 @@
 			}		
 			else if (strDependencyStatus == 'out_of_scope')
 			{
-				strHtml += StringFormat(
+				strHtmlInner += StringFormat(
 					'The package class <b>{0}</b> is out of scope for the dependency analysis. Availability for deployment must be checked manually.',
 					GetValue(oPackage,'package_class'));
 										
 			}				
 			else if (strDependencyStatus == 'invalid_repo_url')
 			{
-				strHtml += StringFormat('Repository: {0}<br/>',
+				strHtmlInner += StringFormat('Repository: {0}<br/>',
 					GetRepoUrlFromPackage(oPackage));
 			}
 			else
 			{
-				strHtml += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a><br/>',
+				strHtmlInner += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a><br/>',
 					GetRepoUrlFromPackage(oPackage));
 			}	
 		}
 		else
 		{
-			strHtml += StringFormat('Status Summary: {0}<br/>Repository: <a href="{1}" target="_blank">{1}</a> / Branch: {2} <br/>',
+			strHtmlInner += StringFormat('Status Summary: {0}<br/>Repository: <a href="{1}" target="_blank">{1}</a> / Branch: {2} <br/>',
 				HtmlRenderDependencyStatus(GetStringValue(GetValue(oPackage,'dependency_status_summary'))),
 				GetRepoUrlFromPackage(oPackage),
 				GetValue(oPackage,'branch'));
@@ -164,10 +168,13 @@
 		{
 			if (strMode == 'tree')
 			{
-				strHtml += 'Dependencies: '+ aDependencies.length +'<br/>';
+				strHtmlInner += 'Dependencies: '+ aDependencies.length +'<br/>';
 			}
 		}
-		strHtml += '</p>';
+		strHtmlInner += '</p>';
+		
+		strHtml += HtmlRenderRoundedBox(strHtmlInner);
+		
 		strHtml += '</div>';
 		
 		for (var nDependency = 0; nDependency < aDependencies.length; nDependency++)
@@ -240,13 +247,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:10:20</sys_created_on>
         <sys_id>43e9fa97970ae910a6a07767f053af20</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>45</sys_mod_count>
         <sys_name>HtmlRenderRepoDependencies</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_43e9fa97970ae910a6a07767f053af20</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-27 17:05:36</sys_updated_on>
+        <sys_updated_on>2024-02-22 14:39:20</sys_updated_on>
     </sys_script_include>
 </record_update>

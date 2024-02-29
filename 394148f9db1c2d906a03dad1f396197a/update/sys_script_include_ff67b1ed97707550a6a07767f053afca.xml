@@ -142,22 +142,31 @@
 		var strDetails = 'The deployment will DELETE DATA on the target instance!\n';
 		strDetails += '\n';
 
-		strDetails = 'The following tables are going to be deleted:\n';
 		var aSysDBObject = GetArrayValue(GetValue(datadeletion,'_sys_db_object'));
-		for (var nObject = 0; nObject < aSysDBObject.length; nObject++)
+		if (aSysDBObject.length > 0)
 		{
-			var sysDBObject = aSysDBObject[nObject];
-			strDetails += GetValue(sysDBObject,'name') + ' ("'+GetValue(sysDBObject,'label')+'")\n';
+			strDetails = 'The following tables are going to be deleted:\n';
+			for (var nObject = 0; nObject < aSysDBObject.length; nObject++)
+			{
+				var sysDBObject = aSysDBObject[nObject];
+				strDetails += GetValue(sysDBObject,'name') + ' ("'+GetValue(sysDBObject,'label')+'")\n';
+			}
+			strDetails += '\n';
 		}
-		strDetails += '\n';
 
-		strDetails += 'The following columns are going to be deleted:\n';
 		var aSysDictionary = GetArrayValue(GetValue(datadeletion,'_sys_dictionary'));
-		for (var nDictionary = 0; nDictionary < aSysDictionary.length; nDictionary++)
+		if (aSysDictionary.length > 0)
 		{
-			var sysDictionary = aSysDictionary[nDictionary];
-			strDetails += GetValue(sysDictionary,'name') + '.'+GetValue(sysDictionary,'element')+' ("'+GetValue(sysDictionary,'column_label')+'")\n';
+			strDetails += 'The following columns are going to be deleted:\n';
+			for (var nDictionary = 0; nDictionary < aSysDictionary.length; nDictionary++)
+			{
+				var sysDictionary = aSysDictionary[nDictionary];
+				strDetails += GetValue(sysDictionary,'name') + '.'+GetValue(sysDictionary,'element')+' ("'+GetValue(sysDictionary,'column_label')+'")\n';
+			}
+			strDetails += '\n';
 		}
+		
+		strDetails += 'If there are more recent versions installed on the target instance than those demanded by the Repository Application Status, there might be false positives.\n';
 
 		if (strDataDeletionPolicy == 'deny')
 		{
@@ -337,13 +346,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>90</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-13 10:25:14</sys_updated_on>
+        <sys_updated_on>2024-02-28 12:51:56</sys_updated_on>
     </sys_script_include>
 </record_update>

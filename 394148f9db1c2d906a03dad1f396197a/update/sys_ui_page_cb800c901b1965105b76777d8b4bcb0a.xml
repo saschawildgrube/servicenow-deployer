@@ -21,9 +21,19 @@
 	<p>The Deployer app protects the target instance from unwanted or unexpected data deletion. For each target instance a data deletion policy must be specified.</p>
 	<ul>
 		<li><b>Deny</b>: Data deletion is not allowed as part of a deployment. If applications are selected for deployment which do not (or no longer) contain tables or columns which exist on the target instance the deployment cannot proceed.</li>
-		<li><b>Confirm</b>: Data deletion is allowed must must be explicitly confirmed during the deployment.</li>
-		<li><b>Warn</b>: Data deletion is allowed and users are warned of data deletion on the target instance.</li>
+		<li><b>Confirm</b>: Data deletion is allowed but must be explicitly confirmed during the deployment.</li>
+		<li><b>Warn</b>: Data deletion is allowed. Users are only warned of data deletion on the target instance.</li>
 	</ul>
+	
+	<h3>How the (automated) deployment works</h3>
+	<p>The Deployer app is a remote control that uses REST APIs exposed by the Target Instance. These REST API endpoints allow Deployer to retrieve information on the Target Instance, trigger source control operations, run Instance Scan checks and execute ATF test suites.</p>
+	<p>Automated Deployment Procedure</p>
+	<ol>
+		<li>Determining the applications to be installed by creating a Repository Application Status. The availability of all application version branches is checked based on the dependency tree.</li>
+		<li>Install applications and perform CodeSanity checks (Instance Scan) in reverse dependency order. The reverse dependency order is based on the application to be installed and all of its dependencies (and the dependencies of the dependencies). The deepest nodes of the dependency tree are installed first. The application to be installed comes last.</li>
+		<li>Running installation scripts in reverse dependency order.</li>
+		<li>Running all ATF tests in reverse dependency order.</li>
+	</ol>
 
 	<h3>CICD Instance features</h3>
 	<p>The "CICD Instance" is an instance that is used to run and operate CICD pipeline automation tools - a control tower.</p>
@@ -35,8 +45,8 @@
 	<p><a href="/x_snc_deployer_deployment_list.do" target="_blank">Deployments</a>&#160;represent the specific deployment of an application (and its dependencies) in a given version to a specified Target Instance.</p>
 	<p>Supported automatic deployment tasks:
 		<ul>
-			<li>Installing new versions of imported applications on target instances ("Switch Branch").</li>
-			<li>Installing new versions or refresh the current version of imported applications on target instances ("Apply Remote Changes").</li>
+			<li>Installing new versions of imported applications on target instances ("Switch Branch")</li>
+			<li>Installing new versions or refresh the current version of imported applications on target instances ("Apply Remote Changes")</li>
 			<li>Running installation scripts on target instances</li>
 			<li>Running CodeSanity checks on target instances (based on Instance Scan)</li>
 			<li>Running the default ATF Test Suite of applications on target instances</li>
@@ -47,7 +57,7 @@
 		<ul>
 			<li>Confirm Data Deletion</li>
 			<li>Importing new applications on target instances ("Import from Source Control")</li>
-			<li>Pre-Deployment Activities.</li>
+			<li>Pre-Deployment Activities</li>
 			<li>Smoke Testing</li>
 			<li>Post-Deployment Activities</li>
 		</ul>
@@ -111,6 +121,8 @@
 		<li>Configure&#160;<a href="/x_snc_deployer_instance_list.do" target="_blank">Target Instances</a>&#160;to enable deployments of applications to these instances.</li>
 	</ol>	
 	
+	<g2:no_escape>$[x_snc_devtools.HtmlRenderLinkDirectory(GetLinkDirectoryCICD())]</g2:no_escape>	
+	
 	<h2>Reference</h2>
 
 	<h3>Configuration Options</h3>
@@ -154,6 +166,18 @@
 		<li>TODO: document changes here</li>
 	</ol>
 -->
+	
+	<h3>1.10.0 - 2024-02-29</h3>
+	<ol>
+		<li>DevTools 1.82.0 is now required.</li>
+		<li>Deployer 1.10.0 requires the same version or higher on the target instance due to updated identification of data deletion.</li>
+		<li>The detection of data deletion now considers "cloned" dictionary records on TPP tables (like tables derived from cmdb_ci).</li> 
+		<li>The Deployment form no longer reloads if the "Close Notes" have been edited.</li>
+		<li>The Deployment Task form now reloads when the status changes to update the UI Action buttons.</li> 
+		<li>The Deployer - Repository Viewer page was not displayed properly when using Polaris dark theme. This has been fixed.</li>
+		<li>The display value of a "Repository Application Status" now indicates that the date/time is in UTC.</li> 
+		<li>Modified ATF test for GetLatestRepoDependencyList() to avoid test flakyness.</li>
+	</ol>	
 	
 	<h3>1.9.1 - 2024-02-15</h3>
 	<ol>
@@ -288,13 +312,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>121</sys_mod_count>
+        <sys_mod_count>136</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-15 12:55:38</sys_updated_on>
+        <sys_updated_on>2024-02-29 08:24:13</sys_updated_on>
     </sys_ui_page>
 </record_update>

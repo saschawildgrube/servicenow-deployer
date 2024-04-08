@@ -26,7 +26,7 @@
 	aCurrentPath = GetArrayValue(aCurrentPath);
 
 	var bDev = false;
-	if (strVersions == 'dev' && aCurrentPath.length == 0)
+	if (strVersions.indexOf('dev') == 0 && aCurrentPath.length == 0)
 	{
 		bDev = true;
 	}
@@ -67,7 +67,7 @@
 	function GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions)
 	{
 		var aBranches = sourcecontrol.GetBranchesFromRepo(strRepoUrl);
-		
+
 		var aDeployableBranches = [];
 		for (var nBranch = 0; nBranch < aBranches.length; nBranch++)
 		{
@@ -96,7 +96,7 @@
 			}
 			else
 			{
-				if (strCurrentBranch == 'dev' && bDev == true)
+				if (bDev == true && strCurrentBranch == strVersions)
 				{
 					aDeployableBranches.push(strCurrentBranch);
 				}
@@ -124,12 +124,11 @@
 					}
 				}		
 			}
-			else if (bDev == true && strCurrentBranch == 'dev')
+			else if (bDev == true && strCurrentBranch == strVersions)
 			{
 				packagerecord = CleanUpPackageObject(packagerecord);
-				packagerecord = SetValue('dev',packagerecord,'branch');
+				packagerecord = SetValue(strVersions,packagerecord,'branch');
 				return packagerecord;
-				
 			}
 
 		}
@@ -215,7 +214,10 @@
 			}
 			else
 			{
-				dependency = GetRepoDependencyTree(strDependencyRepoUrl,dependencyRecord['versions'],aNewCurrentPath,sourcecontrol);
+				dependency = GetRepoDependencyTree(
+					strDependencyRepoUrl,
+					dependencyRecord['versions'],
+					aNewCurrentPath,sourcecontrol);
 				if (dependency == false)
 				{
 					dependency = {
@@ -231,7 +233,8 @@
 					dependency['package_class'] = strPackageClass;
 					dependency['repo_url'] = strDependencyRepoUrl;
 					
-					// Second line of defence: if there is no compatible version, GetRepoDependencyTree should have returned false anyway
+					// Second line of defence: if there is no compatible version,
+					// GetRepoDependencyTree should have returned false anyway
 					var strDependencyVersion = GetValue(dependency,'version');
 					var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
 					var bCompatibleVersion = false;
@@ -287,13 +290,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:38:30</sys_created_on>
         <sys_id>449f875b974ae910a6a07767f053af60</sys_id>
-        <sys_mod_count>62</sys_mod_count>
+        <sys_mod_count>75</sys_mod_count>
         <sys_name>GetRepoDependencyTree</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_449f875b974ae910a6a07767f053af60</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-13 12:47:56</sys_updated_on>
+        <sys_updated_on>2024-04-08 13:00:02</sys_updated_on>
     </sys_script_include>
 </record_update>

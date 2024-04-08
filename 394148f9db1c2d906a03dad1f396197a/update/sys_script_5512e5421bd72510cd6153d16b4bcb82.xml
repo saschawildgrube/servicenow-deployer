@@ -41,38 +41,49 @@
 	current.update();
 
 	var strVersion = GetStringValue(current.version);
+	var strRepoUrl = GetStringValue(current.repo_url);
+
+	var grCredential = GetCredentialForRepository(strRepoUrl);
+	if (grCredential == false)
+	{
+		current.display = 'No repository credential could be identified for the repository: '+strRepoUrl;
+		current.status = 'error';
+		current.update();
+		return;		
+	}
+
 	
-	var dependencytree = GetRepoDependencyTree(current.repo_url,strVersion);
+	var dependencytree = GetRepoDependencyTree(strRepoUrl,strVersion);
 	if (dependencytree == false)
 	{
-		current.display = 'Failed processing '+current.repo_url+' for version '+strVersion;
+		current.display = 'Failed processing '+strRepoUrl+' for version '+strVersion;
 		current.status = 'error';
+		current.update();
+		return;
+	}
+
+	if (strVersion.indexOf('dev') == 0)
+	{
+		current.display = GetValue(dependencytree,'name') + ' ' + GetValue(dependencytree,'version') + ' (dev branch) as of '+current.sys_created_on+' (UTC)';
+		current.dependency_tree_json = JSON.stringify(dependencytree);
+		current.status = 'dev';
+		current.errors = GetDependencyTreeErrorCount(dependencytree);
+		current.update();
+		return;		
+	}
+	
+	current.display = GetValue(dependencytree,'name') + ' ' + strVersion + ' as of '+current.sys_created_on+' (UTC)';
+	current.dependency_tree_json = JSON.stringify(dependencytree);
+	var strStatus = GetValue(dependencytree,'dependency_status_summary');
+	if (strStatus == 'ok')
+	{
+		current.status = 'ok';
 	}
 	else
 	{
-		if (strVersion.indexOf('dev') == 0)
-		{
-			current.display = GetValue(dependencytree,'name') + ' ' + GetValue(dependencytree,'version') + ' (dev branch) as of '+current.sys_created_on+' (UTC)';
-			current.dependency_tree_json = JSON.stringify(dependencytree);
-			current.status = 'dev';
-			current.errors = GetDependencyTreeErrorCount(dependencytree);
-		}
-		else
-		{
-			current.display = GetValue(dependencytree,'name') + ' ' + strVersion + ' as of '+current.sys_created_on+' (UTC)';
-			current.dependency_tree_json = JSON.stringify(dependencytree);
-			var strStatus = GetValue(dependencytree,'dependency_status_summary');
-			if (strStatus == 'ok')
-			{
-				current.status = 'ok';
-			}
-			else
-			{
-				current.status = 'error';
-			}
-			current.errors = GetDependencyTreeErrorCount(dependencytree);
-		}
+		current.status = 'error';
 	}
+	current.errors = GetDependencyTreeErrorCount(dependencytree);
 	current.update();
 	
 })(current, previous);]]></script>
@@ -82,7 +93,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5512e5421bd72510cd6153d16b4bcb82</sys_id>
-        <sys_mod_count>26</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>Repo App Status - Insert</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -90,7 +101,7 @@
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_5512e5421bd72510cd6153d16b4bcb82</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-08 12:58:19</sys_updated_on>
+        <sys_updated_on>2024-04-08 14:58:39</sys_updated_on>
         <template/>
         <when>async_always</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

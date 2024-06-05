@@ -170,11 +170,12 @@
 	<h3>1.11.0 - 2024-TODO</h3>
 	<ol>
 		<li>DevTools 1.86.0 is now required because GitLabAPI and GitHubAPI can now handle repositories with more than 100 branches.</li>
-		<li>An Application Repository Status can now be generated for all branches starting by "dev".</li> 
+		<li>An Repository Application Status can now be generated for all branches starting by "dev".</li> 
 		<li>Renamed UI Action "Refresh" to "Get New Status For Same Version".</li>
-		<li>When generating an Application Repository Status dependencies to plugins and store apps are now correctly identified as out-of-scope and displayed as such.</li> 
-		<li>When generating an Application Repository Status a more precise error is reported if no corresponding repository credential could be identified.</li>
-		<li>When generating an Application Repository Status a dependency without a repository url is now correctly identified as an error and the status is not ready for deployment.</li> 
+		<li>The UI Action "Refresh" to "Get New Status For Same Version" is no longer visible when the Repository Application Status is not yet finished.</li>
+		<li>When generating an Repository Application Status dependencies to plugins and store apps are now correctly identified as out-of-scope and displayed as such.</li> 
+		<li>When generating an Repository Application Status a more precise error is reported if no corresponding repository credential could be identified.</li>
+		<li>When generating an Repository Application Status a dependency without a repository url is now correctly identified as an error and the status is not ready for deployment.</li> 
 		<li>Added warning about cascade deletes in case a table is about to be deleted during deployment.</li>
 		<li>Refactoring in ExecuteDeploymentTask() to use more DevTools functions.</li>
 	</ol>
@@ -324,13 +325,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>145</sys_mod_count>
+        <sys_mod_count>146</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:42:50</sys_updated_on>
+        <sys_updated_on>2024-06-05 12:49:06</sys_updated_on>
     </sys_ui_page>
 </record_update>

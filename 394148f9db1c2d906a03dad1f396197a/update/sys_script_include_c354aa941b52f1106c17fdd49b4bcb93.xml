@@ -19,53 +19,8 @@ If the task is manual, it does nothing.</description>
 	var IsArray = x_snc_devtools.IsArray;
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var StringFormat = x_snc_devtools.StringFormat;
+	var GetInstanceRecordUrl = x_snc_devtools.GetInstanceRecordURL;
 
-	// Remove once DevTools 1.82.0 is available
-	function GetRecordUri(strTable,strSysId,strView)
-	{
-		var IsValidTable = x_snc_devtools.IsValidTable;
-		var IsValidSysId = x_snc_devtools.IsValidSysId;
-		var GetStringValue = x_snc_devtools.GetStringValue;
-		if (IsValidTable(strTable) == false)
-		{
-			return false;
-		}
-		if (IsValidSysId(strSysId) == false)
-		{
-			return false;
-		}
-		var strUri = '/'+strTable+'.do?sys_id='+strSysId;
-		strView = GetStringValue(strView);
-		if (strView != '')
-		{
-			strUri += '&sysparm_view='+strView; 
-		}
-		return strUri;
-	}	
-	
-	// Remove once DevTools 1.82.0 is available
-	function GetRecordPath(strTable,strSysId,strView)
-	{
-		var strUri = GetRecordUri(strTable,strSysId,strView);
-		if (strUri == false)
-		{
-			return false;
-		}
-		var strPath = 'nav_to.do?uri=' +encodeURIComponent(strUri);
-		return strPath;
-	}	
-	
-	// Remove once DevTools 1.82.0 is available
-	function GetTargetInstanceRecordUrl(strInstanceUrl,strTable,strSysId)
-	{
-		var strInstanceUrl = GetStringValue(strInstanceUrl);
-		if (strInstanceUrl.endsWith('/') == false)
-		{
-			strInstanceUrl += '/';
-		}
-		return strInstanceUrl + GetRecordPath(strTable,strSysId);
-	}
-	
 	
 	if (IsValidRecord(grTask) == false)
 	{
@@ -213,7 +168,7 @@ If the task is manual, it does nothing.</description>
 						if (strTestResultUrl.indexOf('testsuite/results') != -1)
 						{
 							var strTestResultSysId = GetValue(vProgress,'result','links','results','id');
-							strUrl = GetTargetInstanceRecordUrl(grTask.deployment.instance.url,'sys_atf_test_suite_result',strTestResultSysId);
+							strUrl = GetInstanceRecordUrl(grTask.deployment.instance.url,'sys_atf_test_suite_result',strTestResultSysId);
 						}
 						
 						DeploymentTaskUpdateStatus(grTask,strText,strUrl);
@@ -256,7 +211,7 @@ If the task is manual, it does nothing.</description>
 						}
 						
 						var strScanResultSysId = GetValue(vProgress,'result','links','source','id');
-						var strUrl = GetTargetInstanceRecordUrl(grTask.deployment.instance.url,'scan_result',strScanResultSysId);
+						var strUrl = GetInstanceRecordUrl(grTask.deployment.instance.url,'scan_result',strScanResultSysId);
 						var strStatusMessage = GetValue(vProgress,'result','status_message');
 						
 						DeploymentTaskUpdateStatus(grTask,strStatusMessage,strUrl);
@@ -356,13 +311,13 @@ If the task is manual, it does nothing.</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-31 11:18:25</sys_created_on>
         <sys_id>c354aa941b52f1106c17fdd49b4bcb93</sys_id>
-        <sys_mod_count>80</sys_mod_count>
+        <sys_mod_count>84</sys_mod_count>
         <sys_name>ExecuteDeploymentTask</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_c354aa941b52f1106c17fdd49b4bcb93</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-15 10:03:49</sys_updated_on>
+        <sys_updated_on>2024-06-05 11:42:40</sys_updated_on>
     </sys_script_include>
 </record_update>

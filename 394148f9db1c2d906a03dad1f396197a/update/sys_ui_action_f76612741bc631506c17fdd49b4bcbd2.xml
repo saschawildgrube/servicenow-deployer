@@ -27,7 +27,7 @@
         <list_save_with_form_button>false</list_save_with_form_button>
         <list_style/>
         <messages/>
-        <name>New Version</name>
+        <name>Get Status For New Version</name>
         <onclick>onClickApplicationStatusNewVersion()</onclick>
         <order>101</order>
         <script><![CDATA[function onClickApplicationStatusNewVersion()
@@ -35,9 +35,36 @@
 
 	var strTitle = 'Deployer - Repo App Status for a new version';
 	
+	// Needs refactoring once the function is available in DevTools
+	function IsValidVersion(strVersion)
+	{
+		strVersion = GetStringValue(strVersion);
+		if (strVersion == '')
+		{
+			return false;
+		}
+		var strVersionPattern = /^[0-9]{1,3}(\.[0-9]{1,3})?(\.[0-9]{1,3})?(\.[0-9]{1,3})?$/;
+		if (strVersion.match(strVersionPattern) == null)
+		{
+			return false;
+		}
+		return true;
+	}
+
 	function StateStart()
 	{
-		DoModalPrompt(strTitle,'Please enter the new version:',g_form.getValue('version'),StateSelectVersion);
+		var strCurrentVersion = g_form.getValue('version');
+		var aVersion = strCurrentVersion.split('.');
+		var strNewVersion =
+			GetIntegerValue(GetValue(aVersion,0))
+			+'.'
+			+ (GetIntegerValue(GetValue(aVersion,1))+1)
+			+'.0';
+		if (strCurrentVersion == 'dev')
+		{
+			strNewVersion = '1.0.0';
+		}
+		DoModalPrompt(strTitle,'Please enter the new version:',strNewVersion,StateSelectVersion);
 	}
 	
 	function StateSelectVersion(strSelectedVersion)
@@ -53,12 +80,11 @@
 			DoModalMessage(strTitle,'No version has been entered.',StateStart);
 			return;
 		}
-/*		if (IsValidEmail(strSelectedEmail) == false)
+		if (IsValidVersion(strSelectedVersion) == false && strSelectedVersion != 'dev')
 		{
-			DoModalMessage(strTitle,'The entered name is not valid.',StateStart);
+			DoModalMessage(strTitle,'No valid version (or "dev") has been entered.',StateStart);
 			return;
-		}
-		*/
+		}		
 		ServerRequest('x_snc_deployer.DeployerClientAPI','GetNewRepositoryApplicationStatusByVersion',
 		{
 			sys_id: GetCurrentRecordSysId(), 
@@ -82,33 +108,7 @@
 	{}
 	
 	StateStart();
-}	
-	
-	/*
-	// repo_url=https://github.com/saschawildgrube/servicenow-fastlane.git
-	//repo_url=https://github.com/saschawildgrube/servicenow-fastlane.git?hallo=welt
-	//repo_url=https://github.com/saschawildgrube/servicenow-fastlane.git
-	
-	var strRepoUrl = g_form.getValue('repo_url');
-	//DoModalMessage('Deployer',strRepoUrl);
-	
-	strRepoUrl = 'github.com/saschawildgrube/servicenow-fastlane.git';
-	
-	var strPath = GetInstanceNewRecordPath(
-		'x_snc_deployer_repository_application_status',
-		{
-			status: 'draft',
-			version: g_form.getValue('version'),
-			repo_url: strRepoUrl
-		});
-	
-	strPath = '/' + strPath;
-	
-	//DoModalMessage('Deployer',strPath);
-
-	RedirectToUrl(strPath, false);
-	*/
-]]></script>
+}]]></script>
         <show_insert>false</show_insert>
         <show_multiple_update>false</show_multiple_update>
         <show_query>false</show_query>
@@ -119,15 +119,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>f76612741bc631506c17fdd49b4bcbd2</sys_id>
-        <sys_mod_count>28</sys_mod_count>
-        <sys_name>New Version</sys_name>
+        <sys_mod_count>37</sys_mod_count>
+        <sys_name>Get Status For New Version</sys_name>
         <sys_overrides/>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_action_f76612741bc631506c17fdd49b4bcbd2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-10-20 14:23:23</sys_updated_on>
+        <sys_updated_on>2024-06-05 13:11:59</sys_updated_on>
         <table>x_snc_deployer_repository_application_status</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

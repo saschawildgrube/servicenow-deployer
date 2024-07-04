@@ -4,42 +4,39 @@
         <application display_value="Deployer">db800c901b1965105b76777d8b4bcb62</application>
         <assessment/>
         <device_type/>
-        <filter table="x_snc_devtools_cmdb_ci_appl_servicenow">app_instance_nameISNOTEMPTY^operational_status=1^EQ<item endquery="false" field="app_instance_name" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
-            <item display_value="Operational" endquery="false" field="operational_status" goto="false" newquery="false" operator="=" or="false" value="1"/>
-            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
-        </filter>
+        <filter/>
         <hint/>
         <homepage/>
         <image/>
-        <link_type>LIST</link_type>
+        <link_type>SEPARATOR</link_type>
         <map_page/>
-        <mobile_title>CMDB Apps</mobile_title>
+        <mobile_title>CMDB</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
-        <name>x_snc_devtools_cmdb_ci_appl_servicenow</name>
-        <order>510</order>
+        <name/>
+        <order>500</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
         <roles/>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-07-03 21:32:03</sys_created_on>
+        <sys_created_on>2024-07-04 07:41:10</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>0fa86763db0fc210f0f1d03cd39619da</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>Installed Apps</sys_name>
+        <sys_id>303471f3db870610f0f1d03cd39619bd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CMDB</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
-        <sys_update_name>sys_app_module_0fa86763db0fc210f0f1d03cd39619da</sys_update_name>
+        <sys_update_name>sys_app_module_303471f3db870610f0f1d03cd39619bd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-04 07:43:48</sys_updated_on>
+        <sys_updated_on>2024-07-04 07:41:10</sys_updated_on>
         <timeline_page/>
-        <title>Installed Apps</title>
+        <title>CMDB</title>
         <uncancelable>false</uncancelable>
-        <view_name>DevTools</view_name>
+        <view_name/>
         <window_name/>
     </sys_app_module>
 </record_update>

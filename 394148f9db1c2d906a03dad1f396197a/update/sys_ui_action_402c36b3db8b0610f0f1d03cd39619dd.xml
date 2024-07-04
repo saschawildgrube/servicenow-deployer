@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>deployer_instance_update_local_cmdb</action_name>
+        <active>true</active>
+        <client>false</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Loads the installed applications from the target instance and updates the local CMDB.</comments>
+        <condition/>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style>destructive</form_style>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Update Local CMDB</name>
+        <onclick/>
+        <order>400</order>
+        <script><![CDATA[current.update();
+var bResult = TargetInstanceUpdateLocalCmdb(current);
+if (bResult == false)
+{
+	gs.addErrorMessage(
+		x_snc_devtools.HtmlEncode(
+		'Could not load applications from the remove instance or failed to update the local CMDB\n\n'
+		+'Please validate that the target instance is configured properly!'));
+}
+else
+{
+	gs.addInfoMessage('CIs representing the applications installed on the target instance have been updated in the local CMDB.');
+}
+x_snc_devtools.RedirectToRecord(current);]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-04 12:55:12</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>402c36b3db8b0610f0f1d03cd39619dd</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Update Local CMDB</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_ui_action_402c36b3db8b0610f0f1d03cd39619dd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-04 13:02:15</sys_updated_on>
+        <table>x_snc_deployer_instance</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

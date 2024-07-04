@@ -38,15 +38,7 @@
 	if (current.state >= GetDeploymentState('completed'))
 	{
 		var grInstance = GetRecord('x_snc_deployer_instance',current.instance);
-		var status = TargetInstanceGetStatus(grInstance);
-		if (IsObject(status) == true)
-		{
-			var strInstanceName = GetValue(status,'instance_name');
-			var aApps = GetValue(status,'apps');
-			x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateFromList(
-				strInstanceName,
-				aApps);
-		}
+		TargetInstanceUpdateLocalCmdb(grInstance);
 	}
 
 })(current, previous);]]></script>
@@ -56,7 +48,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>adf1e3afdb8bc210f0f1d03cd39619c7</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Deployment - Update CMDB</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -64,7 +56,7 @@
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_adf1e3afdb8bc210f0f1d03cd39619c7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 21:55:17</sys_updated_on>
+        <sys_updated_on>2024-07-04 07:54:27</sys_updated_on>
         <template/>
         <when>async_always</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

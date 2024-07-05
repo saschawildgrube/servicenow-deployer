@@ -160,19 +160,34 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.12.0 - 2024-07-05</h3>
+	<ol>
+		<li>DevTools 1.94.0 is required due to the new functions to update the CMDB.</li>
+		<li>Deployer 1.12.0 requires the same version or higher on the target instance due to the change in the x_snc_deployer.api role and the new capabilities of the "Get Status" REST API endpoint.</li>
+		<li>The local CMDB is updated to reflect the installed applications on the target instance after a deployment.</li>
+		<li>The local CMDB is updated to reflect the availability of installable applications after creating a Repository Application Status.</li>
+		<li>Added the UI Action "Update Local CMDB" on the Target Instance form.</li>
+		<li>The x_snc_deployer.api role now also contains the security_admin role - The admin and security_admin roles are required since the execution of ATF tests depends on the roles of the user triggering their execution.</li>
+		<li>The "Get Status" REST API endpoint now also provides the list of dependencies and the current branch for each application.</li>
+		<li>Under some circumstances in the Repository Application Status Dependency List view the error banner was not displayed. This has been fixed.</li> 
+		<li>If an instance url is specified without trailing slash, the Studio url in the manual task for importing a new application from source control was incorrect. This has been fixed.</li>
+		<li>Repository App Status lists are now sorted by "Updated On" by default.</li>
+	</ol>
+
+
 	<h3>1.11.0 - 2024-06-06</h3>
 	<ol>
 		<li>Utah is no longer actively supported.</li>
 		<li>Deployer has been fully tested with Vancouver and Washington.</li>
 		<li>DevTools 1.86.0 is now required because GitLabAPI and GitHubAPI can now handle repositories with more than 100 branches.</li>
-		<li>An Repository Application Status can now be generated for all branches starting by "dev".</li> 
+		<li>A Repository Application Status can now be generated for all branches starting by "dev".</li> 
 		<li>Renamed UI Action "Refresh" to "Get New Status For Same Version".</li>
-		<li>The UI Action "Refresh" to "Get New Status For Same Version" is no longer visible when the Repository Application Status is not yet finished.</li>
+		<li>The UI Action "Get New Status For Same Version" is no longer visible when the Repository Application Status is not yet finished.</li>
 		<li>Renamed UI Action "New Version" to "Get Status For New Version".</li>
 		<li>The UI Action "Get Status For New Version" now proposes the next minor version based on the previous version.</li>
-		<li>When generating an Repository Application Status dependencies to plugins and store apps are now correctly identified as out-of-scope and displayed as such.</li> 
-		<li>When generating an Repository Application Status a more precise error is reported if no corresponding repository credential could be identified.</li>
-		<li>When generating an Repository Application Status a dependency without a repository url is now correctly identified as an error and the status is not ready for deployment.</li> 
+		<li>When generating a Repository Application Status dependencies to plugins and store apps are now correctly identified as out-of-scope and displayed as such.</li> 
+		<li>When generating a Repository Application Status a more precise error is reported if no corresponding repository credential could be identified.</li>
+		<li>When generating a Repository Application Status a dependency without a repository url is now correctly identified as an error and the status is not ready for deployment.</li> 
 		<li>Added warning about cascade deletes in case a table is about to be deleted during deployment.</li>
 		<li>Added detailed instructions and a url to start with for the manual task of importing an application from source control for the first time.</li>
 		<li>When updating a repository credential record, GitLab repository credentials are deactivated if no API Url has been specified.</li>
@@ -324,13 +339,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>153</sys_mod_count>
+        <sys_mod_count>169</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-06 11:27:35</sys_updated_on>
+        <sys_updated_on>2024-07-05 05:46:48</sys_updated_on>
     </sys_ui_page>
 </record_update>

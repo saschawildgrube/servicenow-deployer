@@ -87,7 +87,6 @@
 		var strVersion = ' ' + GetStringValue(oPackage.version);
 		var strDependencyStatus = GetStringValue(GetValue(oPackage,'dependency_status'));
 		var strDependencyStatusSummary = GetStringValue(GetValue(oPackage,'dependency_status_summary'));
-		//var strVersion = ' ' + GetStringValue(oPackage.sys_class_name);
 
 		var strAppName = GetValue(oPackage,'name');
 		if (strDependencyStatus != 'missing')
@@ -95,13 +94,12 @@
 			strAppName += ' ' + strVersion;
 		}
 
-
-		
-		//var strAppUrl = GetInstanceRecordURL('sys_package',oPackage.sys_id,'devtools');
-		//var strAppLink = HtmlRenderLink(strAppUrl,'<b>'+strAppName+'</b>',true);
+		if (strDependencyStatusSummary != 'ok')
+		{
+			bError = true;
+		}	
 		
 		strHtmlInner += strAppName;
-		
 		
 		strHtmlInner += '<p>';
 		if (nLevel > 0)
@@ -111,10 +109,6 @@
 			{
 				bError = true;
 			}
-			if (strDependencyStatusSummary != 'ok')
-			{
-				bError = true;
-			}			
 			if (strDependencyStatus != 'circular' && strDependencyStatus != 'conflicting_versions')
 			{
 				strHtmlInner += 'Compatible Version(s): ' + GetValue(oPackage,'compatible_versions');
@@ -250,13 +244,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:10:20</sys_created_on>
         <sys_id>43e9fa97970ae910a6a07767f053af20</sys_id>
-        <sys_mod_count>46</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>HtmlRenderRepoDependencies</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_43e9fa97970ae910a6a07767f053af20</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-04-08 14:30:30</sys_updated_on>
+        <sys_updated_on>2024-06-18 14:19:08</sys_updated_on>
     </sys_script_include>
 </record_update>

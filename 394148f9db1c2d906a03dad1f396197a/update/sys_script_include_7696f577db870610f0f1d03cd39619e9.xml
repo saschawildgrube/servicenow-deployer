@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.TargetInstanceUpdateLocalCmdb</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Updates the local CMDB based on data gathered from the target instance.</description>
+        <name>TargetInstanceUpdateLocalCmdb</name>
+        <script><![CDATA[function TargetInstanceUpdateLocalCmdb(grInstance)
+{
+	var GetValue = x_snc_devtools.GetValue;
+	var ConfigurationItemServiceNowAppInsertOrUpdateFromList =
+		x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateFromList;
+	
+	var status = TargetInstanceGetStatus(grInstance);
+	
+	if (GetValue(status,'message') != 'SUCCESS')
+	{
+		return false;
+	}
+	
+	var strInstanceName = GetValue(status,'instance_name');
+	var aApps = GetValue(status,'apps');
+	return ConfigurationItemServiceNowAppInsertOrUpdateFromList(
+		strInstanceName,
+		aApps);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-04 07:51:27</sys_created_on>
+        <sys_id>7696f577db870610f0f1d03cd39619e9</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>TargetInstanceUpdateLocalCmdb</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_7696f577db870610f0f1d03cd39619e9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-04 07:54:36</sys_updated_on>
+    </sys_script_include>
+</record_update>

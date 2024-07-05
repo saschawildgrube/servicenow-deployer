@@ -94,7 +94,7 @@
 			strAppName += ' ' + strVersion;
 		}
 
-		if (strDependencyStatusSummary != 'ok')
+		if (strDependencyStatusSummary != 'ok' && strDependencyStatusSummary != 'out_of_scope')
 		{
 			bError = true;
 		}	
@@ -127,7 +127,7 @@
 			else if (strDependencyStatus == 'missing_repo_url')
 			{
 				
-			}		
+			}
 			else if (strDependencyStatus == 'out_of_scope')
 			{
 				strHtmlInner += StringFormat(
@@ -161,7 +161,7 @@
 		if (   strDependencyStatus != 'circular'
 			&& strDependencyStatus != 'missing_repo_url'
 			&& strDependencyStatus != 'missing'
-		    && strDependencyStatus != 'out_of_scope')
+			&& strDependencyStatus != 'out_of_scope')
 		{
 			if (strMode == 'tree')
 			{
@@ -244,13 +244,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:10:20</sys_created_on>
         <sys_id>43e9fa97970ae910a6a07767f053af20</sys_id>
-        <sys_mod_count>47</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>HtmlRenderRepoDependencies</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_43e9fa97970ae910a6a07767f053af20</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-06-18 14:19:08</sys_updated_on>
+        <sys_updated_on>2024-07-05 08:00:24</sys_updated_on>
     </sys_script_include>
 </record_update>

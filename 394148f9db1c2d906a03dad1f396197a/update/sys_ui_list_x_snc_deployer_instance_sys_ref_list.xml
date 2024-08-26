@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="00abf051b9103110d0adbb64e3a1e94f">a635ab491b290690063ddc61ab4bcb49</list_id>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="4d65a0438320021000d5ccc0deaad327">a635ab491b290690063ddc61ab4bcb49</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -33,14 +33,14 @@
             <sys_id>a635ab491b290690063ddc61ab4bcb49</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>x_snc_deployer_instance</sys_name>
-            <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+            <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
             <sys_policy/>
-            <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+            <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
             <sys_update_name>sys_ui_list_x_snc_deployer_instance_sys_ref_list</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2024-04-12 13:17:18</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">00abf051b9103110d0adbb64e3a1e94f</view>
+            <view display_value="Reference List" name="sys_ref_list">4d65a0438320021000d5ccc0deaad327</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

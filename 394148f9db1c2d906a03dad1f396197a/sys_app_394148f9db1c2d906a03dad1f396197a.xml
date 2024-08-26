@@ -15,7 +15,8 @@
         <license_model>none</license_model>
         <logo/>
         <menu/>
-        <name>Deployer WORK IN PROGRESS</name>
+        <name>Deployer</name>
+        <package_json/>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
@@ -45,8 +46,6 @@
         <x_snc_devtools_maintainer>Sascha Wildgrube</x_snc_devtools_maintainer>
         <x_snc_devtools_maintainer_email>sascha.wildgrube@servicenow.com</x_snc_devtools_maintainer_email>
         <x_snc_devtools_repo_url>https://github.com/saschawildgrube/servicenow-deployer.git</x_snc_devtools_repo_url>
-        <x_snc_wildgrubelab_test/>
-        <x_snc_wildgrubelab_test2/>
     </sys_app>
     <sys_translated_text action="delete_multiple" query="documentkey=394148f9db1c2d906a03dad1f396197a"/>
 </record_update>

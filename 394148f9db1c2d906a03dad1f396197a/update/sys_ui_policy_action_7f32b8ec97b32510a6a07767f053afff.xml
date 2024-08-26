@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>ignore</disabled>
         <field>errors</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-06-29 14:57:28</sys_updated_on>
         <table>x_snc_deployer_repository_application_status</table>
         <ui_policy display_value="Repository Application Status - Show Errors in case of error ">461238ec97b32510a6a07767f053af61</ui_policy>
+        <value/>
+        <value_action/>
         <visible>true</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=7f32b8ec97b32510a6a07767f053afff"/>
 </record_update>

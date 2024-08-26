@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>ignore</disabled>
         <field>retry_count</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-11-03 16:01:48</sys_updated_on>
         <table>x_snc_deployer_deployment_task</table>
         <ui_policy display_value="Deployment Task - Hide Retry Count">e0b2c3d91bdeb5106c17fdd49b4bcb1d</ui_policy>
+        <value/>
+        <value_action/>
         <visible>false</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=00e287d91bdeb5106c17fdd49b4bcbd9"/>
 </record_update>

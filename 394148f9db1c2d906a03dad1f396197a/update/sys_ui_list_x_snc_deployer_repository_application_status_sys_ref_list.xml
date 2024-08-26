@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>display</element>
-            <list_id display_value="x_snc_deployer_repository_application_status" element="NULL" name="x_snc_deployer_repository_application_status" parent="NULL" relationship="NULL" sys_domain="global" view="00abf051b9103110d0adbb64e3a1e94f">6dd98ed81bdeb1106c17fdd49b4bcb0e</list_id>
+            <list_id display_value="x_snc_deployer_repository_application_status" element="NULL" name="x_snc_deployer_repository_application_status" parent="NULL" relationship="NULL" sys_domain="global" view="4d65a0438320021000d5ccc0deaad327">6dd98ed81bdeb1106c17fdd49b4bcb0e</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_on</element>
-            <list_id display_value="x_snc_deployer_repository_application_status" element="NULL" name="x_snc_deployer_repository_application_status" parent="NULL" relationship="NULL" sys_domain="global" view="00abf051b9103110d0adbb64e3a1e94f">6dd98ed81bdeb1106c17fdd49b4bcb0e</list_id>
+            <list_id display_value="x_snc_deployer_repository_application_status" element="NULL" name="x_snc_deployer_repository_application_status" parent="NULL" relationship="NULL" sys_domain="global" view="4d65a0438320021000d5ccc0deaad327">6dd98ed81bdeb1106c17fdd49b4bcb0e</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -55,7 +55,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2023-10-31 09:18:29</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">00abf051b9103110d0adbb64e3a1e94f</view>
+            <view display_value="Reference List" name="sys_ref_list">4d65a0438320021000d5ccc0deaad327</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

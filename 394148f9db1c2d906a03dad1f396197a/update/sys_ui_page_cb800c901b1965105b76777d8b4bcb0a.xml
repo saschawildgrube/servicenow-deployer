@@ -18,15 +18,15 @@
 
 	<h2>Features</h2> 
 	<p>The Deployer app enables fully a automated CICD pipeline based on source control. It installs applications and dependent applications, runs Instance Scan checks, installation scripts and ATF tests automatically.</p>
-	<p>The Deployer app protects the target instance from unwanted or unexpected data deletion. For each target instance a data deletion policy must be specified.</p>
+	<p>The Deployer app protects the Target Instance from unwanted or unexpected data deletion. For each Target Instance a data deletion policy must be specified.</p>
 	<ul>
-		<li><b>Deny</b>: Data deletion is not allowed as part of a deployment. If applications are selected for deployment which do not (or no longer) contain tables or columns which exist on the target instance the deployment cannot proceed.</li>
+		<li><b>Deny</b>: Data deletion is not allowed as part of a deployment. If applications are selected for deployment which do not (or no longer) contain tables or columns which exist on the Target Instance the deployment cannot proceed.</li>
 		<li><b>Confirm</b>: Data deletion is allowed but must be explicitly confirmed during the deployment.</li>
-		<li><b>Warn</b>: Data deletion is allowed. Users are only warned of data deletion on the target instance.</li>
+		<li><b>Warn</b>: Data deletion is allowed. Users are only warned of data deletion on the Target Instance.</li>
 	</ul>
 	
 	<h3>How the (automated) deployment works</h3>
-	<p>The Deployer app is a remote control that uses REST APIs exposed by the Target Instance. These REST API endpoints allow Deployer to retrieve information on the Target Instance, trigger source control operations, run Instance Scan checks and execute ATF test suites.</p>
+	<p>The Deployer app is installed on both the Controller Instance from where deployments are coordinated and specific activities are triggered on the Target Instances to which applications are installed. The Deployer on the Controller Instance uses REST APIs exposed by the Target Instance. These REST API endpoints allow the Deployer to retrieve information about the Target Instance, to trigger source control operations, run Instance Scan checks and execute ATF test suites.</p>
 	<p>Automated Deployment Procedure</p>
 	<ol>
 		<li>Determining the applications to be installed by creating a Repository Application Status. The availability of all application version branches is checked based on the dependency tree.</li>
@@ -35,8 +35,8 @@
 		<li>Running all ATF tests in reverse dependency order.</li>
 	</ol>
 
-	<h3>CICD Instance features</h3>
-	<p>The "CICD Instance" is an instance that is used to run and operate CICD pipeline automation tools - a control tower.</p>
+	<h3>Controller Instance features</h3>
+	<p>The "Controller Instance" is an instance that is used to run and operate the CICD pipeline - it acts as a control tower.</p>
 	<p><a href="/x_snc_deployer_repository_credentials_list.do" target="_blank">Repository Credentials</a>&#160;need be configured so that the Deployer can access a public or internal source control system based on the repository url alone. Repository Credentials allow to map credential records with specific repository urls or just fractions of urls to cover multiple repositories.</p>
 	<p>The&#160;<a href="/x_snc_deployer_repository_application_status_list.do" target="_blank">Repository App Status</a>&#160;feature can be used to analyse a given repository and check its readyness for deployment. To access the repositories, the Repository Credentials must be configured.</p>
 	<p>The current state in an application's "dev" branch can also be assessed using the Repository Application Status feature to get a preview of the result for the application before actually baselining it.</p>
@@ -45,10 +45,10 @@
 	<p><a href="/x_snc_deployer_deployment_list.do" target="_blank">Deployments</a>&#160;represent the specific deployment of an application (and its dependencies) in a given version to a specified Target Instance.</p>
 	<p>Supported automatic deployment tasks:
 		<ul>
-			<li>Installing new versions of imported applications on target instances ("Switch Branch")</li>
+			<li>Installing new versions of imported applications on Target Instances ("Switch Branch")</li>
 			<li>Installing new versions or refresh the current version of imported applications on target instances ("Apply Remote Changes")</li>
-			<li>Running installation scripts on target instances</li>
-			<li>Running CodeSanity checks on target instances (based on Instance Scan)</li>
+			<li>Running installation scripts on Target Instances</li>
+			<li>Running CodeSanity checks on Target Instances (based on Instance Scan)</li>
 			<li>Running the default ATF Test Suite of applications on target instances</li>
 		</ul>
 	</p>
@@ -65,7 +65,7 @@
 
 	<h3>Target Instance features</h3>
 	<p>The "Target Instance" is an instance to which applications are to be deployed.</p>
-	<p>The Deployer app exposes a REST API to check the status of the target instance and to asynchronously execute the installation scripts of an application and all of its dependencies in the correct order.</p>
+	<p>The Deployer app exposes a REST API to check the status of the Target Instance and to asynchronously execute the installation scripts of an application and all of its dependencies in the correct order.</p>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -74,13 +74,13 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Vancouver,Washington',
+				'Vancouver,Washington,Xanadu',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
 	</ul>
 	
-	<h2>Installation on target instance</h2>
+	<h2>Installation of Target Instances</h2>
 	<ol>
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsImportFromSourceControl(
@@ -97,10 +97,10 @@
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsAppInstall();
 		]</g2:no_escape>		
-		<li>Create a technical user and assign the x_snc_deployer.api role to allow a CICD automation tool to be configured to run installation scripts on the target instance remotely.</li>
+		<li>Create a technical user and assign the x_snc_deployer.api role to allow a CICD automation tool to be configured to run installation scripts on the Target Instance remotely.</li>
 	</ol>
 	
-	<h2>Installation on CICD instance</h2>
+	<h2>Installation of the Controller Instance</h2>
 	<ol>
 		<g2:no_escape>$[
 			docapi.RenderInstallationInstructionsImportFromSourceControl(
@@ -130,15 +130,24 @@
 	
 	<h3>Roles</h3>
 	<g2:no_escape>$[docapi.RenderRoles()]</g2:no_escape>		
-	
+
 	<h3>REST APIs</h3>
 	<g2:no_escape>$[docapi.RenderRestApis()]</g2:no_escape>		
-	
+
+	<h3>Tables</h3>
+	<g2:no_escape>$[docapi.RenderTables()]</g2:no_escape>	
+
 	<h3>UI Actions</h3>
 	<g2:no_escape>$[docapi.RenderUIActions()]</g2:no_escape>		
 
 	<h3>Script Includes</h3>
 	<g2:no_escape>$[docapi.RenderScriptIncludes()]</g2:no_escape>
+
+	<h3>Dependencies</h3>
+	<g2:no_escape>$[docapi.RenderDependencies()]</g2:no_escape>	
+
+	<h3>Technical Debts</h3>
+	<g2:no_escape>$[docapi.RenderTechnicalDebts()]</g2:no_escape>	
 
 <!--	
 	<h3>UI Scripts</h3>
@@ -160,18 +169,30 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.13.0 - 2024-08-26</h3>
+	<ol>
+		<li>DevTools 1.99.0 is required due to MID Server support in GitHubAPI, GitLabAPI and HttpRequest().</li>
+		<li>Deployer is now fully tested with Xanadu.</li>
+		<li>A MID Server can now be specified for a Repository Credential.</li>
+		<li>Added function GetRepositoryCredentialRecord().</li>
+		<li>Repository Credentials now have a proper display value.</li>
+		<li>Improved ATF test "Deployer - Deployer Target API - Run Install Scripts".</li>
+		<li>Changed term "CICD Instance" to "Controller Instance".</li>
+	</ol>
+
+
 	<h3>1.12.1 - 2024-07-05</h3>
 	<ol>
 		<li>Packages other than Custom Applications (sys_app) were erroneously treated as apps that can be installed from a source control repository when preparing a deployment. This has been fixed. Such packages are now ignored when creating the tasks.</li> 
-		<li>The in the Repository Application Status view, an error message was shown if at least one package is contained that is out of scope. This has been fixed.</li>
+		<li>In the Repository Application Status view, an error message was shown if at least one package is contained that is out of scope. This has been fixed.</li>
 	</ol>
 
 
 	<h3>1.12.0 - 2024-07-05</h3>
 	<ol>
 		<li>DevTools 1.94.0 is required due to the new functions to update the CMDB.</li>
-		<li>Deployer 1.12.0 requires the same version or higher on the target instance due to the change in the x_snc_deployer.api role and the new capabilities of the "Get Status" REST API endpoint.</li>
-		<li>The local CMDB is updated to reflect the installed applications on the target instance after a deployment.</li>
+		<li>Deployer 1.12.0 requires the same version or higher on the Target Instance due to the change in the x_snc_deployer.api role and the new capabilities of the "Get Status" REST API endpoint.</li>
+		<li>The local CMDB is updated to reflect the installed applications on the Target Instance after a deployment.</li>
 		<li>The local CMDB is updated to reflect the availability of installable applications after creating a Repository Application Status.</li>
 		<li>Added the UI Action "Update Local CMDB" on the Target Instance form.</li>
 		<li>The x_snc_deployer.api role now also contains the security_admin role - The admin and security_admin roles are required since the execution of ATF tests depends on the roles of the user triggering their execution.</li>
@@ -346,13 +367,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>171</sys_mod_count>
+        <sys_mod_count>189</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-05 09:33:48</sys_updated_on>
+        <sys_updated_on>2024-08-26 14:28:51</sys_updated_on>
     </sys_ui_page>
 </record_update>

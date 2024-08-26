@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>true</disabled>
         <field>skip_codesanity</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-09-22 12:29:10</sys_updated_on>
         <table>x_snc_deployer_deployment</table>
         <ui_policy display_value="Deployment - Disable Skip CodeSanity">d53fbdff1bd13150cd6153d16b4bcb61</ui_policy>
+        <value/>
+        <value_action/>
         <visible>ignore</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=476fb1331b153150cd6153d16b4bcb32"/>
 </record_update>

@@ -104,8 +104,8 @@ SourceControlAPI.prototype = {
 			return false;
 		}
 		
-		var grCredential = GetCredentialForRepository(strRepoUrl);
-		if (grCredential == false)
+		var grRepoCredential = GetRepositoryCredentialRecord(strRepoUrl);
+		if (grRepoCredential == false)
 		{
 			return false;
 		}		
@@ -125,7 +125,8 @@ SourceControlAPI.prototype = {
 				
 				var github = new x_snc_devtools.GitHubAPI();
 				
-				github.SetCredential(grCredential.sys_id);
+				github.SetCredential(grRepoCredential.credential);
+				github.SetMidServer(grRepoCredential.mid_server.name);
 
 				var aBranches = github.GetBranchesFromRepo(strOwner,strRepo);
 				
@@ -152,7 +153,8 @@ SourceControlAPI.prototype = {
 				var strProject = GetValue(parsed,'project');
 				
 				var gitlab = new x_snc_devtools.GitLabAPI();
-				gitlab.SetCredential(grCredential.sys_id);
+				gitlab.SetCredential(grRepoCredential.credential);
+				gitlab.SetMidServer(grRepoCredential.mid_server.name);
 				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var aBranches = gitlab.GetBranchesFromRepo(strProject);
@@ -202,11 +204,11 @@ SourceControlAPI.prototype = {
 			return false;
 		}
 		
-		var grCredential = GetCredentialForRepository(strRepoUrl);
-		if (grCredential == false)
+		var grRepoCredential = GetRepositoryCredentialRecord(strRepoUrl);
+		if (grRepoCredential == false)
 		{
 			return false;
-		}
+		}	
 			
 		switch (strRepoType)
 		{
@@ -222,7 +224,8 @@ SourceControlAPI.prototype = {
 				var strRepo = GetValue(parsed,'repo');
 				
 				var github = new x_snc_devtools.GitHubAPI();
-				github.SetCredential(grCredential.sys_id);
+				github.SetCredential(grRepoCredential.credential);
+				github.SetMidServer(grRepoCredential.mid_server.name);
 
 				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,strBranch,strPath);
 				
@@ -242,7 +245,8 @@ SourceControlAPI.prototype = {
 				var strProject = GetValue(parsed,'project');
 				
 				var gitlab = new x_snc_devtools.GitLabAPI();
-				gitlab.SetCredential(grCredential.sys_id);
+				gitlab.SetCredential(grRepoCredential.credential);
+				gitlab.SetMidServer(grRepoCredential.mid_server.name);
 				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var aFiles = gitlab.GetFilesFromBranch(strProject,strBranch,'');
@@ -275,11 +279,11 @@ SourceControlAPI.prototype = {
 			return false;
 		}
 		
-		var grCredential = GetCredentialForRepository(strRepoUrl);
-		if (grCredential == false)
+		var grRepoCredential = GetRepositoryCredentialRecord(strRepoUrl);
+		if (grRepoCredential == false)
 		{
 			return false;
-		}
+		}	
 			
 		switch (strRepoType)
 		{
@@ -295,7 +299,8 @@ SourceControlAPI.prototype = {
 				var strRepo = GetValue(parsed,'repo');
 				
 				var github = new x_snc_devtools.GitHubAPI();
-				github.SetCredential(grCredential.sys_id);
+				github.SetCredential(grRepoCredential.credential);
+				github.SetMidServer(grRepoCredential.mid_server.name);
 
 				var file = github.GetFile(strOwner,strRepo,strBranch,strPath);
 				if (file == false)
@@ -319,7 +324,8 @@ SourceControlAPI.prototype = {
 				var strProject = GetValue(parsed,'project');
 				
 				var gitlab = new x_snc_devtools.GitLabAPI();
-				gitlab.SetCredential(grCredential.sys_id);
+				gitlab.SetCredential(grRepoCredential.credential);
+				gitlab.SetMidServer(grRepoCredential.mid_server.name);
 				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var file = gitlab.GetFile(strProject,strBranch,strPath);
@@ -436,10 +442,6 @@ SourceControlAPI.prototype = {
 		var Base64Decode = x_snc_devtools.Base64Decode;
 		var ParseXml = x_snc_devtools.ParseXml;
 		var GetValue = x_snc_devtools.GetValue;
-		var SetValue = x_snc_devtools.SetValue;
-		var GetStringValue = x_snc_devtools.GetStringValue;	
-		var IsValidSysId = x_snc_devtools.IsValidSysId;
-		var Clone = x_snc_devtools.Clone;
 		var IsObject = x_snc_devtools.IsObject;
 		
 		var aFiles = this.GetFilesFromRepo(strRepoUrl,strBranch);
@@ -480,10 +482,6 @@ SourceControlAPI.prototype = {
 		var Base64Decode = x_snc_devtools.Base64Decode;
 		var ParseXml = x_snc_devtools.ParseXml;
 		var GetValue = x_snc_devtools.GetValue;
-		var SetValue = x_snc_devtools.SetValue;
-		var GetStringValue = x_snc_devtools.GetStringValue;	
-		var IsValidSysId = x_snc_devtools.IsValidSysId;
-		var Clone = x_snc_devtools.Clone;
 		var IsObject = x_snc_devtools.IsObject;
 		var IsArray = x_snc_devtools.IsArray;
 		
@@ -536,13 +534,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>100</sys_mod_count>
+        <sys_mod_count>101</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-12 16:31:04</sys_updated_on>
+        <sys_updated_on>2024-08-20 14:44:51</sys_updated_on>
     </sys_script_include>
 </record_update>

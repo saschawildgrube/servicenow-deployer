@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>ignore</disabled>
         <field>api_url</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-05-03 15:33:23</sys_updated_on>
         <table>x_snc_deployer_repository_credentials</table>
         <ui_policy display_value="Repository Credentials - GitLab">daa71bc21baee110cd6153d16b4bcb7f</ui_policy>
+        <value/>
+        <value_action/>
         <visible>true</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=f0d7dbc21baee110cd6153d16b4bcb05"/>
 </record_update>

@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>ignore</disabled>
         <field>smoke_test_instructions</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>false</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-11-02 10:18:50</sys_updated_on>
         <table>x_snc_deployer_instance</table>
         <ui_policy display_value="Instance - Hide Smoke Test Instructions ">a0c693281b9235106c17fdd49b4bcb92</ui_policy>
+        <value/>
+        <value_action/>
         <visible>false</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=c9e617281b9235106c17fdd49b4bcba0"/>
 </record_update>

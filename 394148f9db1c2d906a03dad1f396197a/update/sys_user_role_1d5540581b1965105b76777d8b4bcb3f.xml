@@ -8,7 +8,6 @@ The admin and security_admin roles are required since the execution of ATF tests
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.api</name>
-        <requires_subscription>-1</requires_subscription>
         <scoped_admin>false</scoped_admin>
         <suffix>api</suffix>
         <sys_class_name>sys_user_role</sys_class_name>

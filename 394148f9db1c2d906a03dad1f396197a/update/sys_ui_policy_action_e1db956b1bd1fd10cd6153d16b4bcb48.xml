@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>true</disabled>
         <field>enforce_downgrade</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2024-01-29 13:56:07</sys_updated_on>
         <table>x_snc_deployer_deployment</table>
         <ui_policy display_value="Deployment - Enable Enforce Downgrade">3cbbd16b1bd1fd10cd6153d16b4bcb53</ui_policy>
+        <value/>
+        <value_action/>
         <visible>ignore</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=e1db956b1bd1fd10cd6153d16b4bcb48"/>
 </record_update>

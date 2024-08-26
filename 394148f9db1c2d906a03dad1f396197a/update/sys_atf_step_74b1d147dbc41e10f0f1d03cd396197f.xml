@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-20 14:17:33</sys_created_on>
+        <sys_id>74b1d147dbc41e10f0f1d03cd396197f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_atf_step_74b1d147dbc41e10f0f1d03cd396197f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-20 14:23:40</sys_updated_on>
+        <table/>
+        <test display_value="Deployer - GetRepositoryCredentialRecord">eb915147dbc41e10f0f1d03cd39619a8</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=74b1d147dbc41e10f0f1d03cd396197f"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>74b1d147dbc41e10f0f1d03cd396197f</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-20 14:17:33</sys_created_on>
+        <sys_id>bcb1d147dbc41e10f0f1d03cd3961980</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-20 14:23:40</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GetRepositoryCredentialRecord(vRepo, vExpected)&#13;
+	{&#13;
+		function TestCase_GetRepositoryCredentialRecord_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == false)&#13;
+			{&#13;
+				return (vExpected == vResult);&#13;
+			}&#13;
+			if (x_snc_devtools.IsValidRecord(vResult) == false)&#13;
+			{&#13;
+				test.Log('IsValidRecord returned false');&#13;
+				return false;&#13;
+			}&#13;
+			test.Log(vResult.sys_id);&#13;
+			return x_snc_devtools.IsEqual(vExpected,x_snc_devtools.GetStringValue(vResult.sys_id));&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GetRepositoryCredentialRecord()',&#13;
+			GetRepositoryCredentialRecord,&#13;
+			{&#13;
+				'vRepo': vRepo&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetRepositoryCredentialRecord_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_GetRepositoryCredentialRecord(null,false);&#13;
+	TestCase_GetRepositoryCredentialRecord('bogus',false);&#13;
+&#13;
+	&#13;
+	var grCredential = new GlideRecord('basic_auth_credentials');&#13;
+	grCredential.initialize();&#13;
+	grCredential.type = 'basic_auth';&#13;
+	grCredential.name = 'GitHub Test1';&#13;
+	var strCredentialGitHubTest1SysId = x_snc_devtools.GlideRecordInsert(grCredential);&#13;
+	&#13;
+	var grRepoCredential = new GlideRecord('x_snc_deployer_repository_credentials');&#13;
+	grRepoCredential.initialize();&#13;
+	grRepoCredential.url = 'https://github.example.com/';&#13;
+	grRepoCredential.type = 'github';&#13;
+	grRepoCredential.active = true;&#13;
+	grRepoCredential.credential = strCredentialGitHubTest1SysId;&#13;
+	var strRepoCredentialGitHubTest1SysId = x_snc_devtools.GlideRecordInsert(grRepoCredential);&#13;
+&#13;
+	TestCase_GetRepositoryCredentialRecord(grRepoCredential,strRepoCredentialGitHubTest1SysId);&#13;
+	TestCase_GetRepositoryCredentialRecord('https://github.example.com/tester/examplerepo.git',strRepoCredentialGitHubTest1SysId);&#13;
+	&#13;
+&#13;
+	var grCredential = new GlideRecord('basic_auth_credentials');&#13;
+	grCredential.initialize();&#13;
+	grCredential.type = 'basic_auth';&#13;
+	grCredential.name = 'GitLab Test1';&#13;
+	var strCredentialGitLabTest1SysId = x_snc_devtools.GlideRecordInsert(grCredential);&#13;
+	&#13;
+	var grRepoCredential = new GlideRecord('x_snc_deployer_repository_credentials');&#13;
+	grRepoCredential.initialize();&#13;
+	grRepoCredential.url = 'https://gitlab.example.com/somegroup/';&#13;
+	grRepoCredential.type = 'gitlab';&#13;
+	grRepoCredential.active = true;&#13;
+	grRepoCredential.api_url = 'https://gitlab.example.com/api/v4/';&#13;
+	grRepoCredential.credential = strCredentialGitLabTest1SysId;&#13;
+	var strRepoCredentialGitLabTest1SysId = x_snc_devtools.GlideRecordInsert(grRepoCredential);&#13;
+&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/somegroup/tester/examplerepo.git',strRepoCredentialGitLabTest1SysId);&#13;
+	&#13;
+&#13;
+	var grCredential = new GlideRecord('basic_auth_credentials');&#13;
+	grCredential.initialize();&#13;
+	grCredential.type = 'basic_auth';&#13;
+	grCredential.name = 'GitLab Test2';&#13;
+	var strCredentialGitLabTest2SysId = x_snc_devtools.GlideRecordInsert(grCredential);	&#13;
+	&#13;
+	var grRepoCredential = new GlideRecord('x_snc_deployer_repository_credentials');&#13;
+	grRepoCredential.initialize();&#13;
+	grRepoCredential.url = 'https://gitlab.example.com/othergroup/';&#13;
+	grRepoCredential.type = 'gitlab';&#13;
+	grRepoCredential.api_url = 'https://gitlab.example.com/api/v4/';&#13;
+	grRepoCredential.active = true;&#13;
+	grRepoCredential.credential = strCredentialGitLabTest2SysId;&#13;
+	var strRepoCredentialGitLabTest2SysId = x_snc_devtools.GlideRecordInsert(grRepoCredential);	&#13;
+&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/othergroup/tester2/examplerepo2.git',strRepoCredentialGitLabTest2SysId);&#13;
+&#13;
+	&#13;
+	&#13;
+	var grCredential = new GlideRecord('basic_auth_credentials');&#13;
+	grCredential.initialize();&#13;
+	grCredential.type = 'basic_auth';&#13;
+	grCredential.name = 'GitLab Test3';&#13;
+	var strCredentialGitLabTest3SysId = x_snc_devtools.GlideRecordInsert(grCredential);	&#13;
+	&#13;
+	var grRepoCredential = new GlideRecord('x_snc_deployer_repository_credentials');&#13;
+	grRepoCredential.initialize();&#13;
+	grRepoCredential.url = 'https://gitlab.example.com/';&#13;
+	grRepoCredential.type = 'gitlab';&#13;
+	grRepoCredential.api_url = 'https://gitlab.example.com/api/v4/';&#13;
+	grRepoCredential.active = true;&#13;
+	grRepoCredential.credential = strCredentialGitLabTest3SysId;&#13;
+	var strRepoCredentialGitLabTest3SysId = x_snc_devtools.GlideRecordInsert(grRepoCredential);	&#13;
+&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/somegroup/tester/examplerepo.git',strRepoCredentialGitLabTest1SysId);&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/othergroup/tester2/examplerepo2.git',strRepoCredentialGitLabTest2SysId);&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/yetanothergroup/tester3/examplerepo3.git',strRepoCredentialGitLabTest3SysId);&#13;
+	&#13;
+	x_snc_devtools.RecordSetValue('x_snc_deployer_repository_credentials',strRepoCredentialGitLabTest3SysId,'active',false);&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/somegroup/tester/examplerepo.git',strRepoCredentialGitLabTest1SysId);&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/othergroup/tester2/examplerepo2.git',strRepoCredentialGitLabTest2SysId);&#13;
+	TestCase_GetRepositoryCredentialRecord('https://gitlab.example.com/yetanothergroup/tester3/examplerepo3.git',false);	&#13;
+	&#13;
+	&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>74b1d147dbc41e10f0f1d03cd396197f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-20 14:17:33</sys_created_on>
+        <sys_id>f4b1d147dbc41e10f0f1d03cd3961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-20 14:17:33</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

@@ -3,6 +3,8 @@
         <cleared>false</cleared>
         <disabled>ignore</disabled>
         <field>close_notes</field>
+        <field_message/>
+        <field_message_type/>
         <mandatory>ignore</mandatory>
         <sys_class_name>sys_ui_policy_action</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -18,6 +20,9 @@
         <sys_updated_on>2023-10-30 08:38:09</sys_updated_on>
         <table>x_snc_deployer_deployment</table>
         <ui_policy display_value="Deployment - Close Notes visible">27c634441bda71106c17fdd49b4bcb3a</ui_policy>
+        <value/>
+        <value_action/>
         <visible>true</visible>
     </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=82f6b4441bda71106c17fdd49b4bcb84"/>
 </record_update>

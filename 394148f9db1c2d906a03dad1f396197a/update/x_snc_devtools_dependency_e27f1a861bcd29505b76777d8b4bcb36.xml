@@ -4,21 +4,23 @@
         <documentation_url>https://www.wildgrube.com/servicenow-devtools</documentation_url>
         <name>DevTools</name>
         <package_class>sys_app</package_class>
-        <reason>Uses numerous functions and classes from DevTools - the GitHubAPI and GitLabAPI classes are of specific importance.&#13;
-Version 1.94.0 is required due the new functions to update the CMDB.</reason>
+        <reason>Uses numerous functions and classes from DevTools - the GitHubAPI and GitLabAPI classes are of specific importance.
+Version 1.94.0 is required due the new functions to update the CMDB.
+Version 1.96. is required due to new functions in DocumentationAPI.
+1.99.0 is required due to MID Server support.</reason>
         <repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</repo_url>
         <sys_class_name>x_snc_devtools_dependency</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-17 21:52:52</sys_created_on>
         <sys_id>e27f1a861bcd29505b76777d8b4bcb36</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>26</sys_mod_count>
         <sys_name>DevTools</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>x_snc_devtools_dependency_e27f1a861bcd29505b76777d8b4bcb36</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-03 20:57:43</sys_updated_on>
-        <versions>1.94.0</versions>
+        <sys_updated_on>2024-08-20 15:58:31</sys_updated_on>
+        <versions>1.99.0</versions>
     </x_snc_devtools_dependency>
 </record_update>

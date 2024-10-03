@@ -253,7 +253,7 @@
 					'1. Navigate to the instance\n'
 					+'2. Navigate to Studio\n'
 					+'3. Select "Import from Source Control"\n'
-					+'4. Enter as Repository URL: "'+app.x_snc_devtools_repo_url+'"\n'
+					+'4. Enter as Repository URL: '+app.x_snc_devtools_repo_url+'\n'
 					+'5. Select credential\n'
 					+'6. Enter as branch: "'+app.branch+'"\n'
 					+'7. Select "Import"\n';
@@ -370,13 +370,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>110</sys_mod_count>
+        <sys_mod_count>111</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-09-12 14:23:29</sys_updated_on>
+        <sys_updated_on>2024-10-01 11:18:07</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -2,6 +2,7 @@
     <element db_object_id="a28794e31bdc7910cd6153d16b4bcbe9" label="Instance" max_length="40" name="x_snc_deployer_instance" type="collection">
         <element label="Pre-Deployment Activities Instructions" max_length="2000" name="pre_deployment_activities_instructions" type="string"/>
         <element label="&quot;Platform&quot; Application Scope" max_length="40" name="platform_app_scope" type="string"/>
+        <element label="MID Server" max_length="32" name="mid_server" reference="ecc_agent" type="reference"/>
         <element label="Smoke Test" max_length="40" name="smoke_test" type="boolean"/>
         <element label="Run CodeSanity checks for each application" max_length="40" name="codesanity" type="boolean"/>
         <element label="Post-Deployment Activities" max_length="40" name="post_deployment_activities" type="boolean"/>
@@ -28,6 +29,9 @@
         <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
         <index name="index">
             <element name="credential"/>
+        </index>
+        <index name="index2">
+            <element name="mid_server"/>
         </index>
     </element>
 </database>

@@ -5,7 +5,21 @@
         <api_name>x_snc_deployer.SourceControlAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>The class acts as an interface to source control repositories in GitHub or GitLab.</description>
+        <description>The class acts as an interface to source control repositories in GitHub or GitLab.
+|
+Methods:
+* initialize()
+* GetRequestCount()
+* Error()
+* ParseRepoUrl()
+* GetBranchesFromRepo()
+* GetFilesFromRepo()
+* GetFileContent()
+* GetPackageRecordFromRepo()
+* GetDependencyRecordsFromRepo()
+* GetSysDBObjectRecordsFromRepo()
+* GetSysDictionaryRecordsFromRepo()
+* ProtectBranchReadOnly()</description>
         <name>SourceControlAPI</name>
         <script><![CDATA[var SourceControlAPI = Class.create();
 SourceControlAPI.prototype = {
@@ -526,6 +540,79 @@ SourceControlAPI.prototype = {
 		}
 		return aSysDictionary;
 	},
+
+
+	ProtectBranchReadOnly: function(strRepoUrl,strBranch)
+	{
+		var GetStringValue = x_snc_devtools.GetStringValue;
+		var GetValue = x_snc_devtools.GetValue;
+
+		strRepoUrl = GetStringValue(strRepoUrl);
+		strBranch = GetStringValue(strBranch);
+
+		var strRepoType = GetRepositoryType(strRepoUrl);
+		if (strRepoType == false)
+		{
+			return false;
+		}
+		
+		var grRepoCredential = GetRepositoryCredentialRecord(strRepoUrl);
+		if (grRepoCredential == false)
+		{
+			return false;
+		}	
+			
+		switch (strRepoType)
+		{
+			case 'github':
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strOwner = GetValue(parsed,'owner');
+				var strRepo = GetValue(parsed,'repo');
+				
+				var github = new x_snc_devtools.GitHubAPI();
+				github.SetCredential(grRepoCredential.credential);
+				github.SetMidServer(grRepoCredential.mid_server.name);
+
+				var bResult = github.ProtectBranchReadOnly(strOwner,strRepo,strBranch);
+
+				this.m_nRequestCount += github.GetRequestCount();
+
+				return bResult;
+				
+			case 'gitlab':
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strProject = GetValue(parsed,'project');
+				
+				var gitlab = new x_snc_devtools.GitLabAPI();
+				gitlab.SetCredential(grRepoCredential.credential);
+				gitlab.SetMidServer(grRepoCredential.mid_server.name);
+				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
+
+				//var bResult = gitlab.ProtectBranchReadOnly(strRepo,strBranch);
+				var bResult = false;
+
+				this.m_nRequestCount += gitlab.GetRequestCount();
+
+				return bResult;
+				
+			default:
+				return false;
+		}
+		
+	},
+
 		
 
     type: 'SourceControlAPI'
@@ -534,13 +621,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>102</sys_mod_count>
+        <sys_mod_count>103</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-17 14:22:00</sys_updated_on>
+        <sys_updated_on>2024-10-18 16:13:34</sys_updated_on>
     </sys_script_include>
 </record_update>

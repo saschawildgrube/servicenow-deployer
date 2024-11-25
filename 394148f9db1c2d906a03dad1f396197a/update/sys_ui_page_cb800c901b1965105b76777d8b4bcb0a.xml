@@ -53,6 +53,8 @@
 			<li>Running the default ATF Test Suite of applications on target instances</li>
 		</ul>
 	</p>
+
+	<p>During&#160;<a href="/x_snc_deployer_deployment_list.do" target="_blank">Deployments</a>&#160;the list of &#160;<a href="/x_snc_devtools_cmdb_ci_appl_servicenow_list.do?sysparm_query=app_instance_nameISEMPTY%5Eoperational_status%3D5&amp;sysparm_view=DevTools" target="_blank">available application versons in source control</a>&#160;and the&#160;<a href="/x_snc_devtools_cmdb_ci_appl_servicenow_list.do?sysparm_query=app_instance_nameISNOTEMPTY%5Eoperational_status%3D1&amp;sysparm_view=DevTools" target="_blank">actual installed applications on the target instance</a>&#160;are updated in the CMDB.</p>
 	
 	<p>Supported manual deployment tasks:
 		<ul>
@@ -176,17 +178,6 @@
 	<h3>Technical Debts</h3>
 	<g2:no_escape>$[docapi.RenderTechnicalDebts()]</g2:no_escape>	
 
-<!--	
-	<h3>UI Scripts</h3>
-	<g2:no_escape>$[docapi.RenderUIScripts()]</g2:no_escape>	
-	
-	<h3>Extension Points</h3>
-	<g2:no_escape>$[docapi.RenderExtensionPoints()]</g2:no_escape>		
-
-	<h3>Business Rules</h3>
-	<g2:no_escape>$[docapi.RenderBusinessRules()]</g2:no_escape>	
--->
- 
 	<h2>License</h2>
 	<g2:no_escape>$[docapi.RenderCopyright(2023,'Sascha Wildgrube')]</g2:no_escape>
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
@@ -418,13 +409,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>207</sys_mod_count>
+        <sys_mod_count>210</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-25 14:49:13</sys_updated_on>
+        <sys_updated_on>2024-11-25 15:01:04</sys_updated_on>
     </sys_ui_page>
 </record_update>

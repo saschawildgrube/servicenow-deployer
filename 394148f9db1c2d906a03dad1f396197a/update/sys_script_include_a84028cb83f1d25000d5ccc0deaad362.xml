@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.SortBranches</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Sorts an array of branches and returns the sorted array. The preference parameter indicates if the oldest or the latest available version should have preference. The default is "oldest".</description>
+        <name>SortBranches</name>
+        <script><![CDATA[function SortBranches(aBranches,strPreference)
+{
+	var GetStringValue = x_snc_devtools.GetStringValue;
+	var GetArrayValue = x_snc_devtools.GetArrayValue;
+	var CompareVersion = x_snc_devtools.CompareVersion;
+	var IsValidVersion = x_snc_devtools.IsValidVersion;
+
+	strPreference = GetStringValue(strPreference);
+	if (strPreference != 'latest')
+	{
+		strPreference = 'oldest';
+	}
+
+	function CompareBranches(strBranch1, strBranch2)
+	{
+		if (strBranch1 == 'master')
+		{
+			return 1;
+		}
+		if (strBranch2 == 'master')
+		{
+			return -1;
+		}
+
+		if (IsValidVersion(strBranch1) && IsValidVersion(strBranch2) == false)
+		{
+			return 1;
+		}
+		else if (IsValidVersion(strBranch1) == false && IsValidVersion(strBranch2))
+		{
+			return -1;
+		}
+		else if (IsValidVersion(strBranch1) == false && IsValidVersion(strBranch2) == false)
+		{
+			if (strBranch1 == strBranch2)
+			{
+				return 0;
+			}
+			if (strBranch1 == 'dev')
+			{
+				return 1;
+			}
+			if (strBranch2 == 'dev')
+			{
+				return -1;
+			}
+			return (strBranch1 > strBranch2)?(1):(-1);
+		} 
+		if (strPreference == 'latest')
+		{
+			return CompareVersion(strBranch2, strBranch1);
+		}
+		return CompareVersion(strBranch1, strBranch2);
+	}
+
+	aBranches = GetArrayValue(aBranches);
+	aBranches.sort(CompareBranches);
+	return aBranches;
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-11-15 10:32:50</sys_created_on>
+        <sys_id>a84028cb83f1d25000d5ccc0deaad362</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>SortBranches</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_a84028cb83f1d25000d5ccc0deaad362</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-11-25 16:04:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

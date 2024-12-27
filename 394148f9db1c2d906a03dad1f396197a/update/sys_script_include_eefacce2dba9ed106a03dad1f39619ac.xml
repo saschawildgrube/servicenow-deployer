@@ -387,12 +387,13 @@ SourceControlAPI.prototype = {
 				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var file = github.GetFile(strOwner,strRepo,strBranch,strPath);
+				
+				this.m_nRequestCount += github.GetRequestCount();
+				
 				if (file == false)
 				{
 					return false;
-				}
-				
-				this.m_nRequestCount += github.GetRequestCount();
+				}				
 				
 				var strContent = GetValue(file,'content');
 				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
@@ -413,17 +414,51 @@ SourceControlAPI.prototype = {
 				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var file = gitlab.GetFile(strProject,strBranch,strPath);
+				
+				this.m_nRequestCount += gitlab.GetRequestCount();
+				
 				if (file == false)
 				{
 					return false;
 				}
-				
-				this.m_nRequestCount += gitlab.GetRequestCount();
-				
+								
 				var strContent = GetValue(file,'content');
 				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
 				return strContent;			
 				
+			case 'azuredevops':
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strOrganization = GetValue(parsed,'organization');
+				var strProject = GetValue(parsed,'project');
+				var strRepo = GetValue(parsed,'repo');
+				
+				var azuredevops = new x_snc_devtools.AzureDevOpsAPI();
+				azuredevops.SetCredential(grRepoCredential.credential);
+				azuredevops.SetMidServer(grRepoCredential.mid_server.name);
+				azuredevops.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var strContent = azuredevops.GetFile(
+					strOrganization,
+					strProject,
+					strRepo,
+					strBranch,
+					strPath);
+				
+				this.m_nRequestCount += azuredevops.GetRequestCount();
+				
+				if (strContent == false)
+				{
+					return false;
+				}
+								
+				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
+				return strContent;	
+
 			default:
 				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,false);
 				return false;
@@ -691,13 +726,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>112</sys_mod_count>
+        <sys_mod_count>113</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-27 11:26:54</sys_updated_on>
+        <sys_updated_on>2024-12-27 12:37:33</sys_updated_on>
     </sys_script_include>
 </record_update>

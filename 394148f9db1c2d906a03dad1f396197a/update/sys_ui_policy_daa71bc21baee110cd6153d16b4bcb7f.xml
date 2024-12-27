@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
-        <conditions table="x_snc_deployer_repository_credentials">type=gitlab^EQ<item display_value="GitLab" endquery="false" field="type" goto="false" newquery="false" operator="=" or="false" value="gitlab"/>
+        <conditions table="x_snc_deployer_repository_credentials">type=gitlab^NQtype=github^github_on_premise=true^EQ<item display_value="GitLab" endquery="false" field="type" goto="false" newquery="false" operator="=" or="false" value="gitlab"/>
+            <item display_value="GitHub" endquery="false" field="type" goto="false" newquery="true" operator="=" or="false" value="github"/>
+            <item endquery="false" field="github_on_premise" goto="false" newquery="false" operator="=" or="false" value="true"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>
         <description/>
@@ -21,22 +23,22 @@
 
 }]]></script_true>
         <set_values/>
-        <short_description>Repository Credentials - GitLab</short_description>
+        <short_description>Repository Credentials - API URL</short_description>
         <sys_class_name>sys_ui_policy</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-05-03 15:32:42</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>daa71bc21baee110cd6153d16b4bcb7f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Repository Credentials - GitLab</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Repository Credentials - API URL</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_policy_daa71bc21baee110cd6153d16b4bcb7f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-03 10:02:35</sys_updated_on>
+        <sys_updated_on>2024-12-27 09:23:57</sys_updated_on>
         <table>x_snc_deployer_repository_credentials</table>
         <ui_type>0</ui_type>
         <view/>

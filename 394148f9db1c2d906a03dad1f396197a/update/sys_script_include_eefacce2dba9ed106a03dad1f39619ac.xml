@@ -52,11 +52,13 @@ SourceControlAPI.prototype = {
 		{
 			case 'github':
 
-				strRepoUrl = StringReplace(strRepoUrl,'https://github.com/','');
-				strRepoUrl = StringReplace(strRepoUrl,'.git','');
-				strRepoUrl = StringStripTrailingSlash(strRepoUrl);
+				var strRepoPath = StringReplace(strRepoUrl,'https://','');
+				strRepoPath = StringReplace(strRepoPath,'.git','');
+				strRepoPath = StringStripTrailingSlash(strRepoPath);
+				var nFirstSlash = StringFind(strRepoPath,'/');
+				strRepoPath = strRepoPath.substring(nFirstSlash+1);
 				
-				var aComponents = strRepoUrl.split('/');
+				var aComponents = strRepoPath.split('/');
 				if (aComponents.length < 2)
 				{
 					return false;
@@ -64,6 +66,7 @@ SourceControlAPI.prototype = {
 				var result = {};
 				result['repo'] = aComponents[aComponents.length-1];
 				result['owner'] = aComponents[aComponents.length-2];
+				result['api_url'] = GetRepositoryApiUrl(strRepoUrl);
 				return result;
 				
 			case 'gitlab':
@@ -75,24 +78,7 @@ SourceControlAPI.prototype = {
 				strProject = strProject.substring(nFirstSlash+1);
 				var result = {};
 				result['project'] = strProject;
-				
-				function GetRepositoryApi(strRepoUrl)
-				{
-					var grRepoCredentials = new GlideRecord('x_snc_deployer_repository_credentials');
-					grRepoCredentials.orderByDesc('url');
-					grRepoCredentials.addActiveQuery();
-					grRepoCredentials.query();
-					while (grRepoCredentials.next())
-					{
-						if (strRepoUrl.indexOf(grRepoCredentials.url) == 0)
-						{
-							return GetStringValue(grRepoCredentials.api_url);
-						}
-					}
-					return false;
-				}
-				
-				result['api_url'] = GetRepositoryApi(strRepoUrl);
+				result['api_url'] = GetRepositoryApiUrl(strRepoUrl);
 				return result;			
 				
 			default:
@@ -141,6 +127,7 @@ SourceControlAPI.prototype = {
 				
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var aBranches = github.GetBranchesFromRepo(strOwner,strRepo);
 				
@@ -240,6 +227,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,strBranch,strPath);
 				
@@ -315,6 +303,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var file = github.GetFile(strOwner,strRepo,strBranch,strPath);
 				if (file == false)
@@ -578,6 +567,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var bResult = github.ProtectBranchReadOnly(strOwner,strRepo,strBranch);
 
@@ -620,13 +610,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>105</sys_mod_count>
+        <sys_mod_count>108</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-21 14:06:47</sys_updated_on>
+        <sys_updated_on>2024-12-27 10:16:48</sys_updated_on>
     </sys_script_include>
 </record_update>

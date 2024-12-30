@@ -201,7 +201,7 @@
 		<li>If ATF tests are active for a PROD Target Instance warnings are displayed.</li>
 		<li>If ATF tests or CodeSanity checks are skipped in a deployment warnings are displayed.</li>
 		<li>Added function GetRepositoryApiUrl() to determine the API url for a given repository url.</li>
-		<li>GetRepositoryType() now only uses active repository credential mappings to determine the type of the repository.</li>
+		<li>GetRepositoryType() now only uses active repository credential mappings to determine the type of the repository. This also means that if no valid and active GitLab repository credential can be found, the type cannot be determined.</li>
 		<li>Improved description of manual task to "Import From Source Control".</li>
 		<li>Reduced flakiness of test "Deployer - GetLatestRepoDependencyList".</li>
 		<li>Installation instructions now also include running the Test Suite.</li>
@@ -434,13 +434,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>233</sys_mod_count>
+        <sys_mod_count>234</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-12-30 16:19:03</sys_updated_on>
+        <sys_updated_on>2024-12-30 16:38:25</sys_updated_on>
     </sys_ui_page>
 </record_update>

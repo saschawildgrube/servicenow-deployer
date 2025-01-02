@@ -31,19 +31,13 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
-	var grTask = new GlideRecord('x_snc_deployer_deployment_task');
-
-	grTask.addQuery('deployment','=',current.sys_id);
-	grTask.orderBy('order');
-	grTask.addQuery('state','=',GetDeploymentTaskState('pending'));
-	grTask.setLimit(1);
-	grTask.query();
-	if (grTask.next())
+	var grTask = GetNextPendingDeploymentTaskRecord(current);
+	if (grTask != false)
 	{
 		grTask.state =  GetDeploymentTaskState('inprogress');
-		grTask.update();
-	}	
-
+		grTask.update();		
+	}
+	
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -51,7 +45,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a555e6d41b52f1106c17fdd49b4bcb80</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Deployment - Start</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -59,7 +53,7 @@
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_a555e6d41b52f1106c17fdd49b4bcb80</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-01 14:41:59</sys_updated_on>
+        <sys_updated_on>2025-01-02 16:44:27</sys_updated_on>
         <template/>
         <when>after</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

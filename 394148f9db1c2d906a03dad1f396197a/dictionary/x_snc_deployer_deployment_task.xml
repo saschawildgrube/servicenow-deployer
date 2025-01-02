@@ -23,5 +23,6 @@
                 <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
             </choice>
         </element>
+        <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
     </element>
 </database>

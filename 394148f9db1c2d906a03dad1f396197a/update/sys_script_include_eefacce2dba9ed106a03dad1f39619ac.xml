@@ -5,20 +5,21 @@
         <api_name>x_snc_deployer.SourceControlAPI</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description>The class acts as an interface to source control repositories in GitHub or GitLab.
-|
-Methods:
-* initialize()
-* GetRequestCount()
-* Error()
-* ParseRepoUrl()
-* GetBranchesFromRepo()
-* GetFilesFromRepo()
-* GetFileContent()
-* GetPackageRecordFromRepo()
-* GetDependencyRecordsFromRepo()
-* GetSysDBObjectRecordsFromRepo()
-* GetSysDictionaryRecordsFromRepo()
+        <description>The class acts as an interface to source control repositories in GitHub or GitLab.&#13;
+AzureDevOps support has been added as an experimental (and not yet fully tested) feature.&#13;
+|&#13;
+Methods:&#13;
+* initialize()&#13;
+* GetRequestCount()&#13;
+* Error()&#13;
+* ParseRepoUrl()&#13;
+* GetBranchesFromRepo()&#13;
+* GetFilesFromRepo()&#13;
+* GetFileContent()&#13;
+* GetPackageRecordFromRepo()&#13;
+* GetDependencyRecordsFromRepo()&#13;
+* GetSysDBObjectRecordsFromRepo()&#13;
+* GetSysDictionaryRecordsFromRepo()&#13;
 * ProtectBranchReadOnly()</description>
         <name>SourceControlAPI</name>
         <script><![CDATA[var SourceControlAPI = Class.create();
@@ -52,11 +53,13 @@ SourceControlAPI.prototype = {
 		{
 			case 'github':
 
-				strRepoUrl = StringReplace(strRepoUrl,'https://github.com/','');
-				strRepoUrl = StringReplace(strRepoUrl,'.git','');
-				strRepoUrl = StringStripTrailingSlash(strRepoUrl);
+				var strRepoPath = StringReplace(strRepoUrl,'https://','');
+				strRepoPath = StringReplace(strRepoPath,'.git','');
+				strRepoPath = StringStripTrailingSlash(strRepoPath);
+				var nFirstSlash = StringFind(strRepoPath,'/');
+				strRepoPath = strRepoPath.substring(nFirstSlash+1);
 				
-				var aComponents = strRepoUrl.split('/');
+				var aComponents = strRepoPath.split('/');
 				if (aComponents.length < 2)
 				{
 					return false;
@@ -64,6 +67,7 @@ SourceControlAPI.prototype = {
 				var result = {};
 				result['repo'] = aComponents[aComponents.length-1];
 				result['owner'] = aComponents[aComponents.length-2];
+				result['api_url'] = GetRepositoryApiUrl(strRepoUrl);
 				return result;
 				
 			case 'gitlab':
@@ -75,25 +79,28 @@ SourceControlAPI.prototype = {
 				strProject = strProject.substring(nFirstSlash+1);
 				var result = {};
 				result['project'] = strProject;
+				result['api_url'] = GetRepositoryApiUrl(strRepoUrl);
+				return result;	
+
+			case 'azuredevops':
+
+				var strRepoPath = StringReplace(strRepoUrl,'https://','');
+				strRepoPath = StringReplace(strRepoPath,'.git','');
+				strRepoPath = StringStripTrailingSlash(strRepoPath);
+				var nFirstSlash = StringFind(strRepoPath,'/');
+				strRepoPath = strRepoPath.substring(nFirstSlash+1);
 				
-				function GetRepositoryApi(strRepoUrl)
+				var aComponents = strRepoPath.split('/');
+				if (aComponents.length < 4)
 				{
-					var grRepoCredentials = new GlideRecord('x_snc_deployer_repository_credentials');
-					grRepoCredentials.orderByDesc('url');
-					grRepoCredentials.addActiveQuery();
-					grRepoCredentials.query();
-					while (grRepoCredentials.next())
-					{
-						if (strRepoUrl.indexOf(grRepoCredentials.url) == 0)
-						{
-							return GetStringValue(grRepoCredentials.api_url);
-						}
-					}
 					return false;
 				}
-				
-				result['api_url'] = GetRepositoryApi(strRepoUrl);
-				return result;			
+				var result = {};
+				result['organization'] = aComponents[aComponents.length-4];
+				result['project'] = aComponents[aComponents.length-3];
+				result['repo'] = aComponents[aComponents.length-1];
+				result['api_url'] = GetRepositoryApiUrl(strRepoUrl);
+				return result;							
 				
 			default:
 				return false;
@@ -141,6 +148,7 @@ SourceControlAPI.prototype = {
 				
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var aBranches = github.GetBranchesFromRepo(strOwner,strRepo);
 				
@@ -184,6 +192,37 @@ SourceControlAPI.prototype = {
 
 				this.m_cache.SetItem('GetBranchesFromRepo'+strRepoUrl,aResult);
 				return aResult;				
+
+			case 'azuredevops':
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strOrganization = GetValue(parsed,'organization');
+				var strProject = GetValue(parsed,'project');
+				var strRepo = GetValue(parsed,'repo');
+				
+				var azuredevops = new x_snc_devtools.AzureDevOpsAPI();
+				azuredevops.SetCredential(grRepoCredential.credential);
+				azuredevops.SetMidServer(grRepoCredential.mid_server.name);
+				azuredevops.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var aBranches = azuredevops.GetBranchesFromRepo(strOrganization,strProject,strRepo);
+				
+				var aResult = [];
+				
+				for (var nBranch = 0; nBranch < aBranches.length; nBranch++)
+				{
+					aResult.push(GetValue(aBranches,nBranch,'name'));
+				}
+				
+				this.m_nRequestCount += azuredevops.GetRequestCount();
+
+				this.m_cache.SetItem('GetBranchesFromRepo'+strRepoUrl,aResult);
+				return aResult;								
 				
 			default:
 				this.m_cache.SetItem('GetBranchesFromRepo'+strRepoUrl,false);
@@ -240,6 +279,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var aFiles = github.GetFilesFromBranch(strOwner,strRepo,strBranch,strPath);
 				
@@ -269,6 +309,36 @@ SourceControlAPI.prototype = {
 				
 				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,aFiles);
 				return aFiles;	
+
+
+			case 'azuredevops':
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strOrganization = GetValue(parsed,'organization');
+				var strProject = GetValue(parsed,'project');
+				var strRepo = GetValue(parsed,'repo');
+				
+				var azuredevops = new x_snc_devtools.AzureDevOpsAPI();
+				azuredevops.SetCredential(grRepoCredential.credential);
+				azuredevops.SetMidServer(grRepoCredential.mid_server.name);
+				azuredevops.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var aFiles = azuredevops.GetFilesFromBranch(
+					strOrganization,
+					strProject,
+					strRepo,
+					strBranch,'');
+
+				this.m_nRequestCount += azuredevops.GetRequestCount();
+				
+				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,aFiles);
+				return aFiles;						
+
 				
 			default:
 				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,false);
@@ -315,14 +385,16 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var file = github.GetFile(strOwner,strRepo,strBranch,strPath);
+				
+				this.m_nRequestCount += github.GetRequestCount();
+				
 				if (file == false)
 				{
 					return false;
-				}
-				
-				this.m_nRequestCount += github.GetRequestCount();
+				}				
 				
 				var strContent = GetValue(file,'content');
 				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
@@ -343,17 +415,51 @@ SourceControlAPI.prototype = {
 				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var file = gitlab.GetFile(strProject,strBranch,strPath);
+				
+				this.m_nRequestCount += gitlab.GetRequestCount();
+				
 				if (file == false)
 				{
 					return false;
 				}
-				
-				this.m_nRequestCount += gitlab.GetRequestCount();
-				
+								
 				var strContent = GetValue(file,'content');
 				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
 				return strContent;			
 				
+			case 'azuredevops':
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strOrganization = GetValue(parsed,'organization');
+				var strProject = GetValue(parsed,'project');
+				var strRepo = GetValue(parsed,'repo');
+				
+				var azuredevops = new x_snc_devtools.AzureDevOpsAPI();
+				azuredevops.SetCredential(grRepoCredential.credential);
+				azuredevops.SetMidServer(grRepoCredential.mid_server.name);
+				azuredevops.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var strContent = azuredevops.GetFile(
+					strOrganization,
+					strProject,
+					strRepo,
+					strBranch,
+					strPath);
+				
+				this.m_nRequestCount += azuredevops.GetRequestCount();
+				
+				if (strContent == false)
+				{
+					return false;
+				}
+								
+				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,strContent);
+				return strContent;	
+
 			default:
 				this.m_cache.SetItem('GetFileContent'+strRepoUrl+strBranch+strPath,false);
 				return false;
@@ -578,6 +684,7 @@ SourceControlAPI.prototype = {
 				var github = new x_snc_devtools.GitHubAPI();
 				github.SetCredential(grRepoCredential.credential);
 				github.SetMidServer(grRepoCredential.mid_server.name);
+				github.SetApiUrl(GetValue(parsed,'api_url'));
 
 				var bResult = github.ProtectBranchReadOnly(strOwner,strRepo,strBranch);
 
@@ -605,6 +712,33 @@ SourceControlAPI.prototype = {
 				this.m_nRequestCount += gitlab.GetRequestCount();
 
 				return bResult;
+
+			case 'azuredevops':
+				
+				var parsed = this.ParseRepoUrl(strRepoUrl);
+				if (parsed == false)
+				{
+					return false;
+				}
+				
+				var strOrganization = GetValue(parsed,'organization');
+				var strProject = GetValue(parsed,'project');
+				var strRepo = GetValue(parsed,'repo');
+				
+				var azuredevops = new x_snc_devtools.AzureDevOpsAPI();
+				azuredevops.SetCredential(grRepoCredential.credential);
+				azuredevops.SetMidServer(grRepoCredential.mid_server.name);
+				azuredevops.SetApiUrl(GetValue(parsed,'api_url'));
+
+				var bResult = azuredevops.ProtectBranchReadOnly(
+					strOrganization,
+					strProject,
+					strRepo,
+					strBranch);
+
+				this.m_nRequestCount += azuredevops.GetRequestCount();
+
+				return bResult;				
 				
 			default:
 				return false;
@@ -620,13 +754,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>105</sys_mod_count>
+        <sys_mod_count>115</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-21 14:06:47</sys_updated_on>
+        <sys_updated_on>2024-12-27 12:49:49</sys_updated_on>
     </sys_script_include>
 </record_update>

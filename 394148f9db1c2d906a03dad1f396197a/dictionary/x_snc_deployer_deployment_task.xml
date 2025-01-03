@@ -15,11 +15,14 @@
         <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
         <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" reference_cascade_rule="delete" type="reference"/>
         <element label="ID" max_length="32" name="id" type="string"/>
+        <element label="MID Server" max_length="32" name="mid_server" type="string"/>
+        <element label="Credential" max_length="32" name="credential" type="string"/>
         <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Automatic" sequence="2" value="automatic"/>
                 <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
             </choice>
         </element>
+        <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
     </element>
 </database>

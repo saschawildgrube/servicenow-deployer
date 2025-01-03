@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-02 16:46:41</sys_created_on>
+        <sys_id>a172492ac3bed2905a37f90705013124</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_atf_step_a172492ac3bed2905a37f90705013124</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-02 16:53:33</sys_updated_on>
+        <table/>
+        <test display_value="Deployer - GetNextPendingDeploymentTaskRecord">2572092ac3bed2905a37f907050131ce</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=a172492ac3bed2905a37f90705013124"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a172492ac3bed2905a37f90705013124</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-02 16:46:41</sys_created_on>
+        <sys_id>2d72492ac3bed2905a37f90705013125</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-02 16:53:33</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
+	&#13;
+	test.SetResult(true);&#13;
+&#13;
+	function TestCase_GetNextPendingDeploymentTaskRecord(vDeployment, vExpected)&#13;
+	{&#13;
+		function TestCase_GetNextPendingDeploymentTaskRecord_CheckResult(vInput,vExpected,vResult)&#13;
+		{&#13;
+			if (vExpected == true)&#13;
+			{&#13;
+				return x_snc_devtools.IsValidRecord(vResult);&#13;
+			}&#13;
+			return (vExpected == vResult);&#13;
+		}&#13;
+&#13;
+		test.TestCase(&#13;
+			'Function GetNextPendingDeplomentTaskRecord()',&#13;
+			GetNextPendingDeploymentTaskRecord,&#13;
+			{&#13;
+				'vDeployment': vDeployment&#13;
+			},&#13;
+			vExpected,&#13;
+			TestCase_GetNextPendingDeploymentTaskRecord_CheckResult);&#13;
+	}&#13;
+&#13;
+	TestCase_GetNextPendingDeploymentTaskRecord(null,false);&#13;
+&#13;
+	var grDeployment = new GlideRecord('x_snc_deployer_deployment');&#13;
+	grDeployment.initialize();&#13;
+	grDeployment.insert();&#13;
+&#13;
+	TestCase_GetNextPendingDeploymentTaskRecord(grDeployment,false);&#13;
+&#13;
+	var grTask = new GlideRecord('x_snc_deployer_deployment_task');&#13;
+	grTask.initialize();&#13;
+	grTask.deployment = grDeployment.sys_id;&#13;
+	grTask.order = 1;&#13;
+	grTask.insert();&#13;
+&#13;
+	TestCase_GetNextPendingDeploymentTaskRecord(grDeployment,false);&#13;
+&#13;
+	grDeployment.state = GetDeploymentState('inprogress');&#13;
+	grDeployment.update();&#13;
+&#13;
+	grTask.state = GetDeploymentTaskState('pending');&#13;
+	grTask.update();&#13;
+&#13;
+	TestCase_GetNextPendingDeploymentTaskRecord(grDeployment,true);&#13;
+&#13;
+&#13;
+	&#13;
+	return test.GetResult();&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a172492ac3bed2905a37f90705013124</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-02 16:46:41</sys_created_on>
+        <sys_id>6572492ac3bed2905a37f90705013125</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-02 16:46:41</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

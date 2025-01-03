@@ -19,7 +19,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-05-03 15:33:23</sys_updated_on>
         <table>x_snc_deployer_repository_credentials</table>
-        <ui_policy display_value="Repository Credentials - GitLab">daa71bc21baee110cd6153d16b4bcb7f</ui_policy>
+        <ui_policy display_value="Repository Credentials - API URL">daa71bc21baee110cd6153d16b4bcb7f</ui_policy>
         <value/>
         <value_action/>
         <visible>true</visible>

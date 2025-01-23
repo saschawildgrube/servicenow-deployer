@@ -6,21 +6,7 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>The class acts as an interface to source control repositories in GitHub or GitLab.&#13;
-AzureDevOps support has been added as an experimental (and not yet fully tested) feature.&#13;
-|&#13;
-Methods:&#13;
-* initialize()&#13;
-* GetRequestCount()&#13;
-* Error()&#13;
-* ParseRepoUrl()&#13;
-* GetBranchesFromRepo()&#13;
-* GetFilesFromRepo()&#13;
-* GetFileContent()&#13;
-* GetPackageRecordFromRepo()&#13;
-* GetDependencyRecordsFromRepo()&#13;
-* GetSysDBObjectRecordsFromRepo()&#13;
-* GetSysDictionaryRecordsFromRepo()&#13;
-* ProtectBranchReadOnly()
+AzureDevOps support has been added as an experimental (and not yet fully tested) feature.
 |
 Methods:
 * initialize()
@@ -222,7 +208,6 @@ SourceControlAPI.prototype = {
 			case 'azuredevops':
 				
 				var parsed = this.ParseRepoUrl(strRepoUrl);
-				Debug(parsed);
 				if (parsed == false)
 				{
 					return false;
@@ -245,8 +230,8 @@ SourceControlAPI.prototype = {
 				for (var nBranch = 0; nBranch < aBranches.length; nBranch++)
 				{
 					var strName = GetValue(aBranches,nBranch,'name');
-					strBranch = StringReplace(strName,'ref/heads/','');
-					aResult.push(GetValue(aBranches,nBranch,strBranch));
+					strBranch = StringReplace(strName,'refs/heads/','');
+					aResult.push(strBranch);
 				}
 				
 				this.m_nRequestCount += azuredevops.GetRequestCount();
@@ -266,6 +251,7 @@ SourceControlAPI.prototype = {
 	{
 		var GetStringValue = x_snc_devtools.GetStringValue;
 		var GetValue = x_snc_devtools.GetValue;
+		var GetArrayValue = x_snc_devtools.GetArrayValue;
 
 		strRepoUrl = GetStringValue(strRepoUrl);
 		strBranch = GetStringValue(strBranch);
@@ -333,7 +319,7 @@ SourceControlAPI.prototype = {
 				gitlab.SetMidServer(grRepoCredential.mid_server.name);
 				gitlab.SetApiUrl(GetValue(parsed,'api_url'));
 
-				var aFiles = gitlab.GetFilesFromBranch(strProject,strBranch,'');
+				var aFiles = gitlab.GetFilesFromBranch(strProject,strBranch,''); 
 
 				this.m_nRequestCount += gitlab.GetRequestCount();
 				
@@ -365,8 +351,11 @@ SourceControlAPI.prototype = {
 					strBranch,'');
 
 				this.m_nRequestCount += azuredevops.GetRequestCount();
-				
 				this.m_cache.SetItem('GetFilesFromRepo'+strRepoUrl+strBranch+strPath,aFiles);
+
+				Debug('SourceControlAPI::GetFilesFromRepo / azuredevops / '+strRepoUrl+ ' / ' + strBranch);
+				Debug(aFiles);
+
 				return aFiles;						
 
 				
@@ -499,6 +488,7 @@ SourceControlAPI.prototype = {
 	
 	GetPackageRecordFromRepo: function(strRepoUrl,strBranch)
 	{
+		Debug('GetPackageRecordFromRepo: '+strRepoUrl+ ' _ '+strBranch);
 		var Base64Decode = x_snc_devtools.Base64Decode;
 		var ParseXml = x_snc_devtools.ParseXml;
 		var GetValue = x_snc_devtools.GetValue;
@@ -513,21 +503,28 @@ SourceControlAPI.prototype = {
 		for (var nFile = 0; nFile < aFiles.length; nFile++)
 		{
 			var strPath = aFiles[nFile];
-			
+		
 			if (   strPath.indexOf('update/') == -1
 				&& strPath.indexOf('author_elective_update/') == -1)
 			{
 				if (strPath.indexOf('sys_app_') == 0 || strPath.indexOf('/sys_app_') != -1)
 				{
+					Debug(strPath);
 					var strContent = this.GetFileContent(strRepoUrl,strBranch,strPath);
 					if (strContent == false)
 					{
 						return false;
 					}
 
-					var strXml = Base64Decode(strContent);
-					var packageRecord = ParseXml(strXml);
-					packageRecord = GetValue(packageRecord,'record_update','sys_app');
+					var strXml = strContent;
+					if (strXml.indexOf('<?xml') == -1)
+					{
+						strXml = Base64Decode(strContent);
+					}
+					var xml = ParseXml(strXml);
+					Debug(xml);
+					packageRecord = GetValue(xml,'record_update','sys_app');
+					Debug(packageRecord);
 					if (IsObject(packageRecord))
 					{
 						return packageRecord;
@@ -784,13 +781,13 @@ SourceControlAPI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-03-15 20:53:27</sys_created_on>
         <sys_id>eefacce2dba9ed106a03dad1f39619ac</sys_id>
-        <sys_mod_count>120</sys_mod_count>
+        <sys_mod_count>149</sys_mod_count>
         <sys_name>SourceControlAPI</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_eefacce2dba9ed106a03dad1f39619ac</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-23 13:34:16</sys_updated_on>
+        <sys_updated_on>2025-01-23 14:59:33</sys_updated_on>
     </sys_script_include>
 </record_update>

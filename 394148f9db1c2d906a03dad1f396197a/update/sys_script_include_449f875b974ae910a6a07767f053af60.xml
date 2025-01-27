@@ -71,7 +71,7 @@
 		return false;
 	}
 	
-	function GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions)
+	function GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions,bStrict)
 	{
 		var aBranches = sourcecontrol.GetBranchesFromRepo(strRepoUrl);
 
@@ -93,9 +93,19 @@
 						for (var nVersion = 0; nVersion < aVersions.length; nVersion++)
 						{
 							var strVersion = aVersions[nVersion];
-							if (IsVersionCompatible(strVersionFromBranch,strVersion))
+							if (bStrict == true)
 							{
-								aDeployableBranches.push(strCurrentBranch);
+								if (strVersionFromBranch == strVersion)
+								{
+									aDeployableBranches.push(strCurrentBranch);
+								}
+							}
+							else
+							{
+								if (IsVersionCompatible(strVersionFromBranch,strVersion))
+								{
+									aDeployableBranches.push(strCurrentBranch);
+								}
 							}
 						}		
 					}
@@ -125,11 +135,23 @@
 				for (var nVersion = 0; nVersion < aVersions.length; nVersion++)
 				{
 					var strVersion = aVersions[nVersion];
-					if (IsVersionCompatible(strVersionInBranch,strVersion))
+					if (bStrict == true)
 					{
-						packagerecord = CleanUpPackageObject(packagerecord);
-						packagerecord = SetValue(strCurrentBranch,packagerecord,'branch');
-						return packagerecord;
+						if (strVersionInBranch == strVersion)
+						{
+							packagerecord = CleanUpPackageObject(packagerecord);
+							packagerecord = SetValue(strCurrentBranch,packagerecord,'branch');
+							return packagerecord;
+						}
+					}
+					else
+					{
+						if (IsVersionCompatible(strVersionInBranch,strVersion))
+						{
+							packagerecord = CleanUpPackageObject(packagerecord);
+							packagerecord = SetValue(strCurrentBranch,packagerecord,'branch');
+							return packagerecord;
+						}
 					}
 				}		
 			}
@@ -144,7 +166,13 @@
 		return false;
 	}
 	
-	var result = GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions);
+	var bStrict = false;
+	if (aCurrentPath.length == 0)
+	{
+		bStrict = true;
+	}
+
+	var result = GetPackageRecordFromRepoByVersions(strRepoUrl,aVersions,bStrict);
 	if (result == false)
 	{
 		return false;
@@ -302,13 +330,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:38:30</sys_created_on>
         <sys_id>449f875b974ae910a6a07767f053af60</sys_id>
-        <sys_mod_count>86</sys_mod_count>
+        <sys_mod_count>90</sys_mod_count>
         <sys_name>GetRepoDependencyTree</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_449f875b974ae910a6a07767f053af60</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-11-15 10:33:00</sys_updated_on>
+        <sys_updated_on>2025-01-27 11:28:52</sys_updated_on>
     </sys_script_include>
 </record_update>

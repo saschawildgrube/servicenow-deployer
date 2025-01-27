@@ -16,6 +16,8 @@
 	
 	<p>Welcome to Deployer - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
 
+	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contributions to support AzureDevOps.</p>	
+
 	<h2>Features</h2> 
 	<p>The Deployer app enables fully a automated CICD pipeline based on source control. It installs applications and dependent applications, runs Instance Scan checks, installation scripts and ATF tests automatically.</p>
 	<p>The Deployer app protects the Target Instance from unwanted or unexpected data deletion. For each Target Instance a data deletion policy must be specified.</p>
@@ -26,6 +28,13 @@
 	</ul>
 	<p>If set up on the development instance, the Deployer can help to protect version braches when they are baselined using DevTools's baseline procedure.</p> 
 	
+	<h3>Supported Source Control Systems</h3>
+	<ul>
+		<li>GitHub and GitHub Enterprise</li>
+		<li>GitLab</li>
+		<li>AzureDevOps</li>
+	</ul>
+
 	<h3>How the (automated) deployment works</h3>
 	<p>The Deployer app is installed on both the Controller Instance and the Target Instance. The Controller Instance is used to coordinate deployments. The Target Instance is the instance to which applications are installed. The Deployer on the Controller Instance uses REST APIs exposed by the Target Instance. These REST API endpoints allow the Deployer to retrieve information about the Target Instance, trigger source control operations, run Instance Scan checks and execute ATF test suites.</p>
 	<p>Automated Deployment Procedure:</p>
@@ -193,6 +202,19 @@
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2>Release Notes</h2>
+
+	<h3>1.18.0 - 2025-01-27</h3>
+	<ol>
+		<li>DevTools 1.112.0 is now required due to full AzueDevOps support.</li>
+		<li>Deployer is now more strict with versions: When creating a Repository Application Status, the exact version requested must be available - there is now fallback to a compatible version. Version branches must now be named exactly like the version they contain to be considered for a deployment.</li>
+		<li>IsBranchDeployable() now requires version branches to be named exactly like a semantic version.</li>
+		<li>GetRepoDependencyTree() now strictly requires one of the provided versions on level one.</li>
+		<li>SourceControlAPI::ParseRepoUrl() now decodes url components when parsing an AzureDevOps repository url - e.g., to consider organization, project and repo names containing spaces and other special characters.</li>
+		<li>SourceControlAPI::GetBranchesFromRepo() now properly returns the list of branches.</li>
+		<li>SourceControlAPI::GetDependencyRecordsFromRepo() only decodes (base64) file contents if necessary.</li>
+		<li>GetRepositoryApiUrl() now handles AzueDevOps repository urls properly which are prefixed by the organization as a user (e.g. https://acme@dev.azure.com/acme/...).</li>
+	</ol>
+
 
 	<h3>1.17.0 - 2025-01-03</h3>
 	<ol>
@@ -441,13 +463,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>244</sys_mod_count>
+        <sys_mod_count>257</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-03 09:42:33</sys_updated_on>
+        <sys_updated_on>2025-01-27 15:10:55</sys_updated_on>
     </sys_ui_page>
 </record_update>

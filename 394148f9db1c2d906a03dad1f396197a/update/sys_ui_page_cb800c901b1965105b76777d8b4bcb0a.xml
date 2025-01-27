@@ -19,7 +19,7 @@
 	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contributions to support AzureDevOps.</p>	
 
 	<h2>Features</h2> 
-	<p>The Deployer app enables fully a automated CICD pipeline based on source control. It installs applications and dependent applications, runs Instance Scan checks, installation scripts and ATF tests automatically.</p>
+	<p>The Deployer app enables a fully automated CICD pipeline based on source control. It installs applications and dependent applications, runs Instance Scan checks, installation scripts and ATF tests automatically.</p>
 	<p>The Deployer app protects the Target Instance from unwanted or unexpected data deletion. For each Target Instance a data deletion policy must be specified.</p>
 	<ul>
 		<li><b>Deny</b>: Data deletion is not allowed as part of a deployment. If applications are selected for deployment which do not (or no longer) contain tables or columns which exist on the Target Instance the deployment cannot proceed.</li>
@@ -469,13 +469,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>257</sys_mod_count>
+        <sys_mod_count>258</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-27 15:10:55</sys_updated_on>
+        <sys_updated_on>2025-01-27 15:25:44</sys_updated_on>
     </sys_ui_page>
 </record_update>

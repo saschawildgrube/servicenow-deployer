@@ -7,7 +7,7 @@
         <element label="Run CodeSanity checks for each application" max_length="40" name="codesanity" type="boolean"/>
         <element label="Post-Deployment Activities" max_length="40" name="post_deployment_activities" type="boolean"/>
         <element label="Smoke Test Instructions" mandatory="true" max_length="4000" name="smoke_test_instructions" type="string"/>
-        <element label="Credential" max_length="32" name="credential" reference="discovery_credentials" reference_qual="type=basic_auth^EQ" reference_qual_condition="type=basic_auth^EQ" type="reference"/>
+        <element label="Credential" max_length="32" name="credential" reference="discovery_credentials" reference_qual="type=basic_auth^ORtype=oauth_2_0^EQ" reference_qual_condition="type=basic_auth^ORtype=oauth_2_0^EQ" type="reference"/>
         <element label="Post-Deployment Activities Instructions" max_length="2000" name="post_deployment_activities_instructions" type="string"/>
         <element choice="1" label="Data Deletion Policy" mandatory="true" max_length="40" name="data_deletion_policy" type="choice">
             <choice>

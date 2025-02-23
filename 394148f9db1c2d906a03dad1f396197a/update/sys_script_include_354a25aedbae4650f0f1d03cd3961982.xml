@@ -26,7 +26,9 @@
 	grRepoAppStatus.dependency_tree_json = '';
 	grRepoAppStatus.update();
 
+	var strMode = GetStringValue(grRepoAppStatus.mode);
 	var strVersion = GetStringValue(grRepoAppStatus.version);
+	var strBranch = GetStringValue(grRepoAppStatus.branch);
 	var strRepoUrl = GetStringValue(grRepoAppStatus.repo_url);
 
 	var grCredential = GetCredentialForRepository(strRepoUrl);
@@ -37,8 +39,30 @@
 		grRepoAppStatus.update();
 		return true;		
 	}
+
+	var strVersionOrBranch = '';
+	if (strMode == 'deployment')
+	{
+		strVersionOrBranch = strVersion;
+	}
+	else if (strMode == 'preview')
+	{
+		strVersionOrBranch = strBranch;
+	}
+	else if (strMode == 'checkout')
+	{
+		strVersionOrBranch = strBranch;
+	}
+	else
+	{
+		grRepoAppStatus.display = 'Failed processing '+strRepoUrl+' in mode '+strMode;
+		grRepoAppStatus.status = 'error';
+		grRepoAppStatus.update();		
+		return false;
+	}
+
 	
-	var dependencytree = GetRepoDependencyTree(strRepoUrl,strVersion);
+	var dependencytree = GetRepoDependencyTree(strRepoUrl,strMode,strVersionOrBranch);
 	if (dependencytree == false)
 	{
 		grRepoAppStatus.display = 'Failed processing '+strRepoUrl+' for version '+strVersion;
@@ -47,17 +71,30 @@
 		return true;	
 	}
 
-	if (strVersion.indexOf('dev') == 0)
+	if (strMode == 'preview')
 	{
-		grRepoAppStatus.display = GetValue(dependencytree,'name') + ' ' + GetValue(dependencytree,'version') + ' (dev branch) as of '+current.sys_created_on+' (UTC)';
+		grRepoAppStatus.display = GetValue(dependencytree,'name') + ' ' + GetValue(dependencytree,'version') + ' previewed branch "' + strBranch+ '" as of '+current.sys_created_on+' (UTC)';
 		grRepoAppStatus.dependency_tree_json = JSON.stringify(dependencytree);
-		grRepoAppStatus.status = 'dev';
+		grRepoAppStatus.status = 'previewed';
 		grRepoAppStatus.errors = GetDependencyTreeErrorCount(dependencytree);
 		grRepoAppStatus.update();
 		return true;		
-	}
+	}	
 	
-	grRepoAppStatus.display = GetValue(dependencytree,'name') + ' ' + strVersion + ' as of '+grRepoAppStatus.sys_created_on+' (UTC)';
+	if (strMode == 'deployment')
+	{
+		grRepoAppStatus.display =
+			GetValue(dependencytree,'name')
+			+ ' ' + strVersion + ' as of '+grRepoAppStatus.sys_created_on+' (UTC)';
+	}
+	else if (strMode == 'checkout')
+	{
+		grRepoAppStatus.display =
+			'Check out ' + GetValue(dependencytree,'name')
+			+ ' from "' + strBranch
+			+ '" branch(es) as of '+grRepoAppStatus.sys_created_on+' (UTC)';
+	}
+
 	grRepoAppStatus.dependency_tree_json = JSON.stringify(dependencytree);
 	var strStatus = GetValue(dependencytree,'dependency_status_summary');
 	if (strStatus == 'ok')
@@ -79,13 +116,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-05 13:17:15</sys_created_on>
         <sys_id>354a25aedbae4650f0f1d03cd3961982</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>ExecuteRepositoryApplicationStatus</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_354a25aedbae4650f0f1d03cd3961982</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-17 14:21:56</sys_updated_on>
+        <sys_updated_on>2025-02-23 17:59:22</sys_updated_on>
     </sys_script_include>
 </record_update>

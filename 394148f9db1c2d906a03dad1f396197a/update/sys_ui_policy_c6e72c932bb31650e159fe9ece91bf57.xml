@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
+    <sys_ui_policy action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <conditions table="x_snc_deployer_repository_application_status">mode=preview^ORmode=checkout^EQ<item display_value="Preview" endquery="false" field="mode" goto="false" newquery="false" operator="=" or="false" value="preview"/>
+            <item display_value="Check out" endquery="false" field="mode" goto="false" newquery="false" operator="=" or="true" value="checkout"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </conditions>
+        <description/>
+        <global>true</global>
+        <inherit>false</inherit>
+        <isolate_script>true</isolate_script>
+        <model_id/>
+        <model_table/>
+        <on_load>true</on_load>
+        <order>200</order>
+        <reverse_if_false>true</reverse_if_false>
+        <run_scripts>false</run_scripts>
+        <script_false><![CDATA[function onCondition() {
+
+}]]></script_false>
+        <script_true><![CDATA[function onCondition() {
+
+}]]></script_true>
+        <set_values/>
+        <short_description>Repository Application Status - Show Branch</short_description>
+        <sys_class_name>sys_ui_policy</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-23 15:49:30</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c6e72c932bb31650e159fe9ece91bf57</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Repository Application Status - Show Branch</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_ui_policy_c6e72c932bb31650e159fe9ece91bf57</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-02-23 16:28:45</sys_updated_on>
+        <table>x_snc_deployer_repository_application_status</table>
+        <ui_type>0</ui_type>
+        <view/>
+        <x_snc_devtools_table/>
+    </sys_ui_policy>
+</record_update>

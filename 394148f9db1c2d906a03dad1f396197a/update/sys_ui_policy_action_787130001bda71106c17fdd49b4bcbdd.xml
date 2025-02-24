@@ -19,7 +19,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-10-30 08:14:00</sys_updated_on>
         <table>x_snc_deployer_deployment</table>
-        <ui_policy display_value="Deployment - Set read only after draft">28f0b8cc1b9a71106c17fdd49b4bcb92</ui_policy>
+        <ui_policy display_value="Deployment - Read only after draft">28f0b8cc1b9a71106c17fdd49b4bcb92</ui_policy>
         <value/>
         <value_action/>
         <visible>ignore</visible>

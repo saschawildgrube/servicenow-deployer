@@ -13,17 +13,16 @@
         <client_callable>false</client_callable>
         <collection>x_snc_deployer_deployment</collection>
         <condition/>
-        <description>Warns the user if ATF tests are active on a PROD instance.</description>
+        <description>Warns the user if a checkout is made to a TEST instance. </description>
         <execute_function>false</execute_function>
-        <filter_condition table="x_snc_deployer_deployment">instance.type=prod^instance.atf_app_default=true^skip_atf_app_default=false^EQ<item display_value="PROD" endquery="false" field="instance.type" goto="false" newquery="false" operator="=" or="false" value="prod"/>
-            <item endquery="false" field="instance.atf_app_default" goto="false" newquery="false" operator="=" or="false" value="true"/>
-            <item endquery="false" field="skip_atf_app_default" goto="false" newquery="false" operator="=" or="false" value="false"/>
+        <filter_condition table="x_snc_deployer_deployment">instance.type=test^repository_application_status.mode=checkout^EQ<item display_value="TEST" endquery="false" field="instance.type" goto="false" newquery="false" operator="=" or="false" value="test"/>
+            <item display_value="Check out" endquery="false" field="repository_application_status.mode" goto="false" newquery="false" operator="=" or="false" value="checkout"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>
-        <name>Deployment - ATF on PROD</name>
-        <order>200</order>
+        <name>Deployment - Checkout on TEST</name>
+        <order>100</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -33,27 +32,27 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
-	gs.addErrorMessage('WARNING: ATF tests are active on this PROD Target Instance!');
+	gs.addErrorMessage('WARNING: The selected Repository Application Status performs a checkout to a TEST Target Instance!');
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-12-27 15:06:29</sys_created_on>
+        <sys_created_on>2025-02-24 15:03:36</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>5ff1b56cc3729a505a37f907050131ec</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Deployment - ATF on PROD</sys_name>
+        <sys_id>9027adef2b771210e159fe9ece91bfde</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Deployment - Checkout on TEST</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
-        <sys_update_name>sys_script_5ff1b56cc3729a505a37f907050131ec</sys_update_name>
+        <sys_update_name>sys_script_9027adef2b771210e159fe9ece91bfde</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-02-24 15:10:44</sys_updated_on>
+        <sys_updated_on>2025-02-24 15:10:17</sys_updated_on>
         <template/>
         <when>before_display</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=5ff1b56cc3729a505a37f907050131ec"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=9027adef2b771210e159fe9ece91bfde"/>
 </record_update>

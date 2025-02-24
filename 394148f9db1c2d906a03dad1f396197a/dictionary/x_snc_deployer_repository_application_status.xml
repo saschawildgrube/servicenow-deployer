@@ -8,7 +8,7 @@
                 <element hint="Deploys the given application based on the given version branch and all dependencies based on required versions." inactive_on_update="false" label="Deployment" sequence="1" value="deployment"/>
             </choice>
         </element>
-        <element label="Branch" max_length="80" name="branch" type="string"/>
+        <element default="dev" label="Branch" max_length="80" name="branch" type="string"/>
         <element label="Errors" max_length="40" name="errors" read_only="true" type="integer"/>
         <element label="Version" max_length="10" name="version" type="string"/>
         <element attributes="no_truncate=true" label="Repository Url" mandatory="true" max_length="200" name="repo_url" type="string"/>

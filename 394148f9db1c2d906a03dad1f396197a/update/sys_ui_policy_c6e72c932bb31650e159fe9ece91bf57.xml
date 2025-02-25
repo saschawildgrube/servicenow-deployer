@@ -2,7 +2,7 @@
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
         <conditions table="x_snc_deployer_repository_application_status">mode=preview^ORmode=checkout^EQ<item display_value="Preview" endquery="false" field="mode" goto="false" newquery="false" operator="=" or="false" value="preview"/>
-            <item display_value="Check out" endquery="false" field="mode" goto="false" newquery="false" operator="=" or="true" value="checkout"/>
+            <item display_value="Checkout" endquery="false" field="mode" goto="false" newquery="false" operator="=" or="true" value="checkout"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>
         <description/>

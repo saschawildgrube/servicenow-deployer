@@ -16,7 +16,7 @@
         <description>Warns the user if a checkout is made to a TEST instance. </description>
         <execute_function>false</execute_function>
         <filter_condition table="x_snc_deployer_deployment">instance.type=test^repository_application_status.mode=checkout^EQ<item display_value="TEST" endquery="false" field="instance.type" goto="false" newquery="false" operator="=" or="false" value="test"/>
-            <item display_value="Check out" endquery="false" field="repository_application_status.mode" goto="false" newquery="false" operator="=" or="false" value="checkout"/>
+            <item display_value="Checkout" endquery="false" field="repository_application_status.mode" goto="false" newquery="false" operator="=" or="false" value="checkout"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>

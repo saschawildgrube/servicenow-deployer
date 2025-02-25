@@ -3,7 +3,7 @@
         <element attributes="no_truncate=true" display="true" label="Display" max_length="200" name="display" read_only="true" type="string"/>
         <element choice="1" label="Mode" mandatory="true" max_length="40" name="mode" type="choice">
             <choice>
-                <element hint="Installs the application and all dependencies from the given branch." inactive_on_update="false" label="Check out" sequence="3" value="checkout"/>
+                <element hint="Installs the application and all dependencies from the given branch." inactive_on_update="false" label="Checkout" sequence="3" value="checkout"/>
                 <element hint="Checks the given application based on the given branch and considering all dependencies and their version requirements" inactive_on_update="false" label="Preview" sequence="2" value="preview"/>
                 <element hint="Deploys the given application based on the given version branch and all dependencies based on required versions." inactive_on_update="false" label="Deployment" sequence="1" value="deployment"/>
             </choice>

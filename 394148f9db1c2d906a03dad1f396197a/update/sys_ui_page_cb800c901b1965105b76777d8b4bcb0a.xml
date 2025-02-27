@@ -19,7 +19,7 @@
 	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contributions to support AzureDevOps.</p>	
 
 	<h2>Features</h2> 
-	<p>The Deployer app enables fully a automated CICD pipeline based on source control. It installs applications and dependent applications, runs Instance Scan checks, installation scripts and ATF tests automatically.</p>
+	<p>The Deployer app enables a fully automated CICD pipeline based on source control. It installs applications and dependent applications, runs Instance Scan checks, installation scripts and ATF tests automatically.</p>
 	<p>The Deployer app protects the Target Instance from unwanted or unexpected data deletion. For each Target Instance a data deletion policy must be specified.</p>
 	<ul>
 		<li><b>Deny</b>: Data deletion is not allowed as part of a deployment. If applications are selected for deployment which do not (or no longer) contain tables or columns which exist on the Target Instance the deployment cannot proceed.</li>
@@ -82,6 +82,15 @@
 	<h3>Development Instance Features</h3>
 	<p>The "Development Instance" is an instance on which developers make changes to applications and from where new application versions are baselined.</p>
 	<p>The Deployer app "hooks" into DevTools's application baseline procedure (via Extension Point) and protects the newly created version branch.</p> 
+
+	<h3>Repository Application Status</h3>
+	<p>The Repository Application Status is a pre-check before the actual deployment starts. The "RAS" determines whether all applications are available in corresponding branches. If the Repository Application Status fails a deployment cannot even be started.</p>
+	<p>The Repository Application Status comes in three flavors - in three "modes":</p>
+	<ol>
+		<li><b>Deplyoment</b>: This is to prepare a regular deployment. The given repository url and version determines the exact application version to be installed. Its direct and indirect dependencies will also be installed based on the consolidated minimum version requirements. If any required application version is not present in the source control system the RAS fails and no deployment can be started.</li>
+		<li><b>Preview</b>: A preview looks into the given branch of the given application (identified by the repository url) and then indentifies if all the required dependencies are available in corresponding version branches. No deployment can be triggered based on this Repository Application Status.</li>
+		<li><b>Checkout</b>: A checkout in source control terms is the process of updating an instance based on the state that is stored in the given branch. In this mode the Repository Application Status checks the given application in the given branch and all of its dependencies (using the same given branch). The typical branch for this operation is the "dev" branch. A Deployment based on this kind of Repository Application Status can be used to initialize or reset a DEV instance - e.g. after a clone or (if really everything is captured in apps) to initialize a z-booted instance for development.</li>
+	</ol>
 
 	<h2>Disclaimer</h2>
 	<g2:no_escape>$[docapi.RenderDisclaimer()]</g2:no_escape>	
@@ -203,10 +212,24 @@
 	
 	<h2>Release Notes</h2>
 
+	<h3>1.19.0 - 2025-02-27</h3>
+	<ol>
+		<li>DevTools 1.114.0 is now required due to OAuth2 support for inter-instance communication and strict version detection.</li>
+		<li>OAuth2 can now be used for authentication in instance-to-instance communication. In the Target Instance configuration, OAuth2 credentials can now be selected.</li> 
+		<li>The Repository Application Status now supports three different modes: 'deployment', 'preview' and 'checkout'.</li>
+		<li>Added UI Action "Get New Preview For Same Branch".</li>
+		<li>Added UI Action "Get New Status For Same Branch".</li>
+		<li>Deployer now enforces strict version branch convention. The branch name must be a semantic version (three components).</li>
+		<li>For Deployments the "Assigned To" field is now mandatory.</li> 
+		<li>The Deployment form now also shows the instance type.</li>
+		<li>The "Enforce Downgrade" checkbox was enabled for cancelled or completed deployments. This has been fixed.</li> 
+	</ol>
+
+
 	<h3>1.18.0 - 2025-01-27</h3>
 	<ol>
 		<li>DevTools 1.112.0 is now required due to full AzueDevOps support.</li>
-		<li>Deployer is now more strict with versions: When creating a Repository Application Status, the exact version requested must be available - there is now fallback to a compatible version. Version branches must now be named exactly like the version they contain to be considered for a deployment.</li>
+		<li>Deployer is now more strict with versions: When creating a Repository Application Status, the exact version requested must be available - there is no fallback to a compatible version. Version branches must now be named exactly like the version they contain to be considered for a deployment.</li>
 		<li>IsBranchDeployable() now requires version branches to be named exactly like a semantic version.</li>
 		<li>GetRepoDependencyTree() now strictly requires one of the provided versions on level one.</li>
 		<li>SourceControlAPI::ParseRepoUrl() now decodes url components when parsing an AzureDevOps repository url - e.g., to consider organization, project and repo names containing spaces and other special characters.</li>
@@ -463,13 +486,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>257</sys_mod_count>
+        <sys_mod_count>276</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-01-27 15:10:55</sys_updated_on>
+        <sys_updated_on>2025-02-27 19:38:07</sys_updated_on>
     </sys_ui_page>
 </record_update>

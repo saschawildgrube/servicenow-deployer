@@ -41,7 +41,7 @@
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.18.0</version>
+        <version>1.19.0</version>
         <x_snc_azure_test_x_snc_devtools_showstopper>false</x_snc_azure_test_x_snc_devtools_showstopper>
         <x_snc_azure_test_x_snc_devtools_showstopper_details/>
         <x_snc_devtools_documentation_url>https://www.wildgrube.com/servicenow-deployer</x_snc_devtools_documentation_url>

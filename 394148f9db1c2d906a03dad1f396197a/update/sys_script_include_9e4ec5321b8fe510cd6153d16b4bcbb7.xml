@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns if the given branch name indicates whether the branch is deployable. The branch name must either be "master" or must be a semantic version.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsBranchDeployable</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsBranchDeployable(strBranch)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;

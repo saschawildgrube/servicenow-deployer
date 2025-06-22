@@ -21,7 +21,9 @@ Methods:
 * GetSysDBObjectRecordsFromRepo()
 * GetSysDictionaryRecordsFromRepo()
 * ProtectBranchReadOnly()</description>
+        <mobile_callable>false</mobile_callable>
         <name>SourceControlAPI</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var SourceControlAPI = Class.create();
 SourceControlAPI.prototype = {
 	

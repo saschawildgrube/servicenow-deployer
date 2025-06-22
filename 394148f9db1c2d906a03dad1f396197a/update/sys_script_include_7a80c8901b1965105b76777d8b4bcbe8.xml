@@ -16,7 +16,9 @@ Methods:
 * RenderDebugDump()
 * GetInstancePipelineName()
 * AppVersionBaselineOnFinish()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DevTools</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var DevTools = Class.create();
 DevTools.prototype = {
 	initialize: function()

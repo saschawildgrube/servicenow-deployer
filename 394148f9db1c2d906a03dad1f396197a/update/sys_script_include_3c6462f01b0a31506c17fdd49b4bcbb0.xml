@@ -9,7 +9,9 @@
 |
 Methods:
 * GetNewRepositoryApplicationStatusByVersion()</description>
+        <mobile_callable>false</mobile_callable>
         <name>DeployerClientAPI</name>
+        <sandbox_callable>true</sandbox_callable>
         <script><![CDATA[var DeployerClientAPI = Class.create();
 DeployerClientAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 {

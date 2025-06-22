@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns true if the given instance is correctly configured and accessible.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceValidate</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceValidate(grInstance)
 {
 	var GetValue = x_snc_devtools.GetValue;

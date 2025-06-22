@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Updates the status text of the given deployment task and propagates the status update to the deployment. </description>
+        <mobile_callable>false</mobile_callable>
         <name>DeploymentTaskUpdateStatus</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function DeploymentTaskUpdateStatus(grTask,strText,strUrl)
 {
 	var IsValidRecord = x_snc_devtools.IsValidRecord;

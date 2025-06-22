@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Requests the given end point of the Deployer Target API on the given target instance.&#13;
 The credentials used for the request are taken from the credentials associated with the target instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceRequest</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceRequest(grInstance,strEndPoint,strRequestBody)
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;

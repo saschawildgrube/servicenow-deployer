@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Genrates the status object that contains all relevant status information of a target instance - including the list of applications, the installed deployer version and other details. </description>
+        <mobile_callable>false</mobile_callable>
         <name>GetStatus</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetStatus()
 {
 	var GetStringValue = x_snc_devtools.GetStringValue;

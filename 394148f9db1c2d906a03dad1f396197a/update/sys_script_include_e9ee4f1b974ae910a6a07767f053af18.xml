@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns an array of objects representing the packages representing the dependency list based on the given repository url and the desired version.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRepoDependencyList</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRepoDependencyList(strRepoUrl,strVersion)
 {
 	var GetDependencyListFromTree = x_snc_devtools.GetDependencyListFromTree;

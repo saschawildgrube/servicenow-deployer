@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="DELETE">
+        <active>true</active>
+        <answer>Deployment</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Deployment</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Task" name="Task">e9466c0b8320021000d5ccc0deaad3c6</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 12:58:51</sys_created_on>
+        <sys_id>95a4ca9bdb680e10f0f1d03cd39619dc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Deployment</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_wizard_answer_95a4ca9bdb680e10f0f1d03cd39619dc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 12:58:51</sys_updated_on>
+        <table/>
+        <target_url>x_snc_deployer_deployment.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Deployer">394148f9db1c2d906a03dad1f396197a</application>
+        <file_path/>
+        <instance_id>220092723b73421816e44a8aa4e45ab1</instance_id>
+        <instance_name>wildxanadu</instance_name>
+        <name>sys_wizard_answer_95a4ca9bdb680e10f0f1d03cd39619dc</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>Deployment</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>Deployment</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Task" name="Task">e9466c0b8320021000d5ccc0deaad3c6</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-29 12:58:51</sys_created_on>
+        <sys_id>95a4ca9bdb680e10f0f1d03cd39619dc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Deployment</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_wizard_answer_95a4ca9bdb680e10f0f1d03cd39619dc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-29 12:58:51</sys_updated_on>
+        <table/>
+        <target_url>x_snc_deployer_deployment.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>]]></payload>
+        <payload_hash>1347286865</payload_hash>
+        <record_name>Deployment</record_name>
+        <reverted_from/>
+        <source>30406bdb9328e610959b7fda2bba1094</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2025-04-02 12:02:17</sys_created_on>
+        <sys_id>70706b1f9328e610959b7fda2bba1053</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>195f661770f0000001</sys_recorded_at>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-04-02 12:02:17</sys_updated_on>
+        <type>Answer</type>
+        <update_guid>3c706b1ff428e6103f5a78c3d4486752</update_guid>
+        <update_guid_history>3c706b1ff428e6103f5a78c3d4486752:0,3f2f0ae4c0406610f222986c9d4ad6d2:0,dc085efb24bf52104b3b91ffdef3180a:0,852d956262d39e1078bc90e32931fa2b:0,0b2430d908d31a10cdb702cdd83840c0:0,35dd5532c6b252501725f15b702a3395:0,9a36f8ec343e561006d3eba6a714ff3d:0,bc7e0d9ef10e121002dce29853c8e810:0,7fc48116900e12103b884e7c192ed8c1:0,f07a259fa0d95e105bae2f9abb22b102:0,aa18c11fc1195e105af9e28223fdbc12:0,492008fd1e9996106be8c77ade21f4ad:0,7e2cf769fc9996102007953484628929:0,15a058499e945650f904440b2a794c53:0,3a82a3a72b001250a2fc9380efcadb9a:381980346</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-22 13:24:05</sys_created_on>
+        <sys_db_object display_value="" name="sys_wizard_answer">sys_wizard_answer</sys_db_object>
+        <sys_id>3bb32f72e2b74f05bfabff19bd164151</sys_id>
+        <sys_metadata>95a4ca9bdb680e10f0f1d03cd39619dc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Deployment</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_parent display_value="Task">17e6835bd12302104f34ba60d8b7c1f4</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
+        <sys_update_name>sys_wizard_answer_95a4ca9bdb680e10f0f1d03cd39619dc</sys_update_name>
+        <sys_update_version display_value="sys_wizard_answer_95a4ca9bdb680e10f0f1d03cd39619dc">70706b1f9328e610959b7fda2bba1053</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-22 13:24:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

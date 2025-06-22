@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Identifies the tables (sys_db_object) and columns (sys_dictionary) which are going to be deleted based on the current list of applications on an instance and the to-be-installed list of applications.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IdentifyDataDeletion</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IdentifyDataDeletion(aAppsCurrent, aAppsToBeInstalled)
 {
 	var GetArrayValue = x_snc_devtools.GetArrayValue;

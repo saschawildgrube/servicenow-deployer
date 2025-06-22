@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves a credential record for the given repository based on the configured Repository Credential records. If no match is found or no valid repository url is provided, the function returns false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetCredentialForRepository</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetCredentialForRepository(strRepoUrl)
 {
 	var GetRecord = x_snc_devtools.GetRecord;

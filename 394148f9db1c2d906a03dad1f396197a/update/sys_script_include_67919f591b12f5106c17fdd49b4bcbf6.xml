@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Triggers the action "Apply Remote Changes" for the given application for the current branch on the target instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceSourceControlApplyChanges</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceSourceControlApplyChanges(grInstance,strAppId,strBranch)
 {
 	var GetValue = x_snc_devtools.GetValue;

@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns the array of applications from an instance.&#13;
 This is a deprecated proxy of the function TargetInstanceGetApplicationList().</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetApplicationListFromInstance</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetApplicationListFromInstance(grInstance)
 {
 	return TargetInstanceGetApplicationList(grInstance);

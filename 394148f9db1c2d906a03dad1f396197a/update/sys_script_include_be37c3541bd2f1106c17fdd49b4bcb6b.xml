@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns true if the given deployment is ready to enter the "complete" state.&#13;
 The deployment must be in state "in progress" and all tasks must be completed.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsDeploymentReadyToComplete</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsDeploymentReadyToComplete(grDeployment)
 {
 	var IsValidRecord = x_snc_devtools.IsValidRecord;

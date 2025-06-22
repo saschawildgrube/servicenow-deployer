@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Retrieves the repository credential record for the given repository based on the given path or Sys Id. If no match is found or no valid repository url is provided, the function returns false.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRepositoryCredentialRecord</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRepositoryCredentialRecord(vRepo)
 {
 	var IsValidUrl = x_snc_devtools.IsValidUrl;

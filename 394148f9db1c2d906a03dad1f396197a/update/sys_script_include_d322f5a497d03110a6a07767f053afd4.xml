@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Triggers the background process to create a new repository application status based on a given repository url and version.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TriggerNewRepositoyApplicationStatus</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TriggerNewRepositoyApplicationStatus(strRepoUrl,strVersion)
 {
 	var grRepoAppStatus = new GlideRecord('x_snc_deployer_repository_application_status');

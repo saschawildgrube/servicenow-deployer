@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Imports an application from source control on the target instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceSourceControlImport</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceSourceControlImport(
 	grInstance,
 	strRepoUrl,

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Removes all fields from a package record object that are not required for preparing and executing deployments.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CleanUpPackageObject</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CleanUpPackageObject(vPackageRecord)
 {
 	var IsObject = x_snc_devtools.IsObject;

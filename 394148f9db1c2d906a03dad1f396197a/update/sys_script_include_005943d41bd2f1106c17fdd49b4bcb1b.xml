@@ -7,7 +7,9 @@
         <client_callable>false</client_callable>
         <description>Returns true if the given deployment is ready to enter the "cancelled" state.&#13;
 The deployment must be in state "in progress" and there must not be any failed tasks.</description>
+        <mobile_callable>false</mobile_callable>
         <name>IsDeploymentReadyToCancel</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function IsDeploymentReadyToCancel(grDeployment)
 {
 	var IsValidRecord = x_snc_devtools.IsValidRecord;

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the type identifier for a given repository url. The function returns false of the type could not be determined.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetRepositoryType</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetRepositoryType(strRepoUrl)
 {
 	var IsValidUrl = x_snc_devtools.IsValidUrl;

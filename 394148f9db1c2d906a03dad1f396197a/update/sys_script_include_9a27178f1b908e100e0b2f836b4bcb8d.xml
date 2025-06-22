@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns a link directory with useful links regarding CICD topics in ServiceNow.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetLinkDirectoryCICD</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetLinkDirectoryCICD()
 {
 	var linkdirectory = {

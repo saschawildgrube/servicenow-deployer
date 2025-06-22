@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates and returns a deployment record based on the given instance and/or repository application status (if provided).</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreateDeployment</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreateDeployment(vInstance,vRepoAppStatus)
 {
 	var GetRecord = x_snc_devtools.GetRecord;

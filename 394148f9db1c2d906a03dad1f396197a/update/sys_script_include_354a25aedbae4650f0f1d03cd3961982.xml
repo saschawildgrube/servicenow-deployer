@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Constructs the dependency tree, checks the availability of all required applications and stores the result in the given record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ExecuteRepositoryApplicationStatus</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ExecuteRepositoryApplicationStatus(grRepoAppStatus)
 {
 	var IsValidRecord = x_snc_devtools.IsValidRecord;
@@ -14,22 +16,27 @@
 	var GetDependencyTreeErrorCount = x_snc_devtools.GetDependencyTreeErrorCount;
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var ConfigurationItemServiceNowAppInsertOrUpdateFromTree = x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateFromTree;
+	var Sleep = x_snc_devtools.Sleep;
 	
 	if (IsValidRecord(grRepoAppStatus) == false)
 	{
 		return false;
 	}
-	
-	grRepoAppStatus.display = 'Processing...';
-	grRepoAppStatus.status = 'processing';
-	grRepoAppStatus.errors = 0;
-	grRepoAppStatus.dependency_tree_json = '';
-	grRepoAppStatus.update();
 
 	var strMode = GetStringValue(grRepoAppStatus.mode);
 	var strVersion = GetStringValue(grRepoAppStatus.version);
 	var strBranch = GetStringValue(grRepoAppStatus.branch);
 	var strRepoUrl = GetStringValue(grRepoAppStatus.repo_url);
+
+	// This is to make sure the timing for the first reload of the form works
+	Sleep(3);
+	// Can be removed once creating a RAS is a lengthy operation
+
+	grRepoAppStatus.display = 'Processing '+strRepoUrl+' (branch '+strBranch+') in '+strMode+ ' mode';
+	grRepoAppStatus.status = 'processing';
+	grRepoAppStatus.errors = 0;
+	grRepoAppStatus.dependency_tree_json = '';
+	grRepoAppStatus.update();
 
 	var grCredential = GetCredentialForRepository(strRepoUrl);
 	if (grCredential == false)
@@ -55,7 +62,7 @@
 	}
 	else
 	{
-		grRepoAppStatus.display = 'Failed processing '+strRepoUrl+' in mode '+strMode;
+		grRepoAppStatus.display = 'Failed processing '+strRepoUrl+' in '+strMode+ ' mode';
 		grRepoAppStatus.status = 'error';
 		grRepoAppStatus.update();		
 		return false;
@@ -116,13 +123,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-05 13:17:15</sys_created_on>
         <sys_id>354a25aedbae4650f0f1d03cd3961982</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>ExecuteRepositoryApplicationStatus</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_354a25aedbae4650f0f1d03cd3961982</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-02-23 17:59:22</sys_updated_on>
+        <sys_updated_on>2025-06-22 12:18:30</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>354a25aedbae4650f0f1d03cd3961982</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-22 12:09:54</sys_created_on>
+        <sys_id>d6fae0a99312e250ae97b4aa6aba1027</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-22 12:09:54</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

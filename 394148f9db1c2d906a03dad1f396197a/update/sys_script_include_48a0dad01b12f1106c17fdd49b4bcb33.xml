@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the numeric value of a state based on its id.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDeploymentTaskState</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDeploymentTaskState(strState)
 {
 	return x_snc_devtools.GetValue(GetDeploymentTaskStates(),strState);

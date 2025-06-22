@@ -21,7 +21,7 @@
         <is_rest>false</is_rest>
         <message/>
         <name>Deployment - Ready / create tasks</name>
-        <order>100</order>
+        <order>42425</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -45,7 +45,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>87e296941b12f1106c17fdd49b4bcbe7</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Deployment - Ready / create tasks</sys_name>
         <sys_overrides/>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
@@ -53,10 +53,21 @@
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_87e296941b12f1106c17fdd49b4bcbe7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-02-12 11:44:06</sys_updated_on>
+        <sys_updated_on>2025-06-22 10:18:33</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>
     </sys_script>
     <sys_translated_text action="delete_multiple" query="documentkey=87e296941b12f1106c17fdd49b4bcbe7"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>87e296941b12f1106c17fdd49b4bcbe7</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-22 10:18:32</sys_created_on>
+        <sys_id>7a71dca5939ea250ae97b4aa6aba102c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-22 10:18:32</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

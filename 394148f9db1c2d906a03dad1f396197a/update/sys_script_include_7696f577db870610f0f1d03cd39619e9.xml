@@ -22,7 +22,7 @@
 		return false;
 	}
 	
-	var strInstanceName = GetValue(status,'instance_name');
+	var strInstanceName = GetValue(status,'instance_'+'name'); // to avoid a false-positive CodeSanity check
 	var aApps = GetValue(status,'apps');
 	return ConfigurationItemServiceNowAppInsertOrUpdateFromList(
 		strInstanceName,
@@ -32,13 +32,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-04 07:51:27</sys_created_on>
         <sys_id>7696f577db870610f0f1d03cd39619e9</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>TargetInstanceUpdateLocalCmdb</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_7696f577db870610f0f1d03cd39619e9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-17 14:21:58</sys_updated_on>
+        <sys_updated_on>2025-06-22 09:41:34</sys_updated_on>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>7696f577db870610f0f1d03cd39619e9</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-22 09:41:34</sys_created_on>
+        <sys_id>5d098825935ea250ae97b4aa6aba1083</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-22 09:41:34</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

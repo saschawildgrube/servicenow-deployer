@@ -26,6 +26,7 @@ If the task is manual, it does nothing.</description>
 	var GetInstanceListPath = x_snc_devtools.GetInstanceListPath;
 	var GetTimeNow = x_snc_devtools.GetTimeNow;
 	var RenderDateTime = x_snc_devtools.RenderDateTime;
+	var SourceControlCoolDown = x_snc_devtools.SourceControlCoolDown;
 	
 /*
 	function TimeAddHours(nTime, nHours)
@@ -277,9 +278,11 @@ If the task is manual, it does nothing.</description>
 		else if (	grTask.action == 'install_switch_branch'
 				||	grTask.action == 'install_apply_remote_changes')
 		{
-			//var status = TargetInstanceGetStatus(grTask.deployment.instance.getRefRecord());
-						
-			var vResult = TargetInstanceSourceControlApplyChanges(grTask.deployment.instance.getRefRecord(),grTask.id,grTask.branch);
+
+			SourceControlCoolDown();
+
+			var vResult = TargetInstanceSourceControlApplyChanges(
+				grTask.deployment.instance.getRefRecord(),grTask.id,grTask.branch);
 			if (IsValidSysId(vResult) == true)
 			{
 				var strProgressId = vResult;
@@ -322,6 +325,8 @@ If the task is manual, it does nothing.</description>
 		}			
 		else if (grTask.action == 'install_import_from_source_control')
 		{
+			SourceControlCoolDown();
+
 			var vResult = TargetInstanceSourceControlImport(
 				grTask.deployment.instance.getRefRecord(),
 				grTask.repo_url,
@@ -368,6 +373,7 @@ If the task is manual, it does nothing.</description>
 				}
 			}
 			TargetInstanceUpdateLocalCmdb(grTask.deployment.instance.getRefRecord());
+			SourceControlCoolDown();
 		}					
 		
 		
@@ -410,14 +416,14 @@ If the task is manual, it does nothing.</description>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-10-31 11:18:25</sys_created_on>
         <sys_id>c354aa941b52f1106c17fdd49b4bcb93</sys_id>
-        <sys_mod_count>96</sys_mod_count>
+        <sys_mod_count>97</sys_mod_count>
         <sys_name>ExecuteDeploymentTask</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_c354aa941b52f1106c17fdd49b4bcb93</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-06-22 11:22:13</sys_updated_on>
+        <sys_updated_on>2025-06-22 12:25:50</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>c354aa941b52f1106c17fdd49b4bcb93</id>

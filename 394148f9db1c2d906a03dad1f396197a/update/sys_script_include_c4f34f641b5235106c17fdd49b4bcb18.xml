@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs install scripts on the given target instance for the given application.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceRunInstallScripts</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceRunInstallScripts(grInstance,strAppId,bAsync)
 {
 	var GetValue = x_snc_devtools.GetValue;

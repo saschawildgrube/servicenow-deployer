@@ -4,6 +4,7 @@
 The function TargetInstancevalidate() should be used instead.&#13;
 The new function follows a naming convention to group all functions that communicate with the Deployer Target API. </description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>Function ValidateInstance() is deprecated - replaced by TargetInstanceValidate()</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

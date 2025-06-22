@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Constructs the dependency tree, checks the availability of all required applications and stores the result in the given record.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ExecuteRepositoryApplicationStatus</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ExecuteRepositoryApplicationStatus(grRepoAppStatus)
 {
 	var IsValidRecord = x_snc_devtools.IsValidRecord;

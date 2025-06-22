@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Checks the progress of a running ATF test suite on the given target instance. </description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceCICDCheckProgress</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceCICDCheckProgress(grInstance,strProgressId)
 {
 	var GetValue = x_snc_devtools.GetValue;

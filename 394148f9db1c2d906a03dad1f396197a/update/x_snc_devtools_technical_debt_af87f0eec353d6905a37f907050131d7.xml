@@ -2,6 +2,7 @@
     <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
         <description>SourceControlAPI::ProtectBranchReadOnly() does not (yet) work for AzureDevOps. Although the branch is set to "locked" this does (surprisingly) not preotect the branch from further commits. </description>
         <id/>
+        <related_backlog_item_url/>
         <short_description>AzureDevOps branch protection</short_description>
         <switch>false</switch>
         <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>

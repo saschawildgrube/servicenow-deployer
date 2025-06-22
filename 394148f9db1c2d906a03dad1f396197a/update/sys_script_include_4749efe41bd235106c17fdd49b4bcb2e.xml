@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Runs the ATF test suite on the given target instance. Returns the progress id of the running suite if successful, or false in case of error.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceATFTestSuiteRun</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceATFTestSuiteRun(grInstance,strSuite)
 {
 	var GetValue = x_snc_devtools.GetValue;

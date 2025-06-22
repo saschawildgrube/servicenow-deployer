@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Renders the html dependency tree or list based on a given dependencytree object.</description>
+        <mobile_callable>false</mobile_callable>
         <name>HtmlRenderRepoDependencies</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function HtmlRenderRepoDependencies(dependencytree, strMode, aHidePackages)
 {
 	var GetIntegerValue = x_snc_devtools.GetIntegerValue;

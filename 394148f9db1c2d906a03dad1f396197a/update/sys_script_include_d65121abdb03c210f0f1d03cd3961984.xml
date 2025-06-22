@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Removes all fields from a dependency record object that are not required for preparing and executing deployments.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CleanUpDependencyObject</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CleanUpDependencyObject(vDependencyRecord)
 {
 	var IsObject = x_snc_devtools.IsObject;

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the status object including the required deployment tasks based on the given status and instance objects.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetDeploymentTasks</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetDeploymentTasks(vDeployment)
 {
 	var IsObject = x_snc_devtools.IsObject;

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the latest available dependency list for the given repository and version or false if no status is available.</description>
+        <mobile_callable>false</mobile_callable>
         <name>GetLatestRepoDependencyList</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function GetLatestRepoDependencyList(strRepoUrl, strVersion, bOkOnly)
 {
 	var GetDependencyListFromTree = x_snc_devtools.GetDependencyListFromTree;

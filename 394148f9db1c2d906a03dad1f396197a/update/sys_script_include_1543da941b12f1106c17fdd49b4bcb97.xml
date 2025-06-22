@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Creates the deployment tasks for the given deployment.</description>
+        <mobile_callable>false</mobile_callable>
         <name>CreateDeploymentTasksForDeployment</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function CreateDeploymentTasksForDeployment(grDeployment)
 {
 	var GetValue = x_snc_devtools.GetValue;

@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Validates if the given task has been completed - if possible. Returns true, if no evidence was found that the task is NOT completed successfully.</description>
+        <mobile_callable>false</mobile_callable>
         <name>ValidateDeploymentTask</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function ValidateDeploymentTask(grTask)
 {
 	var IsValidRecord = x_snc_devtools.IsValidRecord;

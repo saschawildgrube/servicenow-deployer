@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Returns the array of applications from the given target instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceGetApplicationList</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceGetApplicationList(grInstance)
 {
 	var GetValue = x_snc_devtools.GetValue;

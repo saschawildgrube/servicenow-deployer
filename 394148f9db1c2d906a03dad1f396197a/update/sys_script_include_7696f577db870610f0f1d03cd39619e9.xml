@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Updates the local CMDB based on data gathered from the target instance.</description>
+        <mobile_callable>false</mobile_callable>
         <name>TargetInstanceUpdateLocalCmdb</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[function TargetInstanceUpdateLocalCmdb(grInstance)
 {
 	var GetValue = x_snc_devtools.GetValue;

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="c25fd98e1b972510cd6153d16b4bcbb3" label="Repository Application Status" max_length="40" name="x_snc_deployer_repository_application_status" type="collection">
         <element attributes="no_truncate=true" display="true" label="Display" max_length="200" name="display" read_only="true" type="string"/>
-        <element choice="1" label="Mode" mandatory="true" max_length="40" name="mode" type="choice">
-            <choice>
-                <element hint="Installs the application and all dependencies from the given branch." inactive_on_update="false" label="Checkout" sequence="3" value="checkout"/>
-                <element hint="Checks the given application based on the given branch and considering all dependencies and their version requirements" inactive_on_update="false" label="Preview" sequence="2" value="preview"/>
-                <element hint="Deploys the given application based on the given version branch and all dependencies based on required versions." inactive_on_update="false" label="Deployment" sequence="1" value="deployment"/>
-            </choice>
-        </element>
-        <element default="dev" label="Branch" max_length="80" name="branch" type="string"/>
-        <element label="Errors" max_length="40" name="errors" read_only="true" type="integer"/>
         <element label="Version" max_length="10" name="version" type="string"/>
+        <element label="Errors" max_length="40" name="errors" read_only="true" type="integer"/>
         <element attributes="no_truncate=true" label="Repository Url" mandatory="true" max_length="200" name="repo_url" type="string"/>
+        <element default="dev" label="Branch" max_length="80" name="branch" type="string"/>
         <element label="Dependency Tree JSON" max_length="10000" name="dependency_tree_json" read_only="true" type="string"/>
         <element choice="1" default="draft" label="Status" max_length="40" name="status" read_only="true" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Previewed Branch" sequence="5" value="previewed"/>
-                <element inactive_on_update="false" label="NOT ready for Deployment" sequence="4" value="error"/>
-                <element inactive_on_update="false" label="Processing" sequence="2" value="processing"/>
-                <element inactive_on_update="false" label="Reviewed Dev Branch" sequence="5" value="dev"/>
                 <element inactive_on_update="false" label="Ready for Deployment" sequence="3" value="ok"/>
                 <element inactive_on_update="false" label="Draft" sequence="1" value="draft"/>
+                <element inactive_on_update="false" label="Reviewed Dev Branch" sequence="5" value="dev"/>
+                <element inactive_on_update="false" label="Processing" sequence="2" value="processing"/>
+                <element inactive_on_update="false" label="Previewed Branch" sequence="5" value="previewed"/>
+                <element inactive_on_update="false" label="NOT ready for Deployment" sequence="4" value="error"/>
+            </choice>
+        </element>
+        <element choice="1" label="Mode" mandatory="true" max_length="40" name="mode" type="choice">
+            <choice>
+                <element hint="Installs the application and all dependencies from the given branch." inactive_on_update="false" label="Checkout" sequence="3" value="checkout"/>
+                <element hint="Deploys the given application based on the given version branch and all dependencies based on required versions." inactive_on_update="false" label="Deployment" sequence="1" value="deployment"/>
+                <element hint="Checks the given application based on the given branch and considering all dependencies and their version requirements" inactive_on_update="false" label="Preview" sequence="2" value="preview"/>
             </choice>
         </element>
     </element>

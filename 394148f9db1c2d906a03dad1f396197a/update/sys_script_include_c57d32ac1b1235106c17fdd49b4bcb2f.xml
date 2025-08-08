@@ -51,5 +51,6 @@ If automatic execution is supported for the given action, the function returns "
         <sys_update_name>sys_script_include_c57d32ac1b1235106c17fdd49b4bcb2f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-01-02 13:43:47</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

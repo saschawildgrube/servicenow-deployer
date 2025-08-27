@@ -41,7 +41,7 @@
         <update_guid_history>80fb3ca12492e250e13f5382c8eb6230:-520819246,04fb3ca18192e25009db8762bda0da2e:-1998345979</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="x_snc_deployer_m2m_pipline_instance.*.public">5cfb3ca19392e250ae97b4aa6aba1079</sys_audit_delete>
+        <sys_audit_delete display_value="">5cfb3ca19392e250ae97b4aa6aba1079</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-06-22 13:24:03</sys_created_on>

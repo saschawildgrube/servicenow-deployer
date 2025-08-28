@@ -221,6 +221,7 @@
 		<li>Deployer has been fully tested with Zurich.</li>
 		<li>DevTools 1.132.0 is required due to the cross scope issue with SourceControlCoolDown() and Zurich support.</li>
 		<li>When creating a Repository Application Status in "Checkout" mode the Deployer no longer performs a strict version compatibility check for dependencies - for a checkout it does not matter if versions are compatible.</li>
+		<li>Added the UI Action "Ignore Failure" to ignore a failed task execution and proceed with the next task. The Deployment as a whole can then only be marked as failed.</li>
 		<li>The "Repository Application Status" form now also displays the Updated date and time.</li>
 		<li>All manual tasks now contain instructions on how to perform them.</li>
 		<li>Added ACL to protect client calls to DeployerClientAPI.</li>
@@ -517,14 +518,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>297</sys_mod_count>
+        <sys_mod_count>298</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-08-27 17:57:22</sys_updated_on>
+        <sys_updated_on>2025-08-28 13:28:08</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>cb800c901b1965105b76777d8b4bcb0a</id>

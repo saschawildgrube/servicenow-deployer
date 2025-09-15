@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="a28794e31bdc7910cd6153d16b4bcbe9" label="Instance" max_length="40" name="x_snc_deployer_instance" type="collection">
-        <element label="Post-Deployment Activities Instructions" max_length="2000" name="post_deployment_activities_instructions" type="string"/>
-        <element label="Smoke Test Instructions" mandatory="true" max_length="4000" name="smoke_test_instructions" type="string"/>
+        <element label="Credential" max_length="32" name="credential" reference="discovery_credentials" reference_qual="type=basic_auth^ORtype=oauth_2_0^EQ" reference_qual_condition="type=basic_auth^ORtype=oauth_2_0^EQ" type="reference"/>
         <element label="Run default ATF Test Suite for each application" max_length="40" name="atf_app_default" type="boolean"/>
+        <element label="Pre-Deployment Activities Instructions" max_length="2000" name="pre_deployment_activities_instructions" type="string"/>
+        <element label="Smoke Test" max_length="40" name="smoke_test" type="boolean"/>
         <element choice="1" label="Data Deletion Policy" mandatory="true" max_length="40" name="data_deletion_policy" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Confirm" sequence="2" value="confirm"/>
                 <element inactive_on_update="false" label="Warn" sequence="3" value="warn"/>
                 <element inactive_on_update="false" label="Deny" sequence="1" value="deny"/>
+                <element inactive_on_update="false" label="Confirm" sequence="2" value="confirm"/>
             </choice>
         </element>
-        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="Run CodeSanity checks for each application" max_length="40" name="codesanity" type="boolean"/>
         <element label="Pre-Deployment Activities" max_length="40" name="pre_deployment_activities" type="boolean"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="&quot;Platform&quot; Application Scope" max_length="40" name="platform_app_scope" type="string"/>
+        <element label="Post-Deployment Activities" max_length="40" name="post_deployment_activities" type="boolean"/>
+        <element label="Url" mandatory="true" max_length="1024" name="url" type="url"/>
+        <element label="MID Server" max_length="32" name="mid_server" reference="ecc_agent" type="reference"/>
+        <element label="Post-Deployment Activities Instructions" max_length="2000" name="post_deployment_activities_instructions" type="string"/>
+        <element label="Smoke Test Instructions" mandatory="true" max_length="4000" name="smoke_test_instructions" type="string"/>
         <element choice="1" label="Type" max_length="40" name="type" type="choice">
             <choice>
                 <element inactive_on_update="false" label="TEST" sequence="2" value="test"/>
@@ -19,14 +27,6 @@
                 <element inactive_on_update="false" label="DEV" sequence="1" value="dev"/>
             </choice>
         </element>
-        <element label="Run CodeSanity checks for each application" max_length="40" name="codesanity" type="boolean"/>
-        <element label="&quot;Platform&quot; Application Scope" max_length="40" name="platform_app_scope" type="string"/>
-        <element label="Pre-Deployment Activities Instructions" max_length="2000" name="pre_deployment_activities_instructions" type="string"/>
-        <element label="Url" mandatory="true" max_length="1024" name="url" type="url"/>
-        <element label="Credential" max_length="32" name="credential" reference="discovery_credentials" reference_qual="type=basic_auth^ORtype=oauth_2_0^EQ" reference_qual_condition="type=basic_auth^ORtype=oauth_2_0^EQ" type="reference"/>
-        <element label="MID Server" max_length="32" name="mid_server" reference="ecc_agent" type="reference"/>
-        <element label="Post-Deployment Activities" max_length="40" name="post_deployment_activities" type="boolean"/>
-        <element label="Smoke Test" max_length="40" name="smoke_test" type="boolean"/>
         <index name="index">
             <element name="credential"/>
         </index>

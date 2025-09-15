@@ -280,17 +280,26 @@
 					dependency['package_class'] = strPackageClass;
 					dependency['repo_url'] = strDependencyRepoUrl;
 					
-					// Second line of defence: if there is no compatible version,
-					// GetRepoDependencyTree should have returned false anyway
-					var strDependencyVersion = GetValue(dependency,'version');
-					var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
 					var bCompatibleVersion = false;
-					for (var nVersion = 0; nVersion < aCompatibleVersions.length; nVersion++)
+
+					if (strMode == 'checkout')
 					{
-						var strRequiredVersion = aCompatibleVersions[nVersion];
-						if (IsVersionCompatible(strDependencyVersion,strRequiredVersion) == true)
+						bCompatibleVersion = true;
+					}
+					else
+					{
+						// Second line of defence: if there is no compatible version,
+						// GetRepoDependencyTree should have returned false anyway
+						var strDependencyVersion = GetValue(dependency,'version');
+						var aCompatibleVersions = GetArrayValue(strCompatibleVersions);
+						
+						for (var nVersion = 0; nVersion < aCompatibleVersions.length; nVersion++)
 						{
-							bCompatibleVersion = true;
+							var strRequiredVersion = aCompatibleVersions[nVersion];
+							if (IsVersionCompatible(strDependencyVersion,strRequiredVersion) == true)
+							{
+								bCompatibleVersion = true;
+							}
 						}
 					}
 					if (bCompatibleVersion == true)
@@ -339,13 +348,25 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:38:30</sys_created_on>
         <sys_id>449f875b974ae910a6a07767f053af60</sys_id>
-        <sys_mod_count>97</sys_mod_count>
+        <sys_mod_count>100</sys_mod_count>
         <sys_name>GetRepoDependencyTree</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_449f875b974ae910a6a07767f053af60</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-02-23 17:47:50</sys_updated_on>
+        <sys_updated_on>2025-07-08 15:42:06</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>449f875b974ae910a6a07767f053af60</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-08 15:36:13</sys_created_on>
+        <sys_id>e0a33f6693e2a210ae97b4aa6aba10ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-08 15:36:13</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
 </record_update>

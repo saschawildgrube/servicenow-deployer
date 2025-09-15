@@ -41,7 +41,7 @@
         <update_guid_history>ffebf8a10a92e250d34de88bf67e5ae7:-324936176,73ebf8a16792e250ec65b2f42d6540e6:968341608</update_guid_history>
     </sys_update_version>
     <sys_metadata_delete action="INSERT_OR_UPDATE">
-        <sys_audit_delete display_value="x_snc_deployer_deployment.*.public">b8fb7ca19392e250ae97b4aa6aba1041</sys_audit_delete>
+        <sys_audit_delete display_value="">b8fb7ca19392e250ae97b4aa6aba1041</sys_audit_delete>
         <sys_class_name>sys_metadata_delete</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-06-22 13:24:04</sys_created_on>

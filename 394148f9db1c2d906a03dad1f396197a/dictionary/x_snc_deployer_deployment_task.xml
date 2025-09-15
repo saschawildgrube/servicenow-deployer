@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="ab1dc2dc1bdeb1106c17fdd49b4bcb26" extends="task" label="Deployment Task" max_length="40" name="x_snc_deployer_deployment_task" type="collection">
-        <element label="MID Server" max_length="32" name="mid_server" type="string"/>
-        <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
-        <element label="Retry Count" max_length="40" name="retry_count" read_only="true" type="integer"/>
-        <element label="Branch" max_length="100" name="branch" type="string"/>
-        <element label="ID" max_length="32" name="id" type="string"/>
-        <element label="Result Details" max_length="1024" name="result_details_url" read_only="true" type="url"/>
-        <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
+        <element choice="1" default="custom" label="Action" max_length="40" name="action" read_only="true" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
-                <element inactive_on_update="false" label="Automatic" sequence="2" value="automatic"/>
+                <element inactive_on_update="false" label="Run Installation Scripts" sequence="10" value="run_install_scripts"/>
+                <element inactive_on_update="false" label="run_atf_test_suite_default" sequence="20" value="Run default ATF Test Suite"/>
+                <element inactive_on_update="false" label="Install Application through Import from Source Control" sequence="1" value="install_import_from_source_control"/>
+                <element inactive_on_update="false" label="Run CodeSanity Instance Scan Suite" sequence="5" value="run_codesanity"/>
             </choice>
         </element>
         <element label="Credential" max_length="32" name="credential" type="string"/>
-        <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
-        <element label="Start Here" max_length="1024" name="start_url" read_only="true" type="url"/>
-        <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" reference_cascade_rule="delete" type="reference"/>
-        <element choice="1" default="custom" label="Action" max_length="40" name="action" read_only="true" type="choice">
+        <element label="MID Server" max_length="32" name="mid_server" type="string"/>
+        <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Install Application through Import from Source Control" sequence="1" value="install_import_from_source_control"/>
-                <element inactive_on_update="false" label="Run CodeSanity Instance Scan Suite" sequence="5" value="run_codesanity"/>
-                <element inactive_on_update="false" label="Run Installation Scripts" sequence="10" value="run_install_scripts"/>
-                <element inactive_on_update="false" label="run_atf_test_suite_default" sequence="20" value="Run default ATF Test Suite"/>
+                <element inactive_on_update="false" label="Automatic" sequence="2" value="automatic"/>
+                <element inactive_on_update="false" label="Manual" sequence="1" value="manual"/>
             </choice>
         </element>
+        <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
+        <element label="Start Here" max_length="1024" name="start_url" read_only="true" type="url"/>
+        <element label="Branch" max_length="100" name="branch" type="string"/>
+        <element label="Retry Count" max_length="40" name="retry_count" read_only="true" type="integer"/>
+        <element label="Result Details" max_length="1024" name="result_details_url" read_only="true" type="url"/>
+        <element label="Status" max_length="200" name="status" read_only="true" type="string"/>
+        <element label="ID" max_length="32" name="id" type="string"/>
+        <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" reference_cascade_rule="delete" type="reference"/>
     </element>
 </database>

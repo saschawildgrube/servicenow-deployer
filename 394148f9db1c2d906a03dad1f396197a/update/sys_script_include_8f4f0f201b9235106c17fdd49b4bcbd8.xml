@@ -78,5 +78,6 @@ The credentials used for the request are taken from the credentials associated w
         <sys_update_name>sys_script_include_8f4f0f201b9235106c17fdd49b4bcbd8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-02-23 17:35:28</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

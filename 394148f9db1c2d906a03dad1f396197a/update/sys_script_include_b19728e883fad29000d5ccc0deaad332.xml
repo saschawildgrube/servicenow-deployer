@@ -59,5 +59,6 @@
         <sys_update_name>sys_script_include_b19728e883fad29000d5ccc0deaad332</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-01-23 13:38:23</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

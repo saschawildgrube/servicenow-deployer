@@ -25,5 +25,6 @@
         <sys_update_name>sys_script_include_a6310cd91bf36510cd6153d16b4bcbae</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-07-01 19:23:04</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

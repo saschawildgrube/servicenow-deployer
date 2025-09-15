@@ -6,7 +6,7 @@
         <sys_created_on>2023-10-20 09:38:53</sys_created_on>
         <sys_id>80e625ab3bd8e65062bf612c95e45ae0</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-10-20 09:38:53</sys_updated_on>
     </sys_package_dependency_m2m>

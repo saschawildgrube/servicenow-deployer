@@ -48,9 +48,9 @@ x_snc_devtools.RedirectToRecord(grDeployment);]]></script>
         <sys_mod_count>2</sys_mod_count>
         <sys_name>Ignore Failure</sys_name>
         <sys_overrides/>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_action_667bbdc73ba36a1062bf612c95e45a62</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2025-08-28 13:15:02</sys_updated_on>

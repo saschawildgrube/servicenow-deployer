@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role_contains">
+    <sys_user_role_contains action="INSERT_OR_UPDATE">
+        <contains display_value="admin" name="admin">2831a114c611228501d4ea6c309d626d</contains>
+        <role display_value="x_snc_deployer.manager" name="x_snc_deployer.manager">a7365a979786e910a6a07767f053af9b</role>
+        <sys_class_name>sys_user_role_contains</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-19 14:17:43</sys_created_on>
+        <sys_id>52bd17063b04725062bf612c95e45a6b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>admin.x_snc_deployer.manager</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_user_role_contains_52bd17063b04725062bf612c95e45a6b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-19 14:17:43</sys_updated_on>
+    </sys_user_role_contains>
+</record_update>

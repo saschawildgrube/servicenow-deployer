@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>For unclear reasons, synchronous HTTP requests are prevented for non-admin users in synchronous business rules.&#13;
+This prevents non-admins from "preparing" a deployment.&#13;
+The quick fix is to assign the admin role to x_snc_deployer.manager (which is a temporary solution) - the actual solution is to perform the "Prepare" step as a lengthy operation in the background (with progress bar in the GUI).</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>x_snc_deployer.manager role requires admin</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-19 14:23:06</sys_created_on>
+        <sys_id>2b5e1f063b04725062bf612c95e45a46</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_snc_deployer.manager role requires admin</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_2b5e1f063b04725062bf612c95e45a46</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-19 14:24:49</sys_updated_on>
+        <type>code_incomplete</type>
+    </x_snc_devtools_technical_debt>
+</record_update>

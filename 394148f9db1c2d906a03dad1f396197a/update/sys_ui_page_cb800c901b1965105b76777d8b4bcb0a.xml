@@ -217,7 +217,7 @@
 
 	<h3>1.22.0 - TODO</h3>
 	<ol>
-		<li>TODO: Document changes here...</li>
+		<li>For unclear reasons, synchronous HTTP requests are prevented for non-admin users in synchronous business rules. This prevents non-admins from "preparing" a deployment. The quick fix is to assign the admin role to x_snc_deployer.manager (which is a temporary solution) - the actual solution is to perform the "Prepare" step as a lengthy operation in the background (with progress bar in the GUI). This has been documented as a technical debt.</li>
 	</ol>
 
 
@@ -525,14 +525,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>302</sys_mod_count>
+        <sys_mod_count>304</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-09-15 14:08:46</sys_updated_on>
+        <sys_updated_on>2025-09-19 14:25:12</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>cb800c901b1965105b76777d8b4bcb0a</id>

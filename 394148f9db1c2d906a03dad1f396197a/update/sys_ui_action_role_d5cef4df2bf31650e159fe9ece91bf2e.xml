@@ -6,9 +6,9 @@
         <sys_id>d5cef4df2bf31650e159fe9ece91bf2e</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Get New Preview For Same Branch.x_snc_deployer.manager</sys_name>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_ui_action display_value="Get New Preview For Same Branch">da1ef09f2bf31650e159fe9ece91bf3f</sys_ui_action>
         <sys_update_name>sys_ui_action_role_d5cef4df2bf31650e159fe9ece91bf2e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>

@@ -78,9 +78,9 @@
             <sys_id>47287b4a1b140e106c17fdd49b4bcbd0</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>x_snc_deployer_m2m_pipline_instance</sys_name>
-            <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+            <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
             <sys_policy/>
-            <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+            <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
             <sys_update_name>sys_ui_list_x_snc_deployer_m2m_pipline_instance_x_snc_deployer_pipeline_null</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2024-02-13 13:55:30</sys_updated_on>

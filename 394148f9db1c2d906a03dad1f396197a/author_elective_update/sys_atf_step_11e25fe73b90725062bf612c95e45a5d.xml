@@ -114,7 +114,7 @@
     </sys_variable_value>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</application>
+        <application display_value="Deployer">394148f9db1c2d906a03dad1f396197a</application>
         <file_path/>
         <instance_id>a8cbb5133b6b5e540fd412c5e4e45a1f</instance_id>
         <instance_name>wildyokohama</instance_name>
@@ -203,10 +203,10 @@
         <sys_metadata>11e25fe73b90725062bf612c95e45a5d</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
         <sys_update_name>sys_atf_step_11e25fe73b90725062bf612c95e45a5d</sys_update_name>
         <sys_update_version display_value="sys_atf_step_11e25fe73b90725062bf612c95e45a5d">6566936f3b90725062bf612c95e45a09</sys_update_version>

@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description>A Deployer manager user can trigger deployments and has read access to all configuration assets and the source control-based dependency tree.</description>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>bW1Z6YBjQQmKJdYNjm36sCWH2iKib5nWTQM5VHJIz1Y=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.manager</name>

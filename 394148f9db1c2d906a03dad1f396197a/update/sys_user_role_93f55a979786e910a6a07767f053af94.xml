@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description>A Deployer viewer user has read access to the Deployer configuration assets and has read access to the source control-derived dependency tree of a given application.</description>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>6ruqtOw0c4lhGuwxKPFpoojs+kbmE5Ja8cpNHZCUV5o=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.viewer</name>

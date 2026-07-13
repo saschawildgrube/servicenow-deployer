@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-07 11:51:23</sys_created_on>
         <sys_id>52d863b73b90f25062bf612c95e45a4d</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_atf_step_52d863b73b90f25062bf612c95e45a4d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-13 16:57:44</sys_updated_on>
+        <sys_updated_on>2026-07-13 17:16:44</sys_updated_on>
         <table/>
         <test display_value="Deployer - Deployer Controller API - Start Deployment">16d863b73b90f25062bf612c95e45a43</test>
         <timeout/>
@@ -36,9 +36,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-07 11:51:23</sys_created_on>
         <sys_id>52d863b73b90f25062bf612c95e45a4e</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-13 16:57:44</sys_updated_on>
+        <sys_updated_on>2026-07-13 17:16:45</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -56,7 +56,10 @@
 	var testdata = new x_snc_devtools.TestDataAPI('ATF.DEPLOYER');&#13;
 	var strPassword = x_snc_devtools.GetRandomNumericToken(30);&#13;
 	&#13;
-	var strUserNoRolesSysId = testdata.CreateUser('No Roles',[],true,'',strPassword);&#13;
+	var strUserNoRolesSysId = testdata.CreateUser(&#13;
+		'No Roles',&#13;
+		[],&#13;
+		true,'',strPassword);&#13;
 	var grUserNoRoles = x_snc_devtools.GetUserRecord(strUserNoRolesSysId);&#13;
 	var oBasicAuth = {&#13;
 		username: x_snc_devtools.GetStringValue(grUserNoRoles.user_name),&#13;
@@ -72,7 +75,7 @@
 	var strUserTargetApiSysId = testdata.CreateUser(&#13;
 		'Target API',&#13;
 		['x_snc_deployer.api_target'],&#13;
-		false,'',strPassword);&#13;
+		true,'',strPassword);&#13;
 	var grUserApi = x_snc_devtools.GetUserRecord(strUserTargetApiSysId);&#13;
 	var oBasicAuth = {&#13;
 		username: x_snc_devtools.GetStringValue(grUserApi.user_name),&#13;

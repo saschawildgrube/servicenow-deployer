@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="65938073e13222108bb2327e625886d3">a635ab491b290690063ddc61ab4bcb49</list_id>
+            <list_id display_value="x_snc_deployer_instance" element="NULL" name="x_snc_deployer_instance" parent="NULL" relationship="NULL" sys_domain="global" view="68a68142c32103104b4f311f050131eb">a635ab491b290690063ddc61ab4bcb49</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -40,7 +40,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2024-04-12 13:17:18</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">65938073e13222108bb2327e625886d3</view>
+            <view display_value="Reference List" name="sys_ref_list">68a68142c32103104b4f311f050131eb</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

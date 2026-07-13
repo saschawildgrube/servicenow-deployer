@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-02 17:35:55</sys_created_on>
         <sys_id>209cd02b1bdc7910cd6153d16b4bcbe8</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_atf_step_209cd02b1bdc7910cd6153d16b4bcbe8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-10 08:29:06</sys_updated_on>
+        <sys_updated_on>2026-07-13 16:13:51</sys_updated_on>
         <table/>
         <test display_value="Deployer - Deployer Target API - Get Status">625cdce71bdc7910cd6153d16b4bcb2d</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-02 17:35:56</sys_created_on>
         <sys_id>7a9c142b1bdc7910cd6153d16b4bcbcb</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-10 08:29:06</sys_updated_on>
+        <sys_updated_on>2026-07-13 16:13:51</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -100,9 +100,9 @@
 &#13;
 	var strPassword = x_snc_devtools.GetRandomNumericToken(30);&#13;
 	&#13;
-	var testdata = new x_snc_devtools.TestDataAPI('_ATF_DEPLOYER_');&#13;
+	var testdata = new x_snc_devtools.TestDataAPI('ATF.DEPLOYER');&#13;
 &#13;
-	var strUserItil = testdata.CreateUser('ITIL',['itil'],false,'',strPassword);&#13;
+	var strUserItil = testdata.CreateUser('ITIL',['itil'],true,'',strPassword);&#13;
 	var grUserItil = x_snc_devtools.GetUserRecord(strUserItil);&#13;
 	var oBasicAuth = {&#13;
 		username: x_snc_devtools.GetStringValue(grUserItil.user_name),&#13;
@@ -113,7 +113,7 @@
 	var strUserControllerApiSysId = testdata.CreateUser(&#13;
 		'CONTROLLER_API',&#13;
 		['x_snc_deployer.api_controller'],&#13;
-		false,'',strPassword);&#13;
+		true,'',strPassword);&#13;
 	var grUserControllerApi = x_snc_devtools.GetUserRecord(strUserControllerApiSysId);&#13;
 	var oBasicAuth = {&#13;
 		username: x_snc_devtools.GetStringValue(grUserControllerApi.user_name),&#13;
@@ -121,13 +121,13 @@
 	};&#13;
 	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,'User Not Authorized');&#13;
 	&#13;
-	var strUserApi = testdata.CreateUser(&#13;
-		'DEPLOYER_TARGET_API',&#13;
+	var strUserTargetApi = testdata.CreateUser(&#13;
+		'TARGET_API',&#13;
 		['x_snc_deployer.api_target'],&#13;
 		true,'',strPassword);&#13;
-	var grUserApi = x_snc_devtools.GetUserRecord(strUserApi);&#13;
+	var grUserTargetApi = x_snc_devtools.GetUserRecord(strUserTargetApi);&#13;
 	var oBasicAuth = {&#13;
-		username: x_snc_devtools.GetStringValue(grUserApi.user_name),&#13;
+		username: x_snc_devtools.GetStringValue(grUserTargetApi.user_name),&#13;
 		password: strPassword&#13;
 	};&#13;
 	TestCase_DeployerTargetAPI_GetStatus(oBasicAuth,'SUCCESS');&#13;

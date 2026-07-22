@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl/>
+        <http_method>GET</http_method>
+        <name>Get Transactions</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	
+	var IsUserHasRoleExactly = x_snc_devtools.IsUserHasRoleExactly;
+	var GetActiveTransactions = x_snc_devtools.GetActiveTransactions;
+
+	function Error(strMessage,strDetails)
+	{
+		var myError = new sn_ws_err.ServiceError();
+		myError.setStatus(200);
+		myError.setMessage(strMessage);
+		myError.setDetail(strDetails);
+		response.setError(myError);	
+	}
+	
+	if (IsUserHasRoleExactly('x_snc_deployer.api_target') == false)
+	{
+		Error('User Not Authorized','');
+		return;
+	}
+
+	if (IsActive() == false)
+	{
+		Error('INACTIVE','The Deployer app is inactive.');
+		return;
+	}
+	
+	var aTransactions = GetActiveTransactions();
+	
+	var result = {};
+	result.message = 'SUCCESS';
+	result.transactions = aTransactions;
+		
+	response.setBody(result);
+	
+	return;
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_snc_deployer/target/get_transactions</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/get_transactions</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description>Retrieve the currently active transactions from the instance.</short_description>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-07-22 11:14:33</sys_created_on>
+        <sys_id>324aa22493564b902de3b4aa6aba1059</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Get Transactions</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_ws_operation_324aa22493564b902de3b4aa6aba1059</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-22 11:23:03</sys_updated_on>
+        <web_service_definition display_value="Deployer Target API">2c6640981b1965105b76777d8b4bcb6f</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

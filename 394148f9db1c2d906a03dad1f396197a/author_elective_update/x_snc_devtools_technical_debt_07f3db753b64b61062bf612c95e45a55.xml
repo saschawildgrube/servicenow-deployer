@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="DELETE">
+        <description>The test "Deployer - Deployer Controller API - Start Deployment" validates that the API responds with an error if requested without user credentials.&#13;
+This test case is commented out because Yokohama and Zurich provide different responses in that case.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>Test "Deployer - Deployer Controller API - Start Deployment" needs refactoring</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-13 15:29:30</sys_created_on>
+        <sys_id>07f3db753b64b61062bf612c95e45a55</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test "Deployer - Deployer Controller API - Start Deployment" needs refactoring</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_07f3db753b64b61062bf612c95e45a55</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-13 15:29:30</sys_updated_on>
+        <type>test_coverage</type>
+    </x_snc_devtools_technical_debt>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>x_snc_devtools_technical_debt_07f3db753b64b61062bf612c95e45a55</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>The test "Deployer - Deployer Controller API - Start Deployment" validates that the API responds with an error if requested without user credentials.&#13;
+This test case is commented out because Yokohama and Zurich provide different responses in that case.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>Test "Deployer - Deployer Controller API - Start Deployment" needs refactoring</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-13 15:29:30</sys_created_on>
+        <sys_id>07f3db753b64b61062bf612c95e45a55</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test "Deployer - Deployer Controller API - Start Deployment" needs refactoring</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_07f3db753b64b61062bf612c95e45a55</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-13 15:29:30</sys_updated_on>
+        <type>test_coverage</type>
+    </x_snc_devtools_technical_debt>
+</record_update>]]></payload>
+        <payload_hash>-1315006044</payload_hash>
+        <record_name>Test "Deployer - Deployer Controller API - Start Deployment" needs refactoring</record_name>
+        <reverted_from/>
+        <source>f9495b329369c7102de3b4aa6aba1068</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-22 07:39:49</sys_created_on>
+        <sys_id>7c79dfb29369c7102de3b4aa6aba1009</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19eee45743c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-22 07:39:49</sys_updated_on>
+        <type>Technical Debt</type>
+        <update_guid>3c79dfb25e69c710dfc1c24a0b55a109</update_guid>
+        <update_guid_history>3c79dfb25e69c710dfc1c24a0b55a109:-1315006044</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Test &quot;Deployer - Deployer Controller API - Start Deployment&quot; needs refactoring">a03e5068c362c7104b4f311f050131fd</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-03 11:18:10</sys_created_on>
+        <sys_db_object display_value="" name="x_snc_devtools_technical_debt">x_snc_devtools_technical_debt</sys_db_object>
+        <sys_id>86220c75cd55440a9add9f88e1592719</sys_id>
+        <sys_metadata>07f3db753b64b61062bf612c95e45a55</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test "Deployer - Deployer Controller API - Start Deployment" needs refactoring</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
+        <sys_update_name>x_snc_devtools_technical_debt_07f3db753b64b61062bf612c95e45a55</sys_update_name>
+        <sys_update_version display_value="x_snc_devtools_technical_debt_07f3db753b64b61062bf612c95e45a55">7c79dfb29369c7102de3b4aa6aba1009</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-03 11:18:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

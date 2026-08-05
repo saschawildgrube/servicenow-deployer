@@ -6,9 +6,9 @@
         <sys_id>b95fe84c1b9a71106c17fdd49b4bcb91</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Mark as Failed.x_snc_deployer.manager</sys_name>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_ui_action display_value="Mark as Failed">ac5fec0c1b9a71106c17fdd49b4bcbe4</sys_ui_action>
         <sys_update_name>sys_ui_action_role_b95fe84c1b9a71106c17fdd49b4bcb91</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>

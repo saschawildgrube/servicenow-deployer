@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role_contains">
+    <sys_user_role_contains action="DELETE">
+        <contains display_value="credential_admin" name="credential_admin">4ceaf119471311003961ffa0ec9a7154</contains>
+        <role display_value="x_snc_deployer.manager" name="x_snc_deployer.manager">a7365a979786e910a6a07767f053af9b</role>
+        <sys_class_name>sys_user_role_contains</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-10-30 14:43:22</sys_created_on>
+        <sys_id>fe9a068c1b52b1106c17fdd49b4bcba4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>credential_admin.x_snc_deployer.manager</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_user_role_contains_fe9a068c1b52b1106c17fdd49b4bcba4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-10-30 14:43:22</sys_updated_on>
+    </sys_user_role_contains>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_user_role_contains_fe9a068c1b52b1106c17fdd49b4bcba4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role_contains">
+    <sys_user_role_contains action="INSERT_OR_UPDATE">
+        <contains display_value="credential_admin" name="credential_admin">4ceaf119471311003961ffa0ec9a7154</contains>
+        <role display_value="x_snc_deployer.manager" name="x_snc_deployer.manager">a7365a979786e910a6a07767f053af9b</role>
+        <sys_class_name>sys_user_role_contains</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-10-30 14:43:22</sys_created_on>
+        <sys_id>fe9a068c1b52b1106c17fdd49b4bcba4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>credential_admin.x_snc_deployer.manager</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_user_role_contains_fe9a068c1b52b1106c17fdd49b4bcba4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-10-30 14:43:22</sys_updated_on>
+    </sys_user_role_contains>
+</record_update>]]></payload>
+        <payload_hash>-28124870</payload_hash>
+        <record_name>credential_admin.x_snc_deployer.manager</record_name>
+        <reverted_from/>
+        <source>f9495b329369c7102de3b4aa6aba1068</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-22 07:39:48</sys_created_on>
+        <sys_id>28799fb29369c7102de3b4aa6aba102c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19eee4570480000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-22 07:39:48</sys_updated_on>
+        <type>Contained Role</type>
+        <update_guid>e4799fb23969c710d6957c60ad24dc2c</update_guid>
+        <update_guid_history>e4799fb23969c710d6957c60ad24dc2c:-28124870</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-05 16:39:19</sys_created_on>
+        <sys_db_object display_value="" name="sys_user_role_contains">sys_user_role_contains</sys_db_object>
+        <sys_id>871a3844a89d431f96bd4826aac38e61</sys_id>
+        <sys_metadata>fe9a068c1b52b1106c17fdd49b4bcba4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>credential_admin.x_snc_deployer.manager</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
+        <sys_update_name>sys_user_role_contains_fe9a068c1b52b1106c17fdd49b4bcba4</sys_update_name>
+        <sys_update_version display_value="sys_user_role_contains_fe9a068c1b52b1106c17fdd49b4bcba4">28799fb29369c7102de3b4aa6aba102c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-05 16:39:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

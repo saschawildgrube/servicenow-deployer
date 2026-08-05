@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description>The api user is entitled to execute REST API calls to the Deployer Controller API.</description>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>0fMOKxhjacE6Ku793GI7bf76506PGsft1mKHe14CAOc=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.api_controller</name>

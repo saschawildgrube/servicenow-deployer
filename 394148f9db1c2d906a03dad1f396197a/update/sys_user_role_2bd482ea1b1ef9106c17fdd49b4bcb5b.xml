@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description>A developer can view all deployer related data and can create new Repository Application Status records.</description>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>OwA4wQTaCacXFwiFXovVfcf0Azo3glp9x/Z+ZU7z224=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.developer</name>

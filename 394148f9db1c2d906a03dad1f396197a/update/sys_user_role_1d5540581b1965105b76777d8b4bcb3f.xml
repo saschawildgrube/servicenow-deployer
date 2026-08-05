@@ -5,6 +5,7 @@
         <description>The api user is entitled to execute REST API calls to the Deployer Target API.&#13;
 The admin and security_admin roles are required since the execution of ATF tests depends on the roles of the user triggering their execution.</description>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>hbU9asMrnT3b91/xUJ0lxyBLvxDRrBLBjRMStBJf5Iw=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.api_target</name>

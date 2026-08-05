@@ -5,6 +5,7 @@
         <description>A Deployer admin user has access to all configuration and process assets of the Deployer application.&#13;
 The role contains the deployer manager role.</description>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>CGnmz1UEJv1zglXHuaUi7L/GtDyiekHqtuPUMdz1XuY=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_snc_deployer.admin</name>

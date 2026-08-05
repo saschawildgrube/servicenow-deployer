@@ -14,7 +14,7 @@
 		docapi.RenderHeader();
 	]</g2:no_escape>
 	
-	<p>Welcome to Deployer - created and maintained by&#160;<a href="mailto:sascha.wildgrube@servicenow.com">Sascha Wildgrube</a>.</p>
+	<p>Welcome to Deployer - created and maintained by&#160;<a href="mailto:sascha@wildgrube.com">Sascha Wildgrube</a>.</p>
 
 	<p>Special thanks go to&#160;<a href="mailto:k.janssen@posteo.de">Kevin Janssen</a>&#160;for his contributions to support AzureDevOps.</p>	
 
@@ -110,7 +110,7 @@
 	<ul>
 		<g2:no_escape>$[
 			docapi.RenderSystemRequirements(
-				'Yokohama,Zurich',
+				'Zurich,Australia',
 				true,
 				AppGetDependencies());
 		]</g2:no_escape>	
@@ -223,6 +223,30 @@
 	<g2:no_escape>$[docapi.RenderLicense()]</g2:no_escape>
 	
 	<h2 toc-ignore-children="true">Release Notes</h2>
+
+	<h3>1.24.0 - 2026-08-05</h3>
+	<ol>
+		<li>DevTools 1.143.0 is now required due to the new capabilities of GetParam(), GetActiveTransactions() and updated TestDataAPI::CreateUser().</li>
+		<li>Yokohama is no longer actively supported.</li>
+		<li>Deployer is fully tested with Australia.</li>
+		<li>Preparing a deployment is now performed asynchronously to avoid triggering outgoing HTTP requests in a user-interactive transaction.</li> 
+		<li>The "x_snc_deployer.manager" role no longer contains the "admin" role (which was required to perform synchronous HTTP requests).</li>
+		<li>Added the "Get Transactions" end point to the "Deployer Target API".</li> 
+		<li>Added UI Action "Go to RAS" on the Deployment form.</li>
+		<li>Added UI Action "Go to Instance" on the Deployment form.</li>
+		<li>The pipeline viewer now shows if a target instance is not ready (and no status could be obtained).</li> 
+		<li>The pipeline viewer now shows "clean" application names (i.e. application names without postfix like "WORK IN PROGRESS").</li>
+		<li>When validating a target instance, the correct role for the Target API is now displayed.</li>
+		<li>Updated ATF test "Deployer - Deployer Target API - Run Installation Scripts" to comply with test data naming convention.</li>
+		<li>Updated ATF test "Deployer - Deployer Target API - Get Status" to comply with test data naming convention.</li>		
+		<li>Updated ATF test "Deployer - Deployer Controller API - Start Deployment" to comply with naming convention and to test the user is not authenticated case.</li> 
+		<li>Updated ATF test "Deployer - Deployer Target API - Get Credential" to comply with naming convention and to always use technical test users.</li>
+		<li>Updated ATF test "Deployer - Deployer Target API - Run Installation Scripts" to comply with test app naming convention.</li>
+		<li>All tabes are now configurable and accessible from all scopes.</li>
+		<li>All REST API operations now use x_snc_devtools.GetParam() to access parameters provided from the outside - which significantly improves security. Error codes however no longer differentiate between invalid and missing parameters.</li> 
+		<li>Updated author's email address.</li>
+	</ol>
+
 
 	<h3>1.23.0 - 2025-12-29</h3>
 	<ol>
@@ -557,14 +581,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>340</sys_mod_count>
+        <sys_mod_count>362</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-29 15:40:41</sys_updated_on>
+        <sys_updated_on>2026-08-05 16:50:54</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>cb800c901b1965105b76777d8b4bcb0a</id>

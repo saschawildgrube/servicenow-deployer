@@ -58,10 +58,15 @@
 			var instance_status = TargetInstanceGetStatus(grInstance);
 			if (instance_status != false)
 			{
+				instance.status = true;
 				instance.apps = GetArrayValue(
 					GetValue(instance_status,'apps'));
 				instance.instance_version_name = GetStringValue(
 					GetValue(instance_status,'instance_version_name'));
+			}
+			else
+			{
+				instance.status = false;
 			}
 		}
 		aInstances.push(instance);
@@ -115,14 +120,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-17 16:02:04</sys_created_on>
         <sys_id>6ac821671b07b1506c17fdd49b4bcbbd</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetPipelineStatus</sys_name>
         <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_6ac821671b07b1506c17fdd49b4bcbbd</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-05 12:14:54</sys_updated_on>
+        <sys_updated_on>2026-07-17 11:43:27</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

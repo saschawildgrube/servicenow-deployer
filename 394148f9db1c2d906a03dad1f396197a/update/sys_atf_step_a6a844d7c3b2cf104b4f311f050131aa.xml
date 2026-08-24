@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-24 09:03:05</sys_created_on>
         <sys_id>a6a844d7c3b2cf104b4f311f050131aa</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_atf_step_a6a844d7c3b2cf104b4f311f050131aa</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-24 10:00:41</sys_updated_on>
+        <sys_updated_on>2026-08-24 11:23:43</sys_updated_on>
         <table/>
         <test display_value="Deployer - GetStoreAppStatus">1aa844d7c3b2cf104b4f311f0501314c</test>
         <timeout/>
@@ -50,16 +50,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-24 09:03:05</sys_created_on>
         <sys_id>6ea884d7c3b2cf104b4f311f05013121</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-24 10:00:41</sys_updated_on>
+        <sys_updated_on>2026-08-24 11:23:43</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 	&#13;
-	function TestCase_GetStoreAppStatus(aStoreAppWhitelist,vExpected)&#13;
+	function TestCase_GetStoreAppStatus(aWhitelist,vExpected)&#13;
 	{&#13;
 		function TestCase_GetStoreAppStatus_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
@@ -86,7 +86,7 @@
 			'Function GetStoreAppStatus()',&#13;
 			GetStoreAppStatus,&#13;
 			{&#13;
-				'aStoreAppWhitelist': aStoreAppWhitelist&#13;
+				'aWhitelist': aWhitelist&#13;
 			},&#13;
 			vExpected,&#13;
 			TestCase_GetStoreAppStatus_CheckResult);&#13;
@@ -135,7 +135,7 @@
 	TestCase_GetStoreAppStatus(aWhitelistNames,5);&#13;
 	TestCase_GetStoreAppStatus(aWhitelistMixed,5);&#13;
 &#13;
-	//TestCase_GetStoreAppStatus(['all'],'all');&#13;
+	TestCase_GetStoreAppStatus(['all'],'all');&#13;
 	&#13;
 	return test.GetResult();&#13;
 	&#13;

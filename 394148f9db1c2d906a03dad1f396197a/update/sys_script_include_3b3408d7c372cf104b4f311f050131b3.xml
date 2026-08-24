@@ -9,7 +9,7 @@
         <mobile_callable>false</mobile_callable>
         <name>GetStoreAppStatus</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function GetStoreAppStatus(aStoreAppWhitelist)
+        <script><![CDATA[function GetStoreAppStatus(aWhitelist)
 {
 	var GetArrayValue = x_snc_devtools.GetArrayValue;
 	var GetValue = x_snc_devtools.GetValue;
@@ -17,22 +17,18 @@
 	var Clone = x_snc_devtools.Clone;
 	var IsValidSysId = x_snc_devtools.IsValidSysId;
 	var IsValidAppName = x_snc_devtools.IsValidAppName;
+	var IsValidScope = x_snc_devtools.IsValidScope;
 
-	function IsValidScope(strScope)
-	{
-		return x_snc_devtools.IsSnakeCase(strScope);
-	}
+	aWhitelist = GetArrayValue(aWhitelist);
 
-	aStoreAppWhitelist = GetArrayValue(aStoreAppWhitelist);
-
-	if (aStoreAppWhitelist.length == 0)
+	if (aWhitelist.length == 0)
 	{
 		return false;
 	}
 
 	var strQuery = '';
 
-	if (aStoreAppWhitelist.length == 1 && GetValue(aStoreAppWhitelist,0) == 'all')
+	if (aWhitelist.length == 1 && GetValue(aWhitelist,0) == 'all')
 	{
 		strQuery = '';
 	}
@@ -41,20 +37,20 @@
 		var aSysIds = [];
 		var aScopes = [];
 		var aNames = [];
-		for (nStoreAppWhitelist = 0; nStoreAppWhitelist < aStoreAppWhitelist.length; nStoreAppWhitelist++)
+		for (nWhitelist = 0; nWhitelist < aWhitelist.length; nWhitelist++)
 		{
-			var strStoreAppWhitelist = aStoreAppWhitelist[nStoreAppWhitelist];
-			if (IsValidSysId(strStoreAppWhitelist) == true)
+			var strWhitelist = aWhitelist[nWhitelist];
+			if (IsValidSysId(strWhitelist) == true)
 			{
-				aSysIds.push(strStoreAppWhitelist);
+				aSysIds.push(strWhitelist);
 			}
-			else if (IsValidScope(strStoreAppWhitelist) == true)
+			else if (IsValidScope(strWhitelist) == true)
 			{
-				aScopes.push(strStoreAppWhitelist);				
+				aScopes.push(strWhitelist);				
 			}
-			else if (IsValidAppName(strStoreAppWhitelist) == true)
+			else if (IsValidAppName(strWhitelist) == true)
 			{
-				aNames.push(strStoreAppWhitelist);
+				aNames.push(strWhitelist);
 			}
 			else
 			{
@@ -105,14 +101,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-08-24 09:02:03</sys_created_on>
         <sys_id>3b3408d7c372cf104b4f311f050131b3</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>GetStoreAppStatus</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_3b3408d7c372cf104b4f311f050131b3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-24 10:04:17</sys_updated_on>
+        <sys_updated_on>2026-08-24 11:22:14</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

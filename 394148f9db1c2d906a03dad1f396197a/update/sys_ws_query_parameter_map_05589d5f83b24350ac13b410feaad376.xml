@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter_map">
+    <sys_ws_query_parameter_map action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ws_query_parameter_map</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-24 14:51:16</sys_created_on>
+        <sys_id>05589d5f83b24350ac13b410feaad376</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>2097d99b83b24350ac13b410feaad31c</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_ws_query_parameter_map_05589d5f83b24350ac13b410feaad376</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-24 14:51:16</sys_updated_on>
+        <web_service_operation display_value="Get Status">059b54e71bdc7910cd6153d16b4bcb91</web_service_operation>
+        <web_service_query_parameter display_value="store_apps">2097d99b83b24350ac13b410feaad31c</web_service_query_parameter>
+    </sys_ws_query_parameter_map>
+</record_update>

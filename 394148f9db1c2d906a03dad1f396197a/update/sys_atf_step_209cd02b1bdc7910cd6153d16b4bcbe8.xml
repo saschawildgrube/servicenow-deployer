@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-02 17:35:55</sys_created_on>
         <sys_id>209cd02b1bdc7910cd6153d16b4bcbe8</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_atf_step_209cd02b1bdc7910cd6153d16b4bcbe8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-13 16:13:51</sys_updated_on>
+        <sys_updated_on>2026-08-24 15:29:09</sys_updated_on>
         <table/>
         <test display_value="Deployer - Deployer Target API - Get Status">625cdce71bdc7910cd6153d16b4bcb2d</test>
         <timeout/>
@@ -50,9 +50,9 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-02 17:35:56</sys_created_on>
         <sys_id>7a9c142b1bdc7910cd6153d16b4bcbcb</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-07-13 16:13:51</sys_updated_on>
+        <sys_updated_on>2026-08-24 15:29:09</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
@@ -86,6 +86,12 @@
 		strUrl += x_snc_devtools.GetInstanceUrl();&#13;
 		strUrl += '/api/x_snc_deployer/target/get_status';&#13;
 		strUrl += '?';&#13;
+&#13;
+		strUrl += 'plugins=' + encodeURIComponent(&#13;
+			'com.snc.notify,Sentiment Analysis,aea6ecd8c375cb104b4f311f05013107');&#13;
+&#13;
+		strUrl += '&amp;store_apps=' + encodeURIComponent(&#13;
+			'@devsnc/guided-wizard-toolkit,sn_library_intent,9a3424f5bdd610f550a3e95f2ceb9bb0');&#13;
 		&#13;
 		test.TestCase_HttpRequest(&#13;
 			'Deployer Target API / Get Status',&#13;

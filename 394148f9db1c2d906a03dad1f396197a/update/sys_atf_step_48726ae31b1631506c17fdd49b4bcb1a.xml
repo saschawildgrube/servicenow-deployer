@@ -14,14 +14,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-10 13:26:19</sys_created_on>
         <sys_id>48726ae31b1631506c17fdd49b4bcb1a</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Run Server Side Script</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_atf_step_48726ae31b1631506c17fdd49b4bcb1a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-10 13:28:12</sys_updated_on>
+        <sys_updated_on>2026-08-24 14:41:23</sys_updated_on>
         <table/>
         <test display_value="Deployer - GetStatus">f6522ae31b1631506c17fdd49b4bcb13</test>
         <timeout/>
@@ -36,19 +36,51 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-10 13:26:19</sys_created_on>
         <sys_id>51726ae31b1631506c17fdd49b4bcb16</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-11-10 13:28:12</sys_updated_on>
+        <sys_updated_on>2026-08-24 14:41:23</sys_updated_on>
         <value>(function(outputs, steps, stepResult, assertEqual)&#13;
 {&#13;
 	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);&#13;
 	&#13;
 	test.SetResult(true);&#13;
 &#13;
-	function TestCase_GetStatus()&#13;
+	function TestCase_GetStatus(aWhiteListPlugins, aWhiteListStoreApps, vExpected)&#13;
 	{&#13;
 		function TestCase_GetStatus_CheckResult(vInput,vExpected,vResult)&#13;
 		{&#13;
+			if (x_snc_devtools.IsObject(vExpected) == true)&#13;
+			{&#13;
+				var aPlugins = x_snc_devtools.GetArrayValue(x_snc_devtools.GetValue(vResult,'plugins'));&#13;
+				var aStoreApps = x_snc_devtools.GetArrayValue(x_snc_devtools.GetValue(vResult,'store_apps'));&#13;
+&#13;
+				var vExpectedPlugins = x_snc_devtools.GetValue(vExpected,'plugins');&#13;
+				if (vExpectedPlugins == 'all')&#13;
+				{&#13;
+					if (aPlugins.length &lt; 500)&#13;
+					{&#13;
+						return false;&#13;
+					}&#13;
+				}&#13;
+				if (vExpectedPlugins != aPlugins.length)&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
+&#13;
+				var vExpectedStoreApps = x_snc_devtools.GetValue(vExpected,'store_apps');&#13;
+				if (vExpectedStoreApps == 'all')&#13;
+				{&#13;
+					if (aStoreApps.length &lt; 500)&#13;
+					{&#13;
+						return false;&#13;
+					}&#13;
+				}&#13;
+				if (vExpectedStoreApps != aStoreApps.length)&#13;
+				{&#13;
+					return false;&#13;
+				}&#13;
+			}&#13;
+&#13;
 			return true;&#13;
 		}&#13;
 &#13;
@@ -56,13 +88,111 @@
 			'Function GetStatus()',&#13;
 			GetStatus,&#13;
 			{&#13;
+				aWhiteListPlugins: aWhiteListPlugins,&#13;
+				aWhiteListStoreApps: aWhiteListStoreApps&#13;
 			},&#13;
 			null,&#13;
 			TestCase_GetStatus_CheckResult);&#13;
 	}&#13;
 &#13;
-	TestCase_GetStatus();&#13;
+	var aWhiteListPlugins = [];&#13;
+	var aWhiteListStoreApps = [];&#13;
+	TestCase_GetStatus(aWhiteListPlugins, aWhiteListStoreApps, { plugins: 0, store_apps: 0});&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+	var aWhiteListPluginSysIds = [];&#13;
+	var aWhiteListPluginIds = [];&#13;
+	var aWhiteListPluginNames = [];&#13;
+	var aWhiteListPluginMixed = [];&#13;
+&#13;
+	var grPlugin = new GlideRecord('sys_plugins');&#13;
+	grPlugin.setLimit(5);&#13;
+	grPlugin.query();&#13;
+	var nMixed = 0;&#13;
+	while (grPlugin.next())&#13;
+	{&#13;
+		aWhiteListPluginSysIds.push(x_snc_devtools.GetStringValue(grPlugin.sys_id));&#13;
+		aWhiteListPluginIds.push(x_snc_devtools.GetStringValue(grPlugin.source));&#13;
+		aWhiteListPluginNames.push(x_snc_devtools.GetStringValue(grPlugin.name));&#13;
+&#13;
+		if (nMixed == 0)&#13;
+		{&#13;
+			aWhiteListPluginMixed.push(x_snc_devtools.GetStringValue(grPlugin.sys_id));&#13;
+		}&#13;
+		else if (nMixed == 1)&#13;
+		{&#13;
+			aWhiteListPluginMixed.push(x_snc_devtools.GetStringValue(grPlugin.source));&#13;
+		}&#13;
+		else if (nMixed == 2)&#13;
+		{&#13;
+			aWhiteListPluginMixed.push(x_snc_devtools.GetStringValue(grPlugin.name));&#13;
+		}		&#13;
+&#13;
+		nMixed++;&#13;
+		if (nMixed == 3)&#13;
+		{&#13;
+			nMixed = 0;&#13;
+		}&#13;
+	}&#13;
+&#13;
+	TestCase_GetStatus(aWhiteListPluginSysIds, null,{ plugins: 5, store_apps: 0 });&#13;
+	TestCase_GetStatus(aWhiteListPluginIds, null,{ plugins: 5, store_apps: 0 });&#13;
+	TestCase_GetStatus(aWhiteListPluginNames, null,{ plugins: 5, store_apps: 0 });&#13;
+	TestCase_GetStatus(aWhiteListPluginMixed, null, { plugins: 5, store_apps: 0 });&#13;
+&#13;
+&#13;
+	var aWhiteListStoreAppSysIds = [];&#13;
+	var aWhiteListStoreAppScopes = [];&#13;
+	var aWhiteListStoreAppNames = [];&#13;
+	var aWhiteListStoreAppMixed = [];&#13;
+&#13;
+	var grStoreApp = new GlideRecord('sys_store_app');&#13;
+	grStoreApp.setLimit(5);&#13;
+	grStoreApp.query();&#13;
+	var nMixed = 0;&#13;
+	while (grStoreApp.next())&#13;
+	{&#13;
+		aWhiteListStoreAppSysIds.push(x_snc_devtools.GetStringValue(grStoreApp.sys_id));&#13;
+		aWhiteListStoreAppScopes.push(x_snc_devtools.GetStringValue(grStoreApp.scope));&#13;
+		aWhiteListStoreAppNames.push(x_snc_devtools.GetStringValue(grStoreApp.name));&#13;
+&#13;
+		if (nMixed == 0)&#13;
+		{&#13;
+			aWhiteListStoreAppMixed.push(x_snc_devtools.GetStringValue(grStoreApp.sys_id));&#13;
+		}&#13;
+		else if (nMixed == 1)&#13;
+		{&#13;
+			aWhiteListStoreAppMixed.push(x_snc_devtools.GetStringValue(grStoreApp.scope));&#13;
+		}&#13;
+		else if (nMixed == 2)&#13;
+		{&#13;
+			aWhiteListStoreAppMixed.push(x_snc_devtools.GetStringValue(grStoreApp.name));&#13;
+		}		&#13;
+&#13;
+		nMixed++;&#13;
+		if (nMixed == 3)&#13;
+		{&#13;
+			nMixed = 0;&#13;
+		}&#13;
+	}&#13;
+&#13;
+	TestCase_GetStatus(null,aWhiteListStoreAppSysIds,{ plugins: 0, store_apps: 5 });&#13;
+	TestCase_GetStatus(null,aWhiteListStoreAppScopes,{ plugins: 0, store_apps: 5 });&#13;
+	TestCase_GetStatus(null,aWhiteListStoreAppNames,{ plugins: 0, store_apps: 5 });&#13;
+	TestCase_GetStatus(null,aWhiteListStoreAppMixed,{ plugins: 0, store_apps: 5 });&#13;
+&#13;
+	TestCase_GetStatus(aWhiteListPluginSysIds,aWhiteListStoreAppSysIds,{ plugins: 5, store_apps: 5 });&#13;
+	TestCase_GetStatus(aWhiteListPluginIds,aWhiteListStoreAppScopes,{ plugins: 5, store_apps: 5 });&#13;
+	TestCase_GetStatus(aWhiteListPluginNames,aWhiteListStoreAppNames,{ plugins: 5, store_apps: 5 });&#13;
+	TestCase_GetStatus(aWhiteListPluginMixed,aWhiteListStoreAppMixed,{ plugins: 5, store_apps: 5 });&#13;
+&#13;
+&#13;
+&#13;
+	TestCase_GetStatus(['all'],['all'],{ plugins: 'all', store_apps: 'all' });&#13;
 	&#13;
+&#13;
 	return test.GetResult();&#13;
 	&#13;
 })(outputs, steps, stepResult, assertEqual);</value>

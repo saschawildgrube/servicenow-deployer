@@ -9,33 +9,67 @@
         <mobile_callable>false</mobile_callable>
         <name>TargetInstanceGetStatus</name>
         <sandbox_callable>false</sandbox_callable>
-        <script><![CDATA[function TargetInstanceGetStatus(grInstance)
+        <script><![CDATA[function TargetInstanceGetStatus(
+	grInstance,
+	aWhitelistPlugins,
+	aWhitelistStoreApps)
 {
 	var GetValue = x_snc_devtools.GetValue;
+	var GetArrayValue = x_snc_devtools.GetArrayValue;
+	var GetStringValue = x_snc_devtools.GetStringValue;
 	var IsObject = x_snc_devtools.IsObject;
-
-	var result = TargetInstanceRequest(grInstance,'x_snc_deployer/target/get_status');
+	var MakeUrlParameters = x_snc_devtools.MakeUrlParameters;
 	
-	var status = GetValue(result,'result');
+	aWhitelistPlugins = GetArrayValue(aWhitelistPlugins);
+	aWhitelistStoreApps = GetArrayValue(aWhitelistStoreApps);
+
+	var strEndPoint =
+		'x_snc_deployer/target/get_status';
+
+	var params = {};
+	if (aWhitelistPlugins.length > 0)
+	{
+		params.plugins = aWhitelistPlugins;
+	}
+	if (aWhitelistStoreApps.length > 0)
+	{
+		params.store_apps = aWhitelistStoreApps;
+	}
+	var strParams = MakeUrlParameters(params);
+	if (strParams != '')
+	{
+		strEndPoint += '?' + strParams;
+	}
+
+	var result =
+		TargetInstanceRequest(
+			grInstance,
+			strEndPoint);
+
+	var status =
+		GetValue(
+			result,
+			'result');
+
 	if (IsObject(status) != true)
 	{
 		return false;
 	}
-	
+
 	return status;
 }]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-11-03 16:18:13</sys_created_on>
         <sys_id>47a6c3dd1bdeb5106c17fdd49b4bcbb9</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>TargetInstanceGetStatus</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_47a6c3dd1bdeb5106c17fdd49b4bcbb9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-17 14:21:57</sys_updated_on>
+        <sys_updated_on>2026-08-25 08:58:44</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

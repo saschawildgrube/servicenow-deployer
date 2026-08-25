@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>Deployer Target API end point "Run Installation Scripts" must support scopes in parameter "application_sys_id". The parameter however suggests that only Sys Ids can be used. The parameter should be renamed to reflect that actual capability.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>Parameter application_sys_id outdated</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-08-25 11:38:18</sys_created_on>
+        <sys_id>035571e383f64750ac13b410feaad3f6</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Parameter application_sys_id outdated</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_035571e383f64750ac13b410feaad3f6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-08-25 11:42:52</sys_updated_on>
+        <type>code_outdated</type>
+    </x_snc_devtools_technical_debt>
+</record_update>

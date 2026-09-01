@@ -91,11 +91,24 @@
 		var strDependencyStatusSummary = GetStringValue(GetValue(oPackage,'dependency_status_summary'));
 
 		var strAppName = GetValue(oPackage,'name');
+		var strPackageClass = GetValue(oPackage,'package_class');
+		if (strPackageClass == '')
+		{
+			strPackageClass = GetValue(oPackage,'sys_class_name');
+		}
 		if (strDependencyStatus != 'missing')
 		{
 			strAppName += ' ' + strVersion;
 		}
-
+		if (strPackageClass == 'sys_plugins')
+		{
+			strAppName += ' (Plugin)';
+		}
+		else if (strPackageClass == 'sys_store_app')
+		{
+			strAppName += ' (Store App)';
+		}
+	
 		if (strDependencyStatusSummary != 'ok' && strDependencyStatusSummary != 'out_of_scope')
 		{
 			bError = true;
@@ -120,32 +133,35 @@
 			
 			strHtmlInner += 'Status: ' + HtmlRenderDependencyStatus(strDependencyStatus);
 			strHtmlInner += '<br/>';
-			if (strDependencyStatus == 'ok')
+			if (strPackageClass == 'sys_app')
 			{
-				strHtmlInner += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
-					GetRepoUrlFromPackage(oPackage),
-					GetValue(oPackage,'branch'));
-			}
-			else if (strDependencyStatus == 'missing_repo_url')
-			{
-				
-			}
-			else if (strDependencyStatus == 'out_of_scope')
-			{
-				strHtmlInner += StringFormat(
-					'The package class <b>{0}</b> is out of scope for the dependency analysis. Availability for deployment must be checked manually.',
-					GetValue(oPackage,'package_class'));
-										
-			}				
-			else if (strDependencyStatus == 'invalid_repo_url')
-			{
-				strHtmlInner += StringFormat('Repository: {0}<br/>',
-					GetRepoUrlFromPackage(oPackage));
-			}
-			else
-			{
-				strHtmlInner += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a><br/>',
-					GetRepoUrlFromPackage(oPackage));
+				if (strDependencyStatus == 'ok')
+				{
+					strHtmlInner += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a> / Branch: {1} <br/>',
+						GetRepoUrlFromPackage(oPackage),
+						GetValue(oPackage,'branch'));
+				}
+				else if (strDependencyStatus == 'missing_repo_url')
+				{
+					
+				}
+				else if (strDependencyStatus == 'out_of_scope')
+				{
+					strHtmlInner += StringFormat(
+						'The package class <b>{0}</b> is out of scope for the dependency analysis. Availability for deployment must be checked manually.',
+						GetValue(oPackage,'package_class'));
+											
+				}				
+				else if (strDependencyStatus == 'invalid_repo_url')
+				{
+					strHtmlInner += StringFormat('Repository: {0}<br/>',
+						GetRepoUrlFromPackage(oPackage));
+				}
+				else
+				{
+					strHtmlInner += StringFormat('Repository: <a href="{0}" target="_blank">{0}</a><br/>',
+						GetRepoUrlFromPackage(oPackage));
+				}
 			}	
 		}
 		else
@@ -246,14 +262,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-04-12 15:10:20</sys_created_on>
         <sys_id>43e9fa97970ae910a6a07767f053af20</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>53</sys_mod_count>
         <sys_name>HtmlRenderRepoDependencies</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_43e9fa97970ae910a6a07767f053af20</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-10-17 14:21:57</sys_updated_on>
+        <sys_updated_on>2026-09-01 10:17:04</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
 </record_update>

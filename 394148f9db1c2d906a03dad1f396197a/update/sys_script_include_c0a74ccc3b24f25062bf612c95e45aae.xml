@@ -18,6 +18,7 @@
 	var GetRecord = x_snc_devtools.GetRecord;
 	var GlideRecordUpdate = x_snc_devtools.GlideRecordUpdate;
 	var Sleep = x_snc_devtools.Sleep;
+	var WaitForStateChange = x_snc_devtools.WaitForStateChange;
 	
 	var progresstracker = new x_snc_devtools.ProgressTrackerAPI();
 	progresstracker.Start();
@@ -140,7 +141,24 @@
 	grDeployment.description = 'Fully automated headless deployment';
 	grDeployment.state = GetDeploymentState('preparing');
 	grDeployment.update();
+	// Triggers creation of tasks and once finished, sets state to "ready" 
 
+	WaitForStateChange(grDeployment,2,60);
+
+	grDeployment = GetDeploymentRecord(grDeployment.sys_id);
+	if (IsValidRecord(grDeployment) == false)
+	{
+		Error('Failed to re-load deployment record!');
+		return false;			
+	}
+	if (grDeployment.state != GetDeploymentState('ready'))
+	{
+		Error('Deployment did not reach ready state! State is ' + grDeployment.state + '.');
+		return false;			
+
+	}
+
+/*
 	var bPrepared = CreateDeploymentTasksForDeployment(grDeployment);
 	if (bPrepared == false)
 	{
@@ -151,6 +169,7 @@
 	grDeployment.state = GetDeploymentState('ready');
 	grDeployment.update();
 	//GlideRecordUpdate(grDeployment,true);
+*/
 
 	var grTasks = new GlideRecord('x_snc_deployer_deployment_task');
 	grTasks.addQuery('deployment','=',grDeployment.sys_id);
@@ -232,14 +251,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-07 14:06:44</sys_created_on>
         <sys_id>c0a74ccc3b24f25062bf612c95e45aae</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>HeadlessDeployment</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_c0a74ccc3b24f25062bf612c95e45aae</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-08-05 15:29:53</sys_updated_on>
+        <sys_updated_on>2026-09-02 08:44:34</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

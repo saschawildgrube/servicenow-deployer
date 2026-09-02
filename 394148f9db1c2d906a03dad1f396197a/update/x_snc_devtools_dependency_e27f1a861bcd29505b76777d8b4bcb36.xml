@@ -6,6 +6,7 @@
         <package_class>sys_app</package_class>
         <reason>Uses numerous functions and classes from DevTools - the GitHubAPI and GitLabAPI classes are of specific importance.</reason>
         <repo_url>https://github.com/saschawildgrube/servicenow-devtools.git</repo_url>
+        <source/>
         <sys_class_name>x_snc_devtools_dependency</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-17 21:52:52</sys_created_on>

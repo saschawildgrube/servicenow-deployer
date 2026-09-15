@@ -17,7 +17,8 @@
 	var GetStringValue = x_snc_devtools.GetStringValue;
 	var ConfigurationItemServiceNowAppInsertOrUpdateFromTree = x_snc_devtools.ConfigurationItemServiceNowAppInsertOrUpdateFromTree;
 	var Sleep = x_snc_devtools.Sleep;
-	
+	var stopwatch = new x_snc_devtools.StopWatch();
+
 	if (IsValidRecord(grRepoAppStatus) == false)
 	{
 		return false;
@@ -27,6 +28,9 @@
 	var strVersion = GetStringValue(grRepoAppStatus.version);
 	var strBranch = GetStringValue(grRepoAppStatus.branch);
 	var strRepoUrl = GetStringValue(grRepoAppStatus.repo_url);
+
+
+	stopwatch.Start();
 
 	// This is to make sure the timing for the first reload of the form works
 	Sleep(3);
@@ -50,6 +54,7 @@
 	{
 		grRepoAppStatus.display = 'Failed processing '+strRepoUrl+' in unsupported mode "'+strMode+'"!';
 		grRepoAppStatus.status = 'error';
+		grRepoAppStatus.runtime_ms = stopwatch.GetTotalMilliSeconds();
 		grRepoAppStatus.update();		
 		return false;
 	}
@@ -59,6 +64,7 @@
 	grRepoAppStatus.status = 'processing';
 	grRepoAppStatus.errors = 0;
 	grRepoAppStatus.dependency_tree_json = '';
+	grRepoAppStatus.runtime_ms = stopwatch.GetTotalMilliSeconds();
 	grRepoAppStatus.update();
 
 	var grCredential = GetCredentialForRepository(strRepoUrl);
@@ -66,6 +72,7 @@
 	{
 		grRepoAppStatus.display = 'No repository credential could be identified for the repository: '+strRepoUrl;
 		grRepoAppStatus.status = 'error';
+		grRepoAppStatus.runtime_ms = stopwatch.GetTotalMilliSeconds();
 		grRepoAppStatus.update();
 		return true;		
 	}
@@ -76,6 +83,7 @@
 	{
 		grRepoAppStatus.display = 'Failed processing '+strRepoUrl+' for version '+strVersion;
 		grRepoAppStatus.status = 'error';
+		grRepoAppStatus.runtime_ms = stopwatch.GetTotalMilliSeconds();
 		grRepoAppStatus.update();
 		return true;	
 	}
@@ -86,6 +94,7 @@
 		grRepoAppStatus.dependency_tree_json = JSON.stringify(dependencytree);
 		grRepoAppStatus.status = 'previewed';
 		grRepoAppStatus.errors = GetDependencyTreeErrorCount(dependencytree);
+		grRepoAppStatus.runtime_ms = stopwatch.GetTotalMilliSeconds();
 		grRepoAppStatus.update();
 		return true;		
 	}	
@@ -115,9 +124,11 @@
 		grRepoAppStatus.status = 'error';
 	}
 	grRepoAppStatus.errors = GetDependencyTreeErrorCount(dependencytree);
-	grRepoAppStatus.update();
-
+	
 	ConfigurationItemServiceNowAppInsertOrUpdateFromTree('',dependencytree);
+
+	grRepoAppStatus.runtime_ms = stopwatch.GetTotalMilliSeconds();
+	grRepoAppStatus.update();
 
 	return true;
 }]]></script>
@@ -125,14 +136,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-06-05 13:17:15</sys_created_on>
         <sys_id>354a25aedbae4650f0f1d03cd3961982</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>ExecuteRepositoryApplicationStatus</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_354a25aedbae4650f0f1d03cd3961982</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-11-05 09:53:25</sys_updated_on>
+        <sys_updated_on>2026-09-15 13:56:13</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

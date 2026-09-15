@@ -18,6 +18,7 @@
                 <element hint="Checks the given application based on the given branch and considering all dependencies and their version requirements" inactive_on_update="false" label="Preview" sequence="2" value="preview"/>
             </choice>
         </element>
+        <element label="Runtime ms" max_length="40" name="runtime_ms" type="integer"/>
         <element label="Errors" max_length="40" name="errors" read_only="true" type="integer"/>
         <element attributes="no_truncate=true" display="true" label="Display" max_length="200" name="display" read_only="true" type="string"/>
         <element attributes="no_truncate=true" label="Repository Url" mandatory="true" max_length="200" name="repo_url" type="string"/>

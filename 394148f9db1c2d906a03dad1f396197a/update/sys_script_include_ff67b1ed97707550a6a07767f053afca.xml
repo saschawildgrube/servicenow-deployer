@@ -25,6 +25,7 @@
 	var IsTestSession = x_snc_devtools.IsTestSession;
 	var GetAppManagerPath = x_snc_devtools.GetAppManagerPath;
 	var IsVersionCompatible = x_snc_devtools.IsVersionCompatible;
+	var GetLatestVersion = x_snc_devtools.GetLatestVersion;
 	
 
 	var deployment = vDeployment;
@@ -400,13 +401,13 @@
 		
 			if (storeAppOnTargetFound == null)
 			{
-
 				var task = MakeTask('store_app_install',package.sys_id);
 				task.short_description =
 					'Install Store App "'+package.name+'" '
 					+RenderCompatibleVersions(package.compatible_versions)
 					+' on instance "'+strInstanceName+'".';
-				
+				task.version = GetLatestVersion(package.compatible_versions);
+
 				if (task.execution == 'manual')
 				{
 					// Manual instructions
@@ -416,7 +417,8 @@
 						+'3. Under "Search your licensed applications and plugins" enter: "'+package.name+'"\n'
 						+'4. In the "Available for you" tab select: "'+package.name+'"\n'
 						+'5. Select "Install"\n'
-						+'6. Wait for the installation to complete\n'
+						+'6. Select a compatible version\n'
+						+'7. Wait for the update to complete\n'
 						+strAdditionalStepsForPluginsAndStoreApps;
 					task.start_url = strInstanceUrl + GetAppManagerPath(package.sys_id);
 				}
@@ -428,6 +430,7 @@
 				{
 					var task = MakeTask('store_app_update',package.sys_id);
 					task.short_description = 'Update Store App "'+package.name+'" to version '+RenderCompatibleVersions(package.compatible_versions)+' on instance "'+strInstanceName+'".';
+					task.version = GetLatestVersion(package.compatible_versions);
 
 					if (task.execution == 'manual')
 					{
@@ -438,7 +441,8 @@
 							+'3. Under "Search your licensed applications and plugins" enter: "'+package.name+'"\n'
 							+'4. In the "Installed" tab select: "'+package.name+'"\n'
 							+'5. Select "Update"\n'
-							+'6. Wait for the update to complete\n'
+							+'6. Select a compatible version\n'
+							+'7. Wait for the update to complete\n'
 							+strAdditionalStepsForPluginsAndStoreApps;
 						task.start_url = strInstanceUrl + GetAppManagerPath(package.sys_id);
 					}
@@ -705,14 +709,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-08-21 15:44:39</sys_created_on>
         <sys_id>ff67b1ed97707550a6a07767f053afca</sys_id>
-        <sys_mod_count>179</sys_mod_count>
+        <sys_mod_count>180</sys_mod_count>
         <sys_name>GetDeploymentTasks</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_script_include_ff67b1ed97707550a6a07767f053afca</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-16 07:54:17</sys_updated_on>
+        <sys_updated_on>2026-09-16 10:58:24</sys_updated_on>
         <x_snc_devtools_sys_ui_script/>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

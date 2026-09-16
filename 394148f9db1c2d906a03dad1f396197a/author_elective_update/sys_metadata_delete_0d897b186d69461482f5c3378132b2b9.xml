@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_deployer.GetLatestVersion</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Returns the latest (highest) version from a string or an array of versions.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GetLatestVersion</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[function GetLatestVersion(vVersions)
+{
+	var aVersions = ArrayGetValue(vVersions);
+	aVersions.sort(CompareVersion);
+	return GetValue(aVersions,0);
+}]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-16 10:38:38</sys_created_on>
+        <sys_id>87bab6e28357cf10ac13b410feaad3b4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GetLatestVersion</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_script_include_87bab6e28357cf10ac13b410feaad3b4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-16 10:38:38</sys_updated_on>
+        <x_snc_devtools_sys_ui_script/>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</application>
+        <file_path/>
+        <instance_id>b265927933572a987c42c7bb9d5c7b88</instance_id>
+        <instance_name>wildzurich</instance_name>
+        <name>sys_script_include_87bab6e28357cf10ac13b410feaad3b4</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_deployer.GetLatestVersion&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;Returns the latest (highest) version from a string or an array of versions.&lt;/description&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;GetLatestVersion&lt;/name&gt;&lt;sandbox_callable&gt;false&lt;/sandbox_callable&gt;&lt;script&gt;&lt;![CDATA[function GetLatestVersion(vVersions)
+{
+	var aVersions = ArrayGetValue(vVersions);
+	aVersions.sort(CompareVersion);
+	return GetValue(aVersions,0);
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-09-16 10:38:38&lt;/sys_created_on&gt;&lt;sys_id&gt;87bab6e28357cf10ac13b410feaad3b4&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;GetLatestVersion&lt;/sys_name&gt;&lt;sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer"&gt;394148f9db1c2d906a03dad1f396197a&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Deployer WORK IN PROGRESS"&gt;394148f9db1c2d906a03dad1f396197a&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_87bab6e28357cf10ac13b410feaad3b4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-09-16 10:38:38&lt;/sys_updated_on&gt;&lt;x_snc_devtools_sys_ui_script/&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-723898406</payload_hash>
+        <record_name>GetLatestVersion</record_name>
+        <reverted_from/>
+        <source>2a81376d93c243102de3b4aa6aba106c</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-16 10:38:40</sys_created_on>
+        <sys_id>5f1bfae68357cf10ac13b410feaad33e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0a9cc1b0f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-16 10:38:40</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>1f1bfae63357cf1017b73ca71c497c3d</update_guid>
+        <update_guid_history>1f1bfae63357cf1017b73ca71c497c3d:-723898406</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-16 10:41:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>0d897b186d69461482f5c3378132b2b9</sys_id>
+        <sys_metadata>87bab6e28357cf10ac13b410feaad3b4</sys_metadata>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>GetLatestVersion</sys_name>
+        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope_delete display_value="">045d908d550d44b79e7d76cf82e41331</sys_scope_delete>
+        <sys_update_name>sys_metadata_delete_0d897b186d69461482f5c3378132b2b9</sys_update_name>
+        <sys_update_version display_value="sys_script_include_87bab6e28357cf10ac13b410feaad3b4">5f1bfae68357cf10ac13b410feaad33e</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-16 11:00:50</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -16,6 +16,7 @@
             </choice>
         </element>
         <element label="Start Here" max_length="1024" name="start_url" read_only="true" type="url"/>
+        <element label="Version" max_length="12" name="version" type="string"/>
         <element label="MID Server" max_length="32" name="mid_server" type="string"/>
         <element label="Result Details" max_length="1024" name="result_details_url" read_only="true" type="url"/>
         <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" reference_cascade_rule="delete" type="reference"/>

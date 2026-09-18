@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_snc_devtools_technical_debt">
+    <x_snc_devtools_technical_debt action="INSERT_OR_UPDATE">
+        <description>The OOTB REST API end point for Plugin activation does not support a parameter to require a specific version of a Plugin - which makes it impossible to install Plugins strictly according to requirements. A solution must be found to ensure that the target instance is updated to exactly the requested state.</description>
+        <id/>
+        <related_backlog_item_url/>
+        <short_description>TargetInstancePluginActivate() does not support required version</short_description>
+        <switch>false</switch>
+        <sys_class_name>x_snc_devtools_technical_debt</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-18 08:54:56</sys_created_on>
+        <sys_id>b9f530d3839b4310ac13b410feaad3ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TargetInstancePluginActivate() does not support required version</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>x_snc_devtools_technical_debt_b9f530d3839b4310ac13b410feaad3ef</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-18 08:54:56</sys_updated_on>
+        <type>code_incomplete</type>
+    </x_snc_devtools_technical_debt>
+</record_update>

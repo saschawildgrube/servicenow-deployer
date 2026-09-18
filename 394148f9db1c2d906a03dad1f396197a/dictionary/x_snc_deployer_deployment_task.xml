@@ -3,10 +3,20 @@
         <element label="Credential" max_length="32" name="credential" type="string"/>
         <element choice="1" default="custom" label="Action" max_length="40" name="action" read_only="true" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Run Installation Scripts" sequence="10" value="run_install_scripts"/>
-                <element inactive_on_update="false" label="Install Application through Import from Source Control" sequence="1" value="install_import_from_source_control"/>
-                <element inactive_on_update="false" label="run_atf_test_suite_default" sequence="20" value="Run default ATF Test Suite"/>
-                <element inactive_on_update="false" label="Run CodeSanity Instance Scan Suite" sequence="5" value="run_codesanity"/>
+                <element inactive_on_update="false" label="Run Installation Scripts" sequence="70" value="run_install_scripts"/>
+                <element inactive_on_update="false" label="Install Application through Import from Source Control" sequence="50" value="install_import_from_source_control"/>
+                <element inactive_on_update="false" label="Smoke Test" sequence="90" value="smoke_test"/>
+                <element inactive_on_update="false" label="Plugin Update" sequence="31" value="plugin_update"/>
+                <element inactive_on_update="false" label="Store App Update" sequence="41" value="store_app_update"/>
+                <element inactive_on_update="false" label="Store App Installation" sequence="40" value="store_app_install"/>
+                <element inactive_on_update="false" label="Pre-Deployment Activities" sequence="10" value="pre_deployment_activities"/>
+                <element inactive_on_update="false" label="Install new version from Source Control" sequence="51" value="install_switch_branch"/>
+                <element inactive_on_update="false" label="Run default ATF Test Suite" sequence="80" value="run_atf_test_suite_default"/>
+                <element inactive_on_update="false" label="Run CodeSanity Instance Scan Suite" sequence="60" value="run_codesanity"/>
+                <element inactive_on_update="false" label="Plugin Installation" sequence="30" value="plugin_install"/>
+                <element inactive_on_update="false" label="Update from Source Control" sequence="52" value="install_apply_remote_changes"/>
+                <element inactive_on_update="false" label="Post-Deployment Activities" sequence="100" value="post_deployment_activities"/>
+                <element inactive_on_update="false" label="Confirm Data Deletion" sequence="20" value="data_deletion_confirm"/>
             </choice>
         </element>
         <element choice="3" default="manual" label="Execution" mandatory="true" max_length="40" name="execution" read_only="true" type="choice">
@@ -16,11 +26,12 @@
             </choice>
         </element>
         <element label="Start Here" max_length="1024" name="start_url" read_only="true" type="url"/>
+        <element label="Version" max_length="12" name="version" type="string"/>
         <element label="MID Server" max_length="32" name="mid_server" type="string"/>
         <element label="Result Details" max_length="1024" name="result_details_url" read_only="true" type="url"/>
         <element label="Deployment" mandatory="true" max_length="32" name="deployment" read_only="true" reference="x_snc_deployer_deployment" reference_cascade_rule="delete" type="reference"/>
         <element label="Branch" max_length="100" name="branch" type="string"/>
-        <element label="ID" max_length="32" name="id" type="string"/>
+        <element label="ID" max_length="200" name="id" read_only="true" type="string"/>
         <element label="Repository Url" max_length="1024" name="repo_url" type="url"/>
         <element label="Retry Count" max_length="40" name="retry_count" read_only="true" type="integer"/>
         <element label="Status" max_length="200" name="status" read_only="true" type="string"/>

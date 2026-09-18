@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-14 10:21:06</sys_created_on>
+        <sys_id>d6e3e4cac31783104b4f311f0501315a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_update_name>sys_atf_step_d6e3e4cac31783104b4f311f0501315a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-14 10:21:06</sys_updated_on>
+        <table/>
+        <test display_value="Deployer - TargetInstancePluginActivate">82e3a4cac31783104b4f311f05013142</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=d6e3e4cac31783104b4f311f0501315a"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d6e3e4cac31783104b4f311f0501315a</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-14 10:21:06</sys_created_on>
+        <sys_id>5ee3e4cac31783104b4f311f0501315e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-14 10:21:07</sys_updated_on>
+        <value>(function(outputs, steps, stepResult, assertEqual)
+{
+	var test = new x_snc_devtools.TestAPI(outputs, steps, stepResult, assertEqual);
+	
+	test.SetResult(true);
+	
+	function TestCase_TargetInstancePluginActivate(grInstance,strPluginId,vExpected)
+	{
+		function TestCase_TargetInstancePluginActivate_CheckResult(vInput,vExpected,vResult)
+		{
+			return (vExpected == vResult);
+		}
+		
+		test.TestCase(
+			'Function TargetInstancePluginActivate()',
+			TargetInstancePluginActivate,
+			{
+				'grInstance': grInstance,
+				'strPluginId': strPluginId
+			},
+			vExpected,
+			TestCase_TargetInstancePluginActivate_CheckResult);
+	}
+		
+	TestCase_TargetInstancePluginActivate(null,null,false);
+	
+	return test.GetResult();
+	
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d6e3e4cac31783104b4f311f0501315a</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-14 10:21:06</sys_created_on>
+        <sys_id>dee3e4cac31783104b4f311f0501315d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-14 10:21:06</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

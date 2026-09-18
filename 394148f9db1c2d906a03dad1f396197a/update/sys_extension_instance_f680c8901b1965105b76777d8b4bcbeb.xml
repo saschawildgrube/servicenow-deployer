@@ -10,9 +10,9 @@
         <sys_id>f680c8901b1965105b76777d8b4bcbeb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_snc_devtools.DevTools</sys_name>
-        <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
+        <sys_package display_value="Deployer" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
+        <sys_scope display_value="Deployer">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_extension_instance_f680c8901b1965105b76777d8b4bcbeb</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2023-02-24 10:04:43</sys_updated_on>

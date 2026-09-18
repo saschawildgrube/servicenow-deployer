@@ -241,6 +241,7 @@
 		<li>Added function TargetInstanceAppRepoInstall().</li>
 		<li>GetStatus() now supports a 3rd parameter for a custom application whitelist.</li>
 		<li>TargetInstanceRequest() now supports the "strMethod" parameter.</li>
+		<li>Documented technical debt: TargetInstancePluginActivate() does not support required version - the OOTB REST API endpoint for Plugin activation does not support to request a specific Plugin version. This missing capability should be added to the Deployer in a future version.</li>
 	</ol>
 
 
@@ -616,14 +617,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-02-24 10:04:44</sys_created_on>
         <sys_id>cb800c901b1965105b76777d8b4bcb0a</sys_id>
-        <sys_mod_count>383</sys_mod_count>
+        <sys_mod_count>384</sys_mod_count>
         <sys_name>manual</sys_name>
         <sys_package display_value="Deployer WORK IN PROGRESS" source="x_snc_deployer">394148f9db1c2d906a03dad1f396197a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Deployer WORK IN PROGRESS">394148f9db1c2d906a03dad1f396197a</sys_scope>
         <sys_update_name>sys_ui_page_cb800c901b1965105b76777d8b4bcb0a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-17 13:14:45</sys_updated_on>
+        <sys_updated_on>2026-09-18 08:57:06</sys_updated_on>
     </sys_ui_page>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>cb800c901b1965105b76777d8b4bcb0a</id>
